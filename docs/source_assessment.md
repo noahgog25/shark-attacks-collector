@@ -23,9 +23,9 @@ Le champ `name` contient des données personnelles identifiables (nom de victime
 ## Reproductibilité de l'extrait
 
 Le fichier exact utilisé par défaut est
-`data/source/global_shark_attacks-selected-columns.csv`, conservé localement
-car le téléchargement Kaggle peut nécessiter une session utilisateur. Le
-collecteur ne contourne pas cette authentification et ne scrape pas le site.
-Chaque copie raw est horodatée et son SHA-256 est inscrit dans
+`data/raw/global_shark_attacks_raw.csv`, conservé localement car le
+téléchargement Kaggle peut nécessiter une session utilisateur. Le collecteur
+ne contourne pas cette authentification et ne scrape pas le site.
+La copie raw canonique et son SHA-256 sont inscrits dans
 `reports/interpretation/run_report.json`. Pour reproduire un autre extrait,
 passer explicitement son chemin à `python -m src.pipeline chemin/vers/fichier.csv`.

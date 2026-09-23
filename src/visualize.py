@@ -14,7 +14,7 @@ import pandas as pd
 from src.analyze import build_hotspots
 
 ROOT = Path(__file__).resolve().parent.parent
-CURATED_PATH = ROOT / "data" / "curated" / "global_shark_attacks-selected-columns.csv"
+CURATED_PATH = ROOT / "data" / "curated" / "shark_attacks_curated.csv"
 OUTPUT_PATH = ROOT / "reports" / "images" / "attaques_par_annee.png"
 DASHBOARD_PATH = ROOT / "reports" / "images" / "dashboard_incidents.png"
 

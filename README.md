@@ -17,7 +17,7 @@ Le projet est cadré dans [docs/project_brief.md](docs/project_brief.md).
 
 ## Source et conditions
 
-- **Source** : Global Shark Attack File, extrait via Kaggle — [gauravkumar2525/shark-attacks](https://www.kaggle.com/datasets/gauravkumar2525/shark-attacks)
+- **Source initiale** : Global Shark Attack File, extrait via Kaggle — [gauravkumar2525/shark-attacks](https://www.kaggle.com/datasets/gauravkumar2525/shark-attacks)
 - **Licence** : usage pédagogique, conditions Kaggle
 - **Date d'accès** : 2026-09-22
 - Détail de l'évaluation des sources candidates : `docs/source_assessment.md`
@@ -40,8 +40,10 @@ pip install -r requirements.txt
 python -m src.pipeline
 ```
 
+Le pipeline utilise `data/raw/global_shark_attacks_raw.csv` comme fichier d'entrée canonique. Pour traiter un autre CSV, le chemin passé en argument est copié vers ce fichier raw.
+
 Le pipeline :
-1. copie le CSV source vers `data/raw/` avec un nom horodaté (jamais modifié ensuite) ;
+1. lit le fichier raw canonique (ou copie le fichier fourni en argument vers celui-ci) ;
 2. applique 5 règles de qualité et sépare les lignes acceptées des lignes rejetées ;
 3. transforme les lignes acceptées en dataset curated propre et typé ;
 4. génère une première visualisation (attaques par année) ;
@@ -55,7 +57,7 @@ Pour utiliser un autre fichier source :
 python -m src.pipeline chemin/vers/un_autre_export.csv
 ```
 
-Le pipeline est **idempotent** : les fichiers `data/curated/global_shark_attacks-selected-columns.csv` et `data/rejected/rejected_rows.csv` sont entièrement remplacés à chaque exécution, donc le relancer plusieurs fois sur la même source ne crée pas de doublons dans les sorties. Seule la zone `data/raw/` accumule une nouvelle preuve de collecte horodatée à chaque run — c'est voulu, c'est l'historique des collectes.
+Le pipeline est **idempotent** : les fichiers `data/curated/shark_attacks_curated.csv` et `data/rejected/rejected_rows.csv` sont entièrement remplacés à chaque exécution. La zone `data/raw/` contient volontairement une seule copie brute canonique, remplacée à chaque run.
 
 Le rapport d'exécution contient aussi le hash SHA-256 et la taille du fichier raw, le profil initial de la source et la version du contrat. Le profil est produit avant la validation.
 
@@ -69,9 +71,8 @@ shark-attacks-collector/
   config/
     data_contract.yaml       # contrat de données v1
   data/
-    source/                  # fichier source original, jamais modifié
-    raw/                     # copies horodatées (preuve de collecte)
-    curated/                 # global_shark_attacks-selected-columns.csv — données validées et propres
+    raw/                     # fichier source/raw canonique
+    curated/                 # shark_attacks_curated.csv — données validées et propres
     rejected/                # rejected_rows.csv — lignes écartées + raison
   docs/
     architecture.md
@@ -137,7 +138,7 @@ Pour répondre à la question « pourquoi deviennent-ils agressifs ? », il faud
 
 ## Améliorations prévues
 
-- Passage de `data/curated/global_shark_attacks-selected-columns.csv` vers une base SQLite en étoile (schéma déjà défini, voir échanges précédents).
+- Passage de `data/curated/shark_attacks_curated.csv` vers une base SQLite en étoile (schéma déjà défini, voir échanges précédents).
 - Visualisations complémentaires : top pays, répartition par activité et tranche d'âge.
 - Import contrôlé d'exports OCEARCH et d'occurrences GBIF, avec distance spatiale, écart temporel et provenance conservés pour chaque jointure.
 

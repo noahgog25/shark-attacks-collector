@@ -1,7 +1,7 @@
 """
 Pipeline batch complet.
 
-    Source (data/source) -> Collecteur -> Raw (data/raw)
+    Source raw canonique (data/raw) -> Collecteur -> Raw (data/raw)
         -> Validation (5 regles) -> Curated (data/curated) + Rejected (data/rejected)
         -> Rapport (reports/interpretation) + Visualisations (reports/images)
 
@@ -33,7 +33,7 @@ from src.transform import transform
 from src.visualize import plot_attacks_per_year, plot_incident_dashboard
 
 ROOT = Path(__file__).resolve().parent.parent
-CURATED_PATH = ROOT / "data" / "curated" / "global_shark_attacks-selected-columns.csv"
+CURATED_PATH = ROOT / "data" / "curated" / "shark_attacks_curated.csv"
 REJECTED_PATH = ROOT / "data" / "rejected" / "rejected_rows.csv"
 REPORTS_DIR = ROOT / "reports"
 REPORT_PATH = REPORTS_DIR / "interpretation" / "run_report.json"

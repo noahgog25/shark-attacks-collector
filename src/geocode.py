@@ -18,7 +18,7 @@ from urllib.request import Request, urlopen
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parent.parent
-CURATED_PATH = ROOT / "data" / "curated" / "global_shark_attacks-selected-columns.csv"
+CURATED_PATH = ROOT / "data" / "curated" / "shark_attacks_curated.csv"
 REFERENCE_DIR = ROOT / "data" / "reference"
 OUTPUT_PATH = ROOT / "reports" / "data" / "attacks_with_coordinates.csv"
 CACHE_PATH = REFERENCE_DIR / "nominatim_cache.json"
