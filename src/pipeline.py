@@ -25,8 +25,9 @@ import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from src.collect import collect
+from src.collect import collect, sha256_file
 from src.analyze import write_analysis_reports
+from src.profile import write_profile
 from src.validate import run_quality_rules
 from src.transform import transform
 from src.visualize import plot_attacks_per_year, plot_incident_dashboard
@@ -37,6 +38,7 @@ REJECTED_PATH = ROOT / "data" / "rejected" / "rejected_rows.csv"
 REPORTS_DIR = ROOT / "reports"
 REPORT_PATH = REPORTS_DIR / "interpretation" / "run_report.json"
 REPORT_DATA_DIR = REPORTS_DIR / "data"
+PROFILE_PATH = REPORTS_DIR / "interpretation" / "source_profile.json"
 
 
 def run(source_path: str | None = None) -> dict:
@@ -44,6 +46,7 @@ def run(source_path: str | None = None) -> dict:
 
     raw_path = collect(source_path)
     df = pd.read_csv(raw_path)
+    profile_path = write_profile(df, PROFILE_PATH)
 
     accepted, rejected, quality = run_quality_rules(df)
     curated = transform(accepted)
@@ -63,6 +66,9 @@ def run(source_path: str | None = None) -> dict:
         "pipeline": "shark-attacks-collector",
         "executed_at": pd.Timestamp.now("UTC").isoformat(),
         "source_file": raw_path.name,
+        "source_sha256": sha256_file(raw_path),
+        "source_size_bytes": raw_path.stat().st_size,
+        "contract_version": "1.0",
         "input_rows": quality.input_rows,
         "accepted_rows": quality.accepted_rows,
         "rejected_rows": quality.rejected_rows,
@@ -77,6 +83,7 @@ def run(source_path: str | None = None) -> dict:
             "dashboard": str(dashboard.relative_to(ROOT)),
             "hotspots": str(Path(analyses["hotspots"]).relative_to(ROOT)),
             "seasonality": str(Path(analyses["seasonality"]).relative_to(ROOT)),
+            "profile": str(profile_path.relative_to(ROOT)),
         },
     }
     REPORT_PATH.write_text(json.dumps(rapport, indent=2, ensure_ascii=False), encoding="utf-8")

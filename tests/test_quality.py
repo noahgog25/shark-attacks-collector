@@ -11,6 +11,7 @@ import pandas as pd
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from src.validate import run_quality_rules
+from src.transform import transform
 
 
 def _ligne(**overrides):
@@ -45,6 +46,14 @@ def test_annee_hors_bornes_est_rejetee():
     assert report.failures_by_rule["validite_annee"] == 1
 
 
+def test_type_inconnu_est_rejete():
+    df = pd.DataFrame([_ligne(type="Unknown type")])
+    accepted, rejected, report = run_quality_rules(df)
+    assert len(accepted) == 0
+    assert rejected.iloc[0]["_reject_reason"] == "type d'attaque inconnu"
+    assert report.failures_by_rule["coherence_type"] == 1
+
+
 def test_age_hors_domaine_est_corrige_sans_rejeter():
     df = pd.DataFrame([_ligne(age="250")])
     accepted, rejected, report = run_quality_rules(df)
@@ -57,3 +66,15 @@ def test_doublon_est_supprime():
     accepted, rejected, report = run_quality_rules(df)
     assert len(accepted) == 1
     assert report.duplicates_removed == 1
+    assert report.failures_by_rule["unicite"] == 1
+
+
+def test_rejouer_validation_et_transformation_est_stable():
+    df = pd.DataFrame([_ligne(), _ligne()])
+    accepted_first, _, _ = run_quality_rules(df)
+    accepted_second, _, _ = run_quality_rules(df)
+
+    first = transform(accepted_first)
+    second = transform(accepted_second)
+
+    pd.testing.assert_frame_equal(first, second)

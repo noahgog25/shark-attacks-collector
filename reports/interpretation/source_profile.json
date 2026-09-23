@@ -1,0 +1,160 @@
+{
+  "rows": 6890,
+  "columns": 10,
+  "column_names": [
+    "date",
+    "year",
+    "type",
+    "country",
+    "area",
+    "location",
+    "activity",
+    "name",
+    "sex",
+    "age"
+  ],
+  "dtypes": {
+    "date": "object",
+    "year": "float64",
+    "type": "object",
+    "country": "object",
+    "area": "object",
+    "location": "object",
+    "activity": "object",
+    "name": "object",
+    "sex": "object",
+    "age": "object"
+  },
+  "missing_rate": {
+    "date": 0.044,
+    "year": 0.0192,
+    "type": 0.0028,
+    "country": 0.0074,
+    "area": 0.0698,
+    "location": 0.082,
+    "activity": 0.0851,
+    "name": 0.0319,
+    "sex": 0.083,
+    "age": 0.4335
+  },
+  "duplicate_rows": 9,
+  "numeric_summary": {
+    "year": {
+      "count": 6758.0,
+      "mean": 1970.9359277893,
+      "std": 56.2278805693,
+      "min": 1.0,
+      "25%": 1950.0,
+      "50%": 1986.0,
+      "75%": 2009.0,
+      "max": 2023.0
+    }
+  },
+  "categorical_top_values": {
+    "date": {
+      "<NA>": 303,
+      "1957-01-01": 11,
+      "1942-01-01": 10,
+      "1956-01-01": 8,
+      "1941-01-01": 8,
+      "1950-01-01": 8,
+      "1958-01-01": 7,
+      "1949-01-01": 6,
+      "1940-01-01": 6,
+      "1898-01-01": 6
+    },
+    "type": {
+      "Unprovoked": 5065,
+      "Provoked": 632,
+      "Invalid": 552,
+      "Watercraft": 352,
+      "Sea Disaster": 242,
+      "<NA>": 19,
+      "Questionable": 17,
+      "Boat": 7,
+      "Unverified": 1,
+      "?": 1
+    },
+    "country": {
+      "USA": 2522,
+      "AUSTRALIA": 1464,
+      "SOUTH AFRICA": 596,
+      "NEW ZEALAND": 142,
+      "PAPUA NEW GUINEA": 136,
+      "BAHAMAS": 132,
+      "BRAZIL": 122,
+      "MEXICO": 100,
+      "ITALY": 72,
+      "FIJI": 67
+    },
+    "area": {
+      "Florida": 1174,
+      "New South Wales": 520,
+      "<NA>": 481,
+      "Queensland": 345,
+      "Hawaii": 335,
+      "California": 320,
+      "Western Australia": 228,
+      "KwaZulu-Natal": 218,
+      "Western Cape Province": 197,
+      "South Carolina": 172
+    },
+    "location": {
+      "<NA>": 565,
+      "New Smyrna Beach, Volusia County": 192,
+      "Daytona Beach, Volusia County": 34,
+      "Ponce Inlet, Volusia County": 26,
+      "Myrtle Beach, Horry County": 21,
+      "Melbourne Beach, Brevard County": 21,
+      "Cocoa Beach, Brevard  County": 19,
+      "Durban": 18,
+      "Isle of Palms, Charleston County": 16,
+      "Boa Viagem, Recife": 14
+    },
+    "activity": {
+      "Surfing": 1112,
+      "Swimming": 1009,
+      "<NA>": 586,
+      "Fishing": 498,
+      "Spearfishing": 387,
+      "Wading": 171,
+      "Bathing": 166,
+      "Diving": 145,
+      "Snorkeling": 127,
+      "Standing": 115
+    },
+    "name": {
+      "male": 669,
+      "<NA>": 220,
+      "female": 133,
+      "boy": 23,
+      "2 males": 19,
+      "boat": 14,
+      "child": 12,
+      "sailor": 11,
+      "Anonymous": 11,
+      "males": 11
+    },
+    "sex": {
+      "M": 5545,
+      "F": 768,
+      "<NA>": 572,
+      "N": 2,
+      ".": 1,
+      "M x 2": 1,
+      "lli": 1
+    },
+    "age": {
+      "<NA>": 2987,
+      "19.0": 89,
+      "16.0": 89,
+      "17.0": 88,
+      "17": 84,
+      "18.0": 83,
+      "15": 83,
+      "20.0": 77,
+      "20": 74,
+      "18": 74
+    }
+  }
+}

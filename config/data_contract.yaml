@@ -6,6 +6,43 @@ grain: >
   l'activite pratiquee au moment des faits et le profil de la victime.
 owner: etudiant_eseo
 
+application:
+  user: "Etudiant ou analyste explorant les incidents de requins recenses"
+  central_question: >
+    Ou et quand les incidents sont-ils recenses, et quelles especes sont
+    candidates dans les regions ou une presence GBIF est documentee ?
+  decision: >
+    Prioriser les zones et periodes a examiner et choisir les enrichissements
+    ecologiques necessaires pour tester une hypothese.
+  kpis:
+    - incidents_declares_par_localite_pays_annee
+    - incidents_declares_par_mois
+    - rapprochements_espece_attaque_a_moins_de_25_et_100_km
+
+raw_schema:
+  - {name: date, type: date_text, required: false}
+  - {name: year, type: numeric, required: true}
+  - {name: type, type: category, required: true}
+  - {name: country, type: string, required: true}
+  - {name: area, type: string, required: false}
+  - {name: location, type: string, required: false}
+  - {name: activity, type: string, required: false}
+  - {name: name, type: sensitive_string, required: false}
+  - {name: sex, type: category, required: false}
+  - {name: age, type: text_or_numeric, required: false}
+
+curated_schema:
+  - {name: date_complete, type: datetime, nullable: true}
+  - {name: annee, type: Int64, nullable: true}
+  - {name: pays, type: string, nullable: false}
+  - {name: zone, type: string, nullable: true}
+  - {name: localite, type: string, nullable: true}
+  - {name: activite, type: string, nullable: false}
+  - {name: type_attaque, type: category, nullable: false}
+  - {name: sexe, type: category, nullable: true}
+  - {name: age, type: Int64, nullable: true}
+  - {name: tranche_age, type: string, nullable: true}
+
 analysis_scope:
   current_outputs:
     - hotspots_incidents_declares

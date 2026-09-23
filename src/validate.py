@@ -11,11 +11,12 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass, field
+from datetime import datetime
 
 import pandas as pd
 
 ANNEE_MIN = 1000
-ANNEE_MAX = 2026
+ANNEE_MAX = datetime.now().year
 AGE_MIN = 0
 AGE_MAX = 120
 
@@ -77,6 +78,7 @@ def run_quality_rules(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame, Qua
     avant = len(work)
     work = work.drop_duplicates(subset=CLE_UNICITE, keep="first")
     report.duplicates_removed = avant - len(work)
+    report.failures_by_rule["unicite"] = report.duplicates_removed
 
     accepted = work[work["_reject_reason"] == ""].drop(columns=["_reject_reason"])
     rejected = work[work["_reject_reason"] != ""]

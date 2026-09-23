@@ -6,6 +6,15 @@ Pipeline batch qui transforme un extrait du Global Shark Attack File en un datas
 
 Une ligne du dataset curated représente un incident d'attaque de requin, avec sa date, sa localisation, l'activité pratiquée et le profil de la victime. Détail complet dans `config/data_contract.yaml`.
 
+## Question, utilisateur et décision
+
+Le projet est cadré dans [docs/project_brief.md](docs/project_brief.md).
+
+- **Question centrale :** où et quand les incidents de requins sont-ils recensés, et quelles espèces sont candidates dans les régions où une présence GBIF est documentée ?
+- **Utilisateur :** étudiant, enseignant ou analyste qui veut explorer les incidents sans confondre signalement et dangerosité.
+- **Décision :** prioriser des zones ou périodes à examiner et choisir les données écologiques complémentaires à collecter.
+- **KPI :** incidents déclarés par lieu/pays/année, incidents par mois, rapprochements attaque-espèce à moins de 25 km et 100 km.
+
 ## Source et conditions
 
 - **Source** : Global Shark Attack File, extrait via Kaggle — [gauravkumar2525/shark-attacks](https://www.kaggle.com/datasets/gauravkumar2525/shark-attacks)
@@ -48,6 +57,8 @@ python -m src.pipeline chemin/vers/un_autre_export.csv
 
 Le pipeline est **idempotent** : les fichiers `data/curated/global_shark_attacks-selected-columns.csv` et `data/rejected/rejected_rows.csv` sont entièrement remplacés à chaque exécution, donc le relancer plusieurs fois sur la même source ne crée pas de doublons dans les sorties. Seule la zone `data/raw/` accumule une nouvelle preuve de collecte horodatée à chaque run — c'est voulu, c'est l'historique des collectes.
 
+Le rapport d'exécution contient aussi le hash SHA-256 et la taille du fichier raw, le profil initial de la source et la version du contrat. Le profil est produit avant la validation.
+
 ## Arborescence
 
 ```
@@ -64,6 +75,9 @@ shark-attacks-collector/
     rejected/                # rejected_rows.csv — lignes écartées + raison
   docs/
     architecture.md
+    data_dictionary.md
+    demo.md
+    project_brief.md
     source_assessment.md
   reports/
     images/                  # graphiques et cartes PNG
@@ -74,6 +88,7 @@ shark-attacks-collector/
     shark_species_profiles.csv # habitats et reproduction documentés
   src/
     collect.py                # étape 1 : collecte
+    profile.py                # profilage avant validation
     validate.py                # étape 2 : 5 règles de qualité
     transform.py                # étape 3 : dataset curated
     visualize.py                 # étape 4 : visualisation simple
@@ -97,8 +112,10 @@ Définies et documentées dans `config/data_contract.yaml`, implémentées dans 
 ## Tests
 
 ```bash
-pytest tests/
+python -m pytest tests/
 ```
+
+La suite vérifie les règles de qualité, les rejets, le profilage, les sorties de visualisation, le géocodage et les comparaisons écologiques.
 
 ## Limites connues
 
@@ -122,8 +139,11 @@ Pour répondre à la question « pourquoi deviennent-ils agressifs ? », il faud
 
 - Passage de `data/curated/global_shark_attacks-selected-columns.csv` vers une base SQLite en étoile (schéma déjà défini, voir échanges précédents).
 - Visualisations complémentaires : top pays, répartition par activité et tranche d'âge.
-- Rapport de profilage automatique (`df.describe()`, taux de valeurs manquantes) avant validation.
 - Import contrôlé d'exports OCEARCH et d'occurrences GBIF, avec distance spatiale, écart temporel et provenance conservés pour chaque jointure.
+
+### Démonstration
+
+Le déroulé reproductible et les commandes de soutenance sont dans [docs/demo.md](docs/demo.md).
 
 ### Importer des observations officielles GBIF
 

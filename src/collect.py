@@ -13,6 +13,7 @@ une API sans toucher au reste du pipeline.
 
 from __future__ import annotations
 
+import hashlib
 import shutil
 from datetime import datetime, timezone
 from pathlib import Path
@@ -29,10 +30,19 @@ def collect(source_path: str | Path | None = None) -> Path:
         raise FileNotFoundError(f"Source introuvable : {source}")
 
     RAW_DIR.mkdir(parents=True, exist_ok=True)
-    stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
     destination = RAW_DIR / f"shark_attacks_{stamp}.csv"
     shutil.copyfile(source, destination)
     return destination
+
+
+def sha256_file(path: str | Path) -> str:
+    """Retourne l'empreinte SHA-256 d'un fichier pour sa traçabilité."""
+    digest = hashlib.sha256()
+    with Path(path).open("rb") as stream:
+        for chunk in iter(lambda: stream.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
 
 
 if __name__ == "__main__":
