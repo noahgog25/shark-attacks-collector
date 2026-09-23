@@ -1,0 +1,1068 @@
+{
+  "New Smyrna Beach, Volusia County, Florida, USA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 29.0258132,
+      "longitude": -80.9271271,
+      "display_name": "New Smyrna Beach, Volusia County, Florida, United States",
+      "geocode_type": "administrative"
+    },
+    "retrieved_at": "2026-09-23T07:36:48.277570+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Daytona Beach, Volusia County, Florida, USA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 29.2108147,
+      "longitude": -81.0228331,
+      "display_name": "Daytona Beach, Volusia County, Florida, United States",
+      "geocode_type": "administrative"
+    },
+    "retrieved_at": "2026-09-23T07:36:48.277570+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Ponce Inlet, Volusia County, Florida, USA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 29.0963729,
+      "longitude": -80.9369983,
+      "display_name": "Ponce Inlet, Volusia County, Florida, United States",
+      "geocode_type": "administrative"
+    },
+    "retrieved_at": "2026-09-23T07:36:48.277570+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Melbourne Beach, Brevard County, Florida, USA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 28.0684067,
+      "longitude": -80.5607951,
+      "display_name": "Melbourne Beach, Brevard County, Florida, United States",
+      "geocode_type": "administrative"
+    },
+    "retrieved_at": "2026-09-23T07:36:48.277570+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "BAHAMAS": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 24.7736546,
+      "longitude": -78.0000547,
+      "display_name": "The Bahamas",
+      "geocode_type": "administrative"
+    },
+    "retrieved_at": "2026-09-23T07:36:48.277570+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Myrtle Beach, Horry County, South Carolina, USA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 33.6956461,
+      "longitude": -78.8900409,
+      "display_name": "Myrtle Beach, Horry County, South Carolina, United States",
+      "geocode_type": "administrative"
+    },
+    "retrieved_at": "2026-09-23T07:36:48.277570+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Cocoa Beach, Brevard  County, Florida, USA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 28.3184107,
+      "longitude": -80.6094959,
+      "display_name": "Cocoa Beach, Brevard County, Florida, United States",
+      "geocode_type": "administrative"
+    },
+    "retrieved_at": "2026-09-23T07:36:48.277570+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Isle of Palms, Charleston County, South Carolina, USA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 32.7867697,
+      "longitude": -79.7880359,
+      "display_name": "Isle of Palms, Charleston County, South Carolina, 29451, United States",
+      "geocode_type": "administrative"
+    },
+    "retrieved_at": "2026-09-23T07:36:48.277570+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Piedade, Pernambuco, BRAZIL": {
+    "status": "geocoded",
+    "result": {
+      "latitude": -8.1756855,
+      "longitude": -34.9187594,
+      "display_name": "Piedade, Jaboatão dos Guararapes, Pernambuco, Região Nordeste, Brasil",
+      "geocode_type": "administrative"
+    },
+    "retrieved_at": "2026-09-23T07:36:48.277570+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Boa Viagem, Recife, Pernambuco, BRAZIL": {
+    "status": "geocoded",
+    "result": {
+      "latitude": -8.1235027,
+      "longitude": -34.9033955,
+      "display_name": "Boa Viagem, Recife, Pernambuco, Região Nordeste, Brasil",
+      "geocode_type": "administrative"
+    },
+    "retrieved_at": "2026-09-23T07:36:48.277570+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Cocoa Beach, Brevard County, Florida, USA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 28.3184107,
+      "longitude": -80.6094959,
+      "display_name": "Cocoa Beach, Brevard County, Florida, United States",
+      "geocode_type": "administrative"
+    },
+    "retrieved_at": "2026-09-23T07:39:08.921957+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Durban, KwaZulu-Natal, SOUTH AFRICA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": -29.8618145,
+      "longitude": 31.009909,
+      "display_name": "Durban, eThekwini Metropolitan Municipality, KwaZulu-Natal, 4057, South Africa",
+      "geocode_type": "city"
+    },
+    "retrieved_at": "2026-09-23T07:39:08.921957+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Jensen Beach, Martin County, Florida, USA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 27.2379528,
+      "longitude": -80.2389899,
+      "display_name": "Jensen Beach, Martin County, Florida, 34957, United States",
+      "geocode_type": "census"
+    },
+    "retrieved_at": "2026-09-23T07:39:08.921957+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Jacksonville Beach, Duval County, Florida, USA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 30.2946859,
+      "longitude": -81.3931396,
+      "display_name": "Jacksonville Beach, Duval County, Florida, 32250, United States",
+      "geocode_type": "administrative"
+    },
+    "retrieved_at": "2026-09-23T07:39:08.921957+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Ponce Inlet, New Smyrna Beach, Volusia County, Florida, USA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 29.0645699,
+      "longitude": -80.915154,
+      "display_name": "U.S. Coast Guard - Station Ponce de Leon Inlet, New Smyrna Beach, Volusia County, Florida, 32169, United States",
+      "geocode_type": "military"
+    },
+    "retrieved_at": "2026-09-23T07:39:08.921957+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Florida, USA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 27.7567667,
+      "longitude": -81.4639835,
+      "display_name": "Florida, United States",
+      "geocode_type": "administrative"
+    },
+    "retrieved_at": "2026-09-23T07:39:08.921957+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Mossel Bay, Western Cape Province, SOUTH AFRICA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": -34.1832022,
+      "longitude": 22.1536248,
+      "display_name": "Mossel Bay, Garden Route District Municipality, Western Cape, 6500, South Africa",
+      "geocode_type": "town"
+    },
+    "retrieved_at": "2026-09-23T07:39:08.921957+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Ormond Beach, Volusia County, Florida, USA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 29.2854132,
+      "longitude": -81.0557921,
+      "display_name": "Ormond Beach, Volusia County, Florida, United States",
+      "geocode_type": "administrative"
+    },
+    "retrieved_at": "2026-09-23T07:39:08.921957+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Juno Beach, Palm Beach County, Florida, USA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 26.8815475,
+      "longitude": -80.0539253,
+      "display_name": "Juno Beach, Palm Beach County, Florida, United States",
+      "geocode_type": "administrative"
+    },
+    "retrieved_at": "2026-09-23T07:39:08.921957+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Hawaii, USA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 19.5938015,
+      "longitude": -155.4283701,
+      "display_name": "Hawaii, United States",
+      "geocode_type": "administrative"
+    },
+    "retrieved_at": "2026-09-23T07:39:08.921957+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "ATLANTIC OCEAN": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 13.581921,
+      "longitude": -38.320312,
+      "display_name": "Атлантикатә аокеан",
+      "geocode_type": "ocean"
+    },
+    "retrieved_at": "2026-09-23T07:39:08.921957+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Vero Beach, Indian River County, Florida, USA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 27.6387163,
+      "longitude": -80.3975399,
+      "display_name": "Vero Beach, Indian River County, Florida, United States",
+      "geocode_type": "city"
+    },
+    "retrieved_at": "2026-09-23T07:39:08.921957+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Nahoon, Eastern Cape Province, SOUTH AFRICA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": -32.8678615,
+      "longitude": 27.7406875,
+      "display_name": "Nahoon River, Buffalo City Metropolitan Municipality, Eastern Cape, South Africa",
+      "geocode_type": "river"
+    },
+    "retrieved_at": "2026-09-23T07:39:08.921957+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Florida Keys, Monroe County, Florida, USA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 24.6736205,
+      "longitude": -81.4981792,
+      "display_name": "Florida Keys, Monroe County, Florida, United States",
+      "geocode_type": "archipelago"
+    },
+    "retrieved_at": "2026-09-23T07:39:08.921957+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Florida Keys, Florida, USA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 24.6736205,
+      "longitude": -81.4981792,
+      "display_name": "Florida Keys, Monroe County, Florida, United States",
+      "geocode_type": "archipelago"
+    },
+    "retrieved_at": "2026-09-23T07:39:08.921957+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Xai Xai, Gaza, MOZAMBIQUE": {
+    "status": "geocoded",
+    "result": {
+      "latitude": -25.044479,
+      "longitude": 33.64073,
+      "display_name": "Xai-Xai, Cidade de Xai-Xai, Gaza, Zona Sul, Moçambique",
+      "geocode_type": "city"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Sydney, New South Wales, AUSTRALIA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": -33.8698439,
+      "longitude": 151.2082848,
+      "display_name": "Sydney, New South Wales, Australia",
+      "geocode_type": "city"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Torres Strait, AUSTRALIA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": -10.416667,
+      "longitude": 142.166667,
+      "display_name": "Torres Strait, Queensland, 4876, Australia",
+      "geocode_type": "strait"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Boa Viagem Beach, Recife, Pernambuco, BRAZIL": {
+    "status": "geocoded",
+    "result": {
+      "latitude": -8.1275681,
+      "longitude": -34.8976638,
+      "display_name": "Praia de Boa Viagem, Boa Viagem, Recife, Pernambuco, Região Nordeste, Brasil",
+      "geocode_type": "beach"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Sydney Harbor, New South Wales, AUSTRALIA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": -33.8661645,
+      "longitude": 151.1995721,
+      "display_name": "Sydney Harbour, Sydney, New South Wales, 2000, Australia",
+      "geocode_type": "flowline"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Palm Beach, Palm Beach County, Florida, USA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 26.7056172,
+      "longitude": -80.0361517,
+      "display_name": "Palm Beach, Palm Beach County, Florida, 33480, United States",
+      "geocode_type": "administrative"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Singer Island, Riviera Beach, Palm Beach County, Florida, USA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 26.7850625,
+      "longitude": -80.0375408,
+      "display_name": "Singer Island, Riviera Beach, Palm Beach County, Florida, 33404, United States",
+      "geocode_type": "island"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Thursday Island, Torres Strait, AUSTRALIA": {
+    "status": "not_found",
+    "result": null,
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Brisbane River, Queensland, AUSTRALIA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": -27.1609698,
+      "longitude": 152.5361974,
+      "display_name": "Brisbane River, Queensland, Australia",
+      "geocode_type": "river"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "North Beach, Durban, KwaZulu-Natal, SOUTH AFRICA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": -29.8467091,
+      "longitude": 31.035303,
+      "display_name": "North Beach, Durban, eThekwini Metropolitan Municipality, KwaZulu-Natal, South Africa",
+      "geocode_type": "suburb"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Mirs Bay, HONG KONG": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 22.489884,
+      "longitude": 114.4011687,
+      "display_name": "大鹏湾 - 大鵬灣 Mirs Bay, 广东省, 香港 Hong Kong, 518081, 中国",
+      "geocode_type": "bay"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Amanzimtoti, KwaZulu-Natal, SOUTH AFRICA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": -30.0497222,
+      "longitude": 30.8886111,
+      "display_name": "Amanzimtoti, eThekwini Ward 93, KwaMakhutha, eThekwini Metropolitan Municipality, KwaZulu-Natal, 4125, South Africa",
+      "geocode_type": "suburb"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Nahoon, East London, Eastern Cape Province, SOUTH AFRICA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": -32.9729225,
+      "longitude": 27.9244827,
+      "display_name": "Nahoon Valley, Buffalo City Ward 4, KuGompo City, Buffalo City Metropolitan Municipality, Eastern Cape, 5241, South Africa",
+      "geocode_type": "suburb"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Newcastle, New South Wales, AUSTRALIA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": -32.9192953,
+      "longitude": 151.7795348,
+      "display_name": "Newcastle, Newcastle-Maitland, New South Wales, 2300, Australia",
+      "geocode_type": "administrative"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "JAMAICA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 18.1850507,
+      "longitude": -77.3947693,
+      "display_name": "Jamaica",
+      "geocode_type": "administrative"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Quy Nhon, Binh Dinh Province, VIETNAM": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 13.9027758,
+      "longitude": 109.0305415,
+      "display_name": "Đường cao tốc Hoài Nhơn - Quy Nhơn, Mỹ Thạnh, Phụ Ngọc, Phường Bình Định, An Nhơn, Tỉnh Gia Lai, Việt Nam",
+      "geocode_type": "motorway"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "False Bay, Western Cape Province, SOUTH AFRICA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": -34.2270274,
+      "longitude": 18.6554907,
+      "display_name": "False Bay, City of Cape Town, Western Cape, South Africa",
+      "geocode_type": "bay"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Country Club Beach, Durban, KwaZulu-Natal, SOUTH AFRICA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": -29.829354,
+      "longitude": 31.0368231,
+      "display_name": "Country Club Beach, eThekwini Ward 27, Durban, eThekwini Metropolitan Municipality, KwaZulu-Natal, 4056, South Africa",
+      "geocode_type": "locality"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "AUSTRALIA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": -24.7761086,
+      "longitude": 134.755,
+      "display_name": "Australia",
+      "geocode_type": "administrative"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Near Thursday Island, Torres Strait, AUSTRALIA": {
+    "status": "not_found",
+    "result": null,
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Havana Harbor, Havana Province, CUBA": {
+    "status": "not_found",
+    "result": null,
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "New South Wales, AUSTRALIA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": -32.1629594,
+      "longitude": 147.0320469,
+      "display_name": "New South Wales, Australia",
+      "geocode_type": "administrative"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Folly Beach, Charleston County, South Carolina, USA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 32.6554848,
+      "longitude": -79.9407802,
+      "display_name": "Folly Beach, Charleston County, South Carolina, 29439, United States",
+      "geocode_type": "administrative"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Sanibel Island, Lee County, Florida, USA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 26.440359,
+      "longitude": -82.1137049,
+      "display_name": "Sanibel Island, Sanibel, Lee County, Florida, 33957, United States",
+      "geocode_type": "island"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Gulf Shores, Baldwin County, Alabama, USA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 30.2711224,
+      "longitude": -87.6893826,
+      "display_name": "Gulf Shores, Baldwin County, Alabama, 36542, United States",
+      "geocode_type": "administrative"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Coogee, New South Wales, AUSTRALIA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": -33.9217004,
+      "longitude": 151.2557975,
+      "display_name": "Coogee, Eastern Suburbs, Sydney, New South Wales, 2034, Australia",
+      "geocode_type": "administrative"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Riviera Beach, Palm Beach County, Florida, USA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 26.784343,
+      "longitude": -80.0650293,
+      "display_name": "Riviera Beach, Palm Beach County, Florida, 33404, United States",
+      "geocode_type": "administrative"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Ross River, Townsville, Queensland, AUSTRALIA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": -19.3090595,
+      "longitude": 146.7688108,
+      "display_name": "Ross River, Townsville, Queensland, Australia",
+      "geocode_type": "river"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Fort Lauderdale, Broward County, Florida, USA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 26.1223084,
+      "longitude": -80.1433786,
+      "display_name": "Fort Lauderdale, Broward County, Florida, United States",
+      "geocode_type": "administrative"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Marathon, Monroe County, Florida, USA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 24.7137524,
+      "longitude": -81.0903512,
+      "display_name": "Marathon, Monroe County, Florida, United States",
+      "geocode_type": "administrative"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Moreton Bay, Queensland, AUSTRALIA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": -27.2397819,
+      "longitude": 153.2539994,
+      "display_name": "Moreton Bay, Queensland, 4178, Australia",
+      "geocode_type": "bay"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Ahvaz, on the Karun River, Khuzestan Province, IRAN": {
+    "status": "not_found",
+    "result": null,
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Pensacola Bay, Escambia County, Florida, USA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 30.388064,
+      "longitude": -87.1876779,
+      "display_name": "Pensacola Bay, Gulf Breeze, Santa Rosa County, Florida, United States",
+      "geocode_type": "water"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Plettenberg Bay, Western Cape Province, SOUTH AFRICA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": -34.052778,
+      "longitude": 23.369444,
+      "display_name": "Plettenberg Bay, Garden Route District Municipality, Western Cape, 6600, South Africa",
+      "geocode_type": "town"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Jacksonville, Duval County, Florida, USA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 30.3262247,
+      "longitude": -81.6579179,
+      "display_name": "Jacksonville, Duval County, Florida, United States",
+      "geocode_type": "administrative"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Huntington Beach, Orange County, California, USA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 33.6783336,
+      "longitude": -118.000016,
+      "display_name": "Huntington Beach, Orange County, California, United States",
+      "geocode_type": "administrative"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "FIJI": {
+    "status": "geocoded",
+    "result": {
+      "latitude": -18.1239696,
+      "longitude": 179.0122737,
+      "display_name": "Viti",
+      "geocode_type": "administrative"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Brisbane, Queensland, AUSTRALIA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": -27.4689623,
+      "longitude": 153.0235009,
+      "display_name": "Brisbane, Queensland, Australia",
+      "geocode_type": "city"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Bunbury, Western Australia, AUSTRALIA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": -33.3267797,
+      "longitude": 115.636698,
+      "display_name": "Bunbury, Western Australia, 6230, Australia",
+      "geocode_type": "city"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Daytona Beach Shores, Volusia County, Florida, USA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 29.1760933,
+      "longitude": -80.9828323,
+      "display_name": "Daytona Beach Shores, Volusia County, Florida, United States",
+      "geocode_type": "administrative"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "New Smyrna Beach, Florida, USA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 29.0258132,
+      "longitude": -80.9271271,
+      "display_name": "New Smyrna Beach, Volusia County, Florida, United States",
+      "geocode_type": "administrative"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Key West, Monroe County, Florida, USA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 24.5548262,
+      "longitude": -81.8020722,
+      "display_name": "Key West, Monroe County, Florida, United States",
+      "geocode_type": "administrative"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Townsville, Queensland, AUSTRALIA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": -19.2569391,
+      "longitude": 146.8239537,
+      "display_name": "Townsville, Queensland, 4810, Australia",
+      "geocode_type": "city"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Galveston, Texas, USA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 29.3872254,
+      "longitude": -94.992736,
+      "display_name": "Galveston County, Texas, United States",
+      "geocode_type": "administrative"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "South Beach, Durban, KwaZulu-Natal, SOUTH AFRICA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": -29.8620311,
+      "longitude": 31.0374115,
+      "display_name": "South Beach, Durban, eThekwini Metropolitan Municipality, KwaZulu-Natal, South Africa",
+      "geocode_type": "suburb"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "East London, Eastern Cape Province, SOUTH AFRICA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": -33.0191604,
+      "longitude": 27.8998573,
+      "display_name": "KuGompo City, Buffalo City Metropolitan Municipality, Eastern Cape, 5201, South Africa",
+      "geocode_type": "city"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Port Elizabeth, Eastern Cape Province, SOUTH AFRICA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": -33.9618598,
+      "longitude": 25.6186731,
+      "display_name": "Gqeberha, Nelson Mandela Bay Metropolitan Municipality, Eastern Cape, 6006, South Africa",
+      "geocode_type": "city"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Charleston, South Carolina, USA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 32.7884363,
+      "longitude": -79.9399309,
+      "display_name": "Charleston, Charleston County, South Carolina, United States",
+      "geocode_type": "administrative"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Bondi, New South Wales, AUSTRALIA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": -33.8930556,
+      "longitude": 151.2633333,
+      "display_name": "Bondi, Eastern Suburbs, Sydney, New South Wales, Australia",
+      "geocode_type": "administrative"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Panama City, Bay County, Florida, USA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 30.1586518,
+      "longitude": -85.6602936,
+      "display_name": "Panama City, Bay County, Florida, United States",
+      "geocode_type": "administrative"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Playalinda Beach, Brevard County, Florida, USA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 28.6773237,
+      "longitude": -80.6472179,
+      "display_name": "Playalinda Beach, Brevard County, Florida, United States",
+      "geocode_type": "beach"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Jupiter, Palm Beach County, Florida, USA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 26.9342246,
+      "longitude": -80.0942087,
+      "display_name": "Jupiter, Palm Beach County, Florida, 33458, United States",
+      "geocode_type": "administrative"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Great Barrier Reef, Queensland, AUSTRALIA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": -20.358137,
+      "longitude": 148.9521302,
+      "display_name": "Hamilton Island Airport, Marina Walk, Whitsundays, Hamilton Island, Queensland, 4802, Australia",
+      "geocode_type": "aerodrome"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Oreti Beach, South Island, NEW ZEALAND": {
+    "status": "error",
+    "result": null,
+    "error": "<urlopen error _ssl.c:1112: The handshake operation timed out>",
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "NEW CALEDONIA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": -20.6378427,
+      "longitude": 161.2117626,
+      "display_name": "Nouvelle-Calédonie (zone économique exclusive)",
+      "geocode_type": "maritime"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Bethune Beach, Volusia County, Florida, USA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 28.9491539,
+      "longitude": -80.83783,
+      "display_name": "Bethune Beach, Volusia County, Florida, United States",
+      "geocode_type": "hamlet"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Byron Bay, New South Wales, AUSTRALIA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": -28.6483333,
+      "longitude": 153.6177778,
+      "display_name": "Byron Bay, New South Wales, Australia",
+      "geocode_type": "administrative"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Wollongong, New South Wales, AUSTRALIA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": -34.4278083,
+      "longitude": 150.893054,
+      "display_name": "Wollongong, New South Wales, Australia",
+      "geocode_type": "administrative"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Ocean Isle, Brunswick County, North Carolina, USA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 33.8943393,
+      "longitude": -78.426672,
+      "display_name": "Ocean Isle Beach, Brunswick County, North Carolina, United States",
+      "geocode_type": "administrative"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Maui, Hawaii, USA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 20.8029568,
+      "longitude": -156.3106833,
+      "display_name": "Maui, Maui County, Hawaii, United States",
+      "geocode_type": "island"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Port Alfred, Eastern Cape Province, SOUTH AFRICA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": -33.5981844,
+      "longitude": 26.8914772,
+      "display_name": "Port Alfred, Ndlambe Local Municipality, Sarah Baartman District Municipality, Eastern Cape, 6170, South Africa",
+      "geocode_type": "town"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Winkelspruit, KwaZulu-Natal, SOUTH AFRICA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": -30.0986562,
+      "longitude": 30.8565232,
+      "display_name": "Winkelspruit, Araucaria Road, Winklespruit, eThekwini Ward 97, eThekwini Metropolitan Municipality, KwaZulu-Natal, 4145, South Africa",
+      "geocode_type": "station"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "South Carolina, USA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 33.6874388,
+      "longitude": -80.4363743,
+      "display_name": "South Carolina, United States",
+      "geocode_type": "administrative"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Albany, Western Australia, AUSTRALIA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": -35.0247822,
+      "longitude": 117.883608,
+      "display_name": "Albany, Western Australia, 6330, Australia",
+      "geocode_type": "city"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Stuart Beach, Martin County, Florida, USA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 27.2150323,
+      "longitude": -80.175149,
+      "display_name": "Stuart Beach, Martin County, Florida, United States",
+      "geocode_type": "park"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Hilton Head Island, Beaufort County, South Carolina, USA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 32.1618488,
+      "longitude": -80.7512616,
+      "display_name": "Hilton Head Island, Beaufort County, South Carolina, United States",
+      "geocode_type": "administrative"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Ponce de Leon Inlet, Volusia County, Florida, USA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 29.0768191,
+      "longitude": -80.9176166,
+      "display_name": "Ponce de Leon Inlet, Volusia County, Florida, United States",
+      "geocode_type": "river"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Nahoon Beach, East London, Eastern Cape Province, SOUTH AFRICA": {
+    "status": "not_found",
+    "result": null,
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Flagler Beach, Flagler County, Florida, USA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 29.4749927,
+      "longitude": -81.1269982,
+      "display_name": "Flagler Beach, Flagler County, Florida, United States",
+      "geocode_type": "administrative"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Playalinda Beach, Canaveral National Seashore, Brevard County, Florida, USA": {
+    "status": "not_found",
+    "result": null,
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Rottnest Island, Western Australia, AUSTRALIA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": -32.0070095,
+      "longitude": 115.5205271,
+      "display_name": "Rottnest Island, Western Australia, 6161, Australia",
+      "geocode_type": "island"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Palm Beach County, Florida, USA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 26.6279798,
+      "longitude": -80.4494174,
+      "display_name": "Palm Beach County, Florida, United States",
+      "geocode_type": "administrative"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Noumea, South Province, NEW CALEDONIA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": -22.2745264,
+      "longitude": 166.442419,
+      "display_name": "Nouméa, Province Sud, Nouvelle-Calédonie, 98800, France",
+      "geocode_type": "administrative"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "Lennox Head, New South Wales, AUSTRALIA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": -28.7910334,
+      "longitude": 153.5878047,
+      "display_name": "Lennox Head, New South Wales, Australia",
+      "geocode_type": "administrative"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  },
+  "San Onofre, San Diego County, California, USA": {
+    "status": "geocoded",
+    "result": {
+      "latitude": 33.3803575,
+      "longitude": -117.5736037,
+      "display_name": "San Onofre, San Diego County, California, United States",
+      "geocode_type": "hamlet"
+    },
+    "retrieved_at": "2026-09-23T07:46:19.200979+00:00",
+    "source": "Nominatim/OpenStreetMap"
+  }
+}

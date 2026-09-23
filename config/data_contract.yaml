@@ -1,0 +1,49 @@
+dataset: shark_attacks
+version: "1.0"
+grain: >
+  Une ligne represente un incident d'attaque de requin recense dans le
+  Global Shark Attack File, caracterise par sa date, sa localisation,
+  l'activite pratiquee au moment des faits et le profil de la victime.
+owner: etudiant_eseo
+
+analysis_scope:
+  current_outputs:
+    - hotspots_incidents_declares
+    - saisonnalite_incidents_declares
+  interpretation: >
+    Ces sorties decrivent les incidents recenses. Elles ne mesurent ni la
+    dangerosite intrinseque d'un lieu, ni l'abondance des requins, ni une
+    causalite entre reproduction, temperature et agressivite.
+  future_external_sources:
+    - ocearch_tracks
+    - gbif_species_occurrences
+    - sea_surface_temperature_and_currents
+
+source:
+  name: "Global Shark Attack File (extrait via Kaggle - dataset 'Shark Attacks')"
+  url: "https://www.kaggle.com/datasets/gauravkumar2525/shark-attacks"
+  license: "Usage pedagogique - se referer aux conditions d'utilisation Kaggle"
+  access_date: "2026-09-22"
+  update_frequency: "ponctuelle (pas de garantie de mise a jour, traite en batch)"
+
+required_fields:
+  - country
+  - year
+  - type
+
+quality_rules:
+  - name: completude_pays
+    description: "Le pays (country) doit etre renseigne."
+    action_si_echec: rejeter
+  - name: validite_annee
+    description: "L'annee (year) doit etre un entier compris entre 1000 et l'annee courante."
+    action_si_echec: rejeter
+  - name: coherence_type
+    description: "Le type d'attaque (type) doit appartenir a la liste des valeurs connues du GSAF."
+    action_si_echec: rejeter
+  - name: domaine_age
+    description: "L'age, s'il est renseigne, doit etre compris entre 0 et 120 ans."
+    action_si_echec: "corriger (mis a NULL) sans rejeter la ligne"
+  - name: unicite
+    description: "Aucune ligne ne doit etre strictement identique a une autre sur l'ensemble des champs source."
+    action_si_echec: "dedupliquer, ne garder que la premiere occurrence"
