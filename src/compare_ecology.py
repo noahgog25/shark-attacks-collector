@@ -13,13 +13,16 @@ import pandas as pd
 from src.species_visualize import _draw_world, _load_world_features
 
 ROOT = Path(__file__).resolve().parent.parent
-ATTACKS_PATH = ROOT / "reports" / "attacks_with_coordinates.csv"
+ATTACKS_PATH = ROOT / "reports" / "data" / "attacks_with_coordinates.csv"
 REFERENCE_DIR = ROOT / "data" / "reference"
 REPORTS_DIR = ROOT / "reports"
-PROXIMITY_PATH = REPORTS_DIR / "attack_species_proximity.csv"
-SUMMARY_PATH = REPORTS_DIR / "species_attack_comparison.csv"
-HYPOTHESES_PATH = REPORTS_DIR / "ecological_hypotheses.md"
-FIGURE_PATH = REPORTS_DIR / "attack_species_comparison.png"
+DATA_DIR = REPORTS_DIR / "data"
+INTERPRETATION_DIR = REPORTS_DIR / "interpretation"
+IMAGES_DIR = REPORTS_DIR / "images"
+PROXIMITY_PATH = DATA_DIR / "attack_species_proximity.csv"
+SUMMARY_PATH = DATA_DIR / "species_attack_comparison.csv"
+HYPOTHESES_PATH = INTERPRETATION_DIR / "ecological_hypotheses.md"
+FIGURE_PATH = IMAGES_DIR / "attack_species_comparison.png"
 
 
 def haversine_km(latitude_a: float, longitude_a: float, latitude_b: float, longitude_b: float) -> float:

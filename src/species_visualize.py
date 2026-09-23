@@ -14,7 +14,7 @@ import pandas as pd
 
 ROOT = Path(__file__).resolve().parent.parent
 REFERENCE_DIR = ROOT / "data" / "reference"
-OUTPUT_PATH = ROOT / "reports" / "species_occurrences.png"
+OUTPUT_PATH = ROOT / "reports" / "images" / "species_occurrences.png"
 WORLD_GEOJSON_URL = "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_110m_admin_0_countries.geojson"
 WORLD_GEOJSON_PATH = REFERENCE_DIR / "ne_110m_admin_0_countries.geojson"
 

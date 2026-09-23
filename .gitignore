@@ -11,3 +11,9 @@ data/rejected/*
 !data/rejected/.gitkeep
 reports/*
 !reports/.gitkeep
+!reports/images/
+!reports/images/.gitkeep
+!reports/data/
+!reports/data/.gitkeep
+!reports/interpretation/
+!reports/interpretation/.gitkeep

@@ -3,7 +3,7 @@ Pipeline batch complet.
 
     Source (data/source) -> Collecteur -> Raw (data/raw)
         -> Validation (5 regles) -> Curated (data/curated) + Rejected (data/rejected)
-        -> Rapport (reports/run_report.json) + Visualisation (reports/*.png)
+        -> Rapport (reports/interpretation) + Visualisations (reports/images)
 
 Idempotence : le fichier curated et le fichier rejected sont entierement
 remplaces a chaque execution (pas d'ajout), donc rejouer le pipeline sur la
@@ -34,7 +34,9 @@ from src.visualize import plot_attacks_per_year, plot_incident_dashboard
 ROOT = Path(__file__).resolve().parent.parent
 CURATED_PATH = ROOT / "data" / "curated" / "global_shark_attacks-selected-columns.csv"
 REJECTED_PATH = ROOT / "data" / "rejected" / "rejected_rows.csv"
-REPORT_PATH = ROOT / "reports" / "run_report.json"
+REPORTS_DIR = ROOT / "reports"
+REPORT_PATH = REPORTS_DIR / "interpretation" / "run_report.json"
+REPORT_DATA_DIR = REPORTS_DIR / "data"
 
 
 def run(source_path: str | None = None) -> dict:
@@ -55,7 +57,7 @@ def run(source_path: str | None = None) -> dict:
 
     graphique = plot_attacks_per_year()
     dashboard = plot_incident_dashboard()
-    analyses = write_analysis_reports(CURATED_PATH, REPORT_PATH.parent)
+    analyses = write_analysis_reports(CURATED_PATH, REPORT_DATA_DIR)
 
     rapport = {
         "pipeline": "shark-attacks-collector",

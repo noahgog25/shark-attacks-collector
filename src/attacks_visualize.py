@@ -12,8 +12,8 @@ import pandas as pd
 from src.species_visualize import _draw_world, _load_world_features
 
 ROOT = Path(__file__).resolve().parent.parent
-INPUT_PATH = ROOT / "reports" / "attacks_with_coordinates.csv"
-OUTPUT_PATH = ROOT / "reports" / "attack_locations.png"
+INPUT_PATH = ROOT / "reports" / "data" / "attacks_with_coordinates.csv"
+OUTPUT_PATH = ROOT / "reports" / "images" / "attack_locations.png"
 
 
 def plot_attack_locations(

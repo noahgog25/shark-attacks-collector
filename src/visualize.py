@@ -15,8 +15,8 @@ from src.analyze import build_hotspots
 
 ROOT = Path(__file__).resolve().parent.parent
 CURATED_PATH = ROOT / "data" / "curated" / "global_shark_attacks-selected-columns.csv"
-OUTPUT_PATH = ROOT / "reports" / "attaques_par_annee.png"
-DASHBOARD_PATH = ROOT / "reports" / "dashboard_incidents.png"
+OUTPUT_PATH = ROOT / "reports" / "images" / "attaques_par_annee.png"
+DASHBOARD_PATH = ROOT / "reports" / "images" / "dashboard_incidents.png"
 
 
 def plot_attacks_per_year() -> Path:

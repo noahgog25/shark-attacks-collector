@@ -1,0 +1,25 @@
+{
+  "pipeline": "shark-attacks-collector",
+  "executed_at": "2026-09-23T09:19:02.687894+00:00",
+  "source_file": "shark_attacks_20260923T091902Z.csv",
+  "input_rows": 6890,
+  "accepted_rows": 6687,
+  "rejected_rows": 194,
+  "duplicates_removed": 9,
+  "failures_by_rule": {
+    "completude_pays": 51,
+    "validite_annee": 133,
+    "coherence_type": 20,
+    "domaine_age_corrige": 0
+  },
+  "quality_status": "PASS_WITH_WARNINGS",
+  "duration_seconds": 0.57,
+  "outputs": {
+    "curated": "data/curated/global_shark_attacks-selected-columns.csv",
+    "rejected": "data/rejected/rejected_rows.csv",
+    "visualisation": "reports/images/attaques_par_annee.png",
+    "dashboard": "reports/images/dashboard_incidents.png",
+    "hotspots": "reports/data/hotspots_incidents_declares.csv",
+    "seasonality": "reports/data/saisonnalite_incidents_declares.csv"
+  }
+}

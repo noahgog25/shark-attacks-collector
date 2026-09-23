@@ -66,22 +66,9 @@ shark-attacks-collector/
     architecture.md
     source_assessment.md
   reports/
-    run_report.json          # généré à chaque exécution
-    attaques_par_annee.png   # visualisation générée
-    dashboard_incidents.png   # synthèse des tendances et lieux
-    species_occurrences.png   # occurrences GBIF par espèce
-    attacks_with_coordinates.csv # attaques enrichies, coordonnées optionnelles
-    attack_locations.png      # carte des attaques géocodées
-    attack_species_comparison.png # comparaison attaques / espèces
-    attack_species_proximity.csv  # distances attaques / occurrences GBIF
-    species_attack_comparison.csv # synthèse par espèce
-    csv_species_comparison.png    # visualisation des deux CSV
-    candidate_species_pie.png     # camembert des candidates géographiques
-    candidate_species_table.csv   # tableau des candidates
-    csv_species_interpretation.md # interprétation du visuel
-    ecological_hypotheses.md       # interprétation et limites
-    hotspots_incidents_declares.csv
-    saisonnalite_incidents_declares.csv
+    images/                  # graphiques et cartes PNG
+    data/                    # sorties CSV d'analyse
+    interpretation/          # rapports Markdown et JSON
   data/reference/
     README.md                # contrat pour OCEARCH, GBIF et SST
     shark_species_profiles.csv # habitats et reproduction documentés
@@ -156,7 +143,7 @@ Après avoir téléchargé les occurrences GBIF :
 python -m src.species_visualize
 ```
 
-Le graphique [species_occurrences.png](reports/species_occurrences.png) compare les positions géographiques et la répartition latitudinale des espèces observées. Il représente une présence documentée, pas une abondance.
+Le graphique [species_occurrences.png](reports/images/species_occurrences.png) compare les positions géographiques et la répartition latitudinale des espèces observées. Il représente une présence documentée, pas une abondance.
 
 ### Ajouter des coordonnées aux attaques
 
@@ -166,7 +153,7 @@ Les lieux du dataset sont géocodés avec Nominatim/OpenStreetMap, en commençan
 python -m src.geocode --limit 25
 ```
 
-Le résultat est écrit dans `reports/attacks_with_coordinates.csv`. Les coordonnées correspondent au lieu ou au centre de la ville lorsque l'incident n'est pas plus précis ; elles ne remplacent donc pas une position GPS exacte. Le cache est conservé dans `data/reference/nominatim_cache.json` et le délai entre les requêtes respecte l'usage public du service.
+Le résultat est écrit dans `reports/data/attacks_with_coordinates.csv`. Les coordonnées correspondent au lieu ou au centre de la ville lorsque l'incident n'est pas plus précis ; elles ne remplacent donc pas une position GPS exacte. Le cache est conservé dans `data/reference/nominatim_cache.json` et le délai entre les requêtes respecte l'usage public du service.
 
 Pour visualiser les attaques sur la carte mondiale :
 
@@ -174,7 +161,7 @@ Pour visualiser les attaques sur la carte mondiale :
 python -m src.attacks_visualize
 ```
 
-Le graphique [attack_locations.png](reports/attack_locations.png) utilise uniquement les lignes qui ont obtenu des coordonnées.
+Le graphique [attack_locations.png](reports/images/attack_locations.png) utilise uniquement les lignes qui ont obtenu des coordonnées.
 
 ### Comparer les attaques et les espèces
 
@@ -184,7 +171,7 @@ Pour comparer les lieux d'attaques aux occurrences GBIF déjà téléchargées :
 python -m src.compare_ecology
 ```
 
-Cette commande produit [attack_species_comparison.png](reports/attack_species_comparison.png), un tableau détaillé des distances dans [attack_species_proximity.csv](reports/attack_species_proximity.csv), une synthèse par espèce et le rapport [ecological_hypotheses.md](reports/ecological_hypotheses.md).
+Cette commande produit [attack_species_comparison.png](reports/images/attack_species_comparison.png), un tableau détaillé des distances dans [attack_species_proximity.csv](reports/data/attack_species_proximity.csv), une synthèse par espèce et le rapport [ecological_hypotheses.md](reports/interpretation/ecological_hypotheses.md).
 
 Une espèce est seulement considérée comme **candidate géographique** lorsqu'une occurrence GBIF est située à moins de 25 km ou 100 km du lieu d'attaque géocodé. Le calcul ne prouve pas que cette espèce a attaqué : le dataset GSAF ne contient pas l'identification du requin.
 
@@ -202,4 +189,4 @@ Pour générer un camembert simple et le tableau associé :
 python -m src.csv_comparison_visualize
 ```
 
-Le camembert classe les **espèces candidates géographiques** selon les proximités à moins de 100 km. Il ne permet pas d'affirmer quelle espèce a réellement attaqué, car cette information n'est pas présente dans le dataset source. L'interprétation détaillée est dans `reports/csv_species_interpretation.md`.
+Le camembert classe les **espèces candidates géographiques** selon les proximités à moins de 100 km. Il ne permet pas d'affirmer quelle espèce a réellement attaqué, car cette information n'est pas présente dans le dataset source. L'interprétation détaillée est dans `reports/interpretation/csv_species_interpretation.md`.

@@ -20,7 +20,7 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parent.parent
 CURATED_PATH = ROOT / "data" / "curated" / "global_shark_attacks-selected-columns.csv"
 REFERENCE_DIR = ROOT / "data" / "reference"
-OUTPUT_PATH = ROOT / "reports" / "attacks_with_coordinates.csv"
+OUTPUT_PATH = ROOT / "reports" / "data" / "attacks_with_coordinates.csv"
 CACHE_PATH = REFERENCE_DIR / "nominatim_cache.json"
 NOMINATIM_API = "https://nominatim.openstreetmap.org/search"
 

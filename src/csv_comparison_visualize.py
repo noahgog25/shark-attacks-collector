@@ -10,12 +10,12 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parent.parent
-PROXIMITY_PATH = ROOT / "reports" / "attack_species_proximity.csv"
-SUMMARY_PATH = ROOT / "reports" / "species_attack_comparison.csv"
-OUTPUT_PATH = ROOT / "reports" / "csv_species_comparison.png"
-PIE_OUTPUT_PATH = ROOT / "reports" / "candidate_species_pie.png"
-TABLE_OUTPUT_PATH = ROOT / "reports" / "candidate_species_table.csv"
-INTERPRETATION_OUTPUT_PATH = ROOT / "reports" / "csv_species_interpretation.md"
+PROXIMITY_PATH = ROOT / "reports" / "data" / "attack_species_proximity.csv"
+SUMMARY_PATH = ROOT / "reports" / "data" / "species_attack_comparison.csv"
+OUTPUT_PATH = ROOT / "reports" / "images" / "csv_species_comparison.png"
+PIE_OUTPUT_PATH = ROOT / "reports" / "images" / "candidate_species_pie.png"
+TABLE_OUTPUT_PATH = ROOT / "reports" / "data" / "candidate_species_table.csv"
+INTERPRETATION_OUTPUT_PATH = ROOT / "reports" / "interpretation" / "csv_species_interpretation.md"
 
 
 def plot_csv_comparison(
