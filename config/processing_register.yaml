@@ -1,0 +1,37 @@
+processing_register:
+  name: shark_attacks_collector
+  purpose: >
+    Analyse descriptive d'incidents de requins recenses et orientation d'une
+    recherche ecologique, sans identification ni profilage des victimes.
+  controller: etudiant_eseo_sous_validation_enseignant
+  data_subjects: personnes_decrites_dans_la_source
+  legal_basis: projet_pedagogique_a_valider
+  recipients:
+    - etudiant
+    - enseignant
+  storage: poste_local_et_depot_git_controle
+  retention:
+    raw: duree_du_tp_puis_suppression_ou_anonymisation
+    curated: duree_du_projet_pedagogique
+    rejected: duree_du_projet_pedagogique
+    reports: duree_du_projet_pedagogique_si_agreges
+  personal_data:
+    - name
+    - age
+    - sex
+    - location
+    - activity
+  sensitive_data_intentionally_collected: false
+  rights:
+    - information
+    - access
+    - rectification
+    - opposition
+    - erasure
+    - portability
+  security:
+    - raw_ignored_by_git
+    - curated_allowlist_excludes_name
+    - no_secrets_in_repository
+    - local_access_limited
+  pia_status: not_required_current_scope_reassess_on_scope_change

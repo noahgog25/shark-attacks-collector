@@ -1,6 +1,6 @@
 {
   "pipeline": "shark-attacks-collector",
-  "executed_at": "2026-09-23T09:45:43.800930+00:00",
+  "executed_at": "2026-09-25T09:06:58.818984+00:00",
   "source_file": "global_shark_attacks_raw.csv",
   "source_sha256": "aa9b84d105cbfb1ee60e3c496e5938b04149650a97ddb800e69f04f08295f5a0",
   "source_size_bytes": 733477,

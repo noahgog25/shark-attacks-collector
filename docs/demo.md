@@ -1,3 +1,6 @@
+9. Présenter l'audit RGPD [rgpd_audit.md](rgpd_audit.md) : données nécessaires, finalités, conservation, droits, risques et décision AIPD.
+
+
 # Démonstration finale
 
 ## Préparer

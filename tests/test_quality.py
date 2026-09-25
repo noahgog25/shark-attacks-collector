@@ -78,3 +78,11 @@ def test_rejouer_validation_et_transformation_est_stable():
     second = transform(accepted_second)
 
     pd.testing.assert_frame_equal(first, second)
+
+
+def test_curated_exclut_la_donnee_personnelle_name():
+    accepted, _, _ = run_quality_rules(pd.DataFrame([_ligne()]))
+
+    curated = transform(accepted)
+
+    assert "name" not in curated.columns

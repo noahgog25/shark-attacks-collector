@@ -6,6 +6,15 @@ grain: >
   l'activite pratiquee au moment des faits et le profil de la victime.
 owner: etudiant_eseo
 
+rgpd:
+  register: config/processing_register.yaml
+  purpose: analyse descriptive et pedagogique, sans profilage individuel
+  minimization: >
+    Le champ name reste dans le raw local uniquement et est exclu du curated
+    par liste blanche explicite.
+  retention: raw_et_rejets_a_supprimer_ou_anonymiser_en_fin_de_projet
+  pia: reevaluation_obligatoire_si_le_perimetre_ou_le_risque_change
+
 application:
   user: "Etudiant ou analyste explorant les incidents de requins recenses"
   central_question: >

@@ -70,6 +70,7 @@ shark-attacks-collector/
   .gitignore
   config/
     data_contract.yaml       # contrat de données v1
+    processing_register.yaml # registre de traitement RGPD minimal
   data/
     raw/                     # fichier source/raw canonique
     curated/                 # shark_attacks_curated.csv — données validées et propres
@@ -79,6 +80,7 @@ shark-attacks-collector/
     data_dictionary.md
     demo.md
     project_brief.md
+    rgpd_audit.md
     source_assessment.md
   reports/
     images/                  # graphiques et cartes PNG
