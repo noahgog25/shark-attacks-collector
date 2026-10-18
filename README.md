@@ -116,7 +116,7 @@ dans le respect de ses conditions d'utilisation.
 - [Architecture V2 (SVG)](docs/architecture_v2.svg) : observabilité, reprise et produit métier.
 - [ADR 001](docs/ADR_001.md) : comparaison CSV batch, SQLite et options distribuées.
 - [Dictionnaire de données](docs/data_dictionary.md) et [contrat versionné](config/data_contract.yaml).
-- [Synthèse finale PDF](docs/synthesis.pdf), format de 4 à 6 pages.
+- [Synthèse finale PDF](docs/Synthese_Sharks_Collector.pdf), format de 4 à 6 pages.
 
 ## Arborescence
 
@@ -139,7 +139,7 @@ shark-attacks-collector/
     architecture_v2.svg
     ADR_001.md
     incident_test.md
-    synthesis.pdf
+    Synthese_Sharks_Collector.pdf
     data_dictionary.md
     demo.md
     project_brief.md
@@ -194,10 +194,18 @@ les comparaisons écologiques.
 
 ## Usage d'outils d'IA
 
-- Outil utilisé : GitHub Copilot.
-- Tâches assistées : aide à l'implémentation, à la rédaction et à la revue des tests/documentation.
-- Vérifications réalisées : exécution du pipeline et de la suite de tests; résultats consignés dans le rapport et dans ce dépôt.
-- Parties retravaillées personnellement : à compléter par l'étudiant avant remise, en indiquant précisément les parties relues, comprises et adaptées.
+- Outil utilise : GitHub Copilot.
+- Taches assistees : amélioration du collecteur et de l’orchestrateur, génération de données de démonstration, rédaction de documentation (ADR, architecture), ajout de tests.
+- Vérifications realisees : exécution du pipeline (sources réelle et synthétique), installation des dépendances dans un environnement Python 3.11 neuf, exécution des tests.
+- Parties retravaillees personnellement :
+--> Choix du dataset.
+--> Choix de l’API.
+--> Mise en relation du dataset et de l’API.
+--> Définition des règles de validation des données.
+--> Conception de l’architecture du projet.
+--> Élaboration du document PDF de synthèse du projet.
+--> Relecture et validation de chaque modification assistée avant remise.
+--> ...
 
 ## Limites connues
 

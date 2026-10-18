@@ -26,7 +26,7 @@ sys.path.insert(0, str(ROOT))
 from scripts.build_demo_data import build_sample_data
 
 REPORT_PATH = ROOT / "reports" / "interpretation" / "run_report.json"
-OUTPUT_PATH = ROOT / "docs" / "synthesis.pdf"
+OUTPUT_PATH = ROOT / "docs" / "Synthese_Sharks_Collector.pdf"
 INK = colors.HexColor("#18323f")
 TEAL = colors.HexColor("#31708e")
 PALE = colors.HexColor("#edf3f5")
