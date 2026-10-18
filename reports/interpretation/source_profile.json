@@ -14,16 +14,16 @@
     "age"
   ],
   "dtypes": {
-    "date": "object",
+    "date": "str",
     "year": "float64",
-    "type": "object",
-    "country": "object",
-    "area": "object",
-    "location": "object",
-    "activity": "object",
-    "name": "object",
-    "sex": "object",
-    "age": "object"
+    "type": "str",
+    "country": "str",
+    "area": "str",
+    "location": "str",
+    "activity": "str",
+    "name": "str",
+    "sex": "str",
+    "age": "str"
   },
   "missing_rate": {
     "date": 0.044,
@@ -55,13 +55,13 @@
       "<NA>": 303,
       "1957-01-01": 11,
       "1942-01-01": 10,
+      "1950-01-01": 8,
       "1956-01-01": 8,
       "1941-01-01": 8,
-      "1950-01-01": 8,
       "1958-01-01": 7,
       "1949-01-01": 6,
-      "1940-01-01": 6,
-      "1898-01-01": 6
+      "1898-01-01": 6,
+      "1956-08-01": 6
     },
     "type": {
       "Unprovoked": 5065,
@@ -104,8 +104,8 @@
       "New Smyrna Beach, Volusia County": 192,
       "Daytona Beach, Volusia County": 34,
       "Ponce Inlet, Volusia County": 26,
-      "Myrtle Beach, Horry County": 21,
       "Melbourne Beach, Brevard County": 21,
+      "Myrtle Beach, Horry County": 21,
       "Cocoa Beach, Brevard  County": 19,
       "Durban": 18,
       "Isle of Palms, Charleston County": 16,
@@ -132,8 +132,8 @@
       "boat": 14,
       "child": 12,
       "sailor": 11,
-      "Anonymous": 11,
-      "males": 11
+      "males": 11,
+      "Anonymous": 11
     },
     "sex": {
       "M": 5545,
@@ -146,8 +146,8 @@
     },
     "age": {
       "<NA>": 2987,
-      "19.0": 89,
       "16.0": 89,
+      "19.0": 89,
       "17.0": 88,
       "17": 84,
       "18.0": 83,

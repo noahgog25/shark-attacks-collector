@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import hashlib
 import shutil
+from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -24,17 +25,17 @@ DEFAULT_SOURCE = RAW_PATH
 
 
 def collect(source_path: str | Path | None = None) -> Path:
-    """Copie la source vers une unique preuve brute canonique."""
+    """Conserve une copie brute horodatee de la source et la retourne."""
     source = Path(source_path) if source_path else DEFAULT_SOURCE
-    if not source.exists():
+    if not source.is_file():
         raise FileNotFoundError(f"Source introuvable : {source}")
 
     RAW_DIR.mkdir(parents=True, exist_ok=True)
-    if source.resolve() == RAW_PATH.resolve():
-        return RAW_PATH
-
-    shutil.copyfile(source, RAW_PATH)
-    return RAW_PATH
+    timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
+    suffix = source.suffix or ".csv"
+    snapshot = RAW_DIR / f"source_{timestamp}{suffix}"
+    shutil.copyfile(source, snapshot)
+    return snapshot
 
 
 def sha256_file(path: str | Path) -> str:

@@ -5,6 +5,7 @@ __pycache__/
 *.log
 data/raw/*
 !data/raw/.gitkeep
+!data/raw/README.md
 data/curated/*
 !data/curated/.gitkeep
 data/rejected/*

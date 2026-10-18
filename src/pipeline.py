@@ -5,10 +5,8 @@ Pipeline batch complet.
         -> Validation (5 regles) -> Curated (data/curated) + Rejected (data/rejected)
         -> Rapport (reports/interpretation) + Visualisations (reports/images)
 
-Idempotence : le fichier curated et le fichier rejected sont entierement
-remplaces a chaque execution (pas d'ajout), donc rejouer le pipeline sur la
-meme source ne cree jamais de doublons dans les sorties. Seule la zone raw
-accumule une nouvelle preuve de collecte horodatee a chaque run.
+Idempotence : les fichiers curated et rejected sont entierement remplaces
+a chaque execution. Chaque run conserve une copie brute horodatee distincte.
 
 Usage :
     python -m src.pipeline [chemin_source_csv]

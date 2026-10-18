@@ -28,11 +28,35 @@ Le projet est cadré dans [docs/project_brief.md](docs/project_brief.md).
 
 ## Installation
 
+Depuis la racine du projet, sur macOS ou Linux :
+
 ```bash
-python -m venv .venv
-source .venv/bin/activate   # sous Windows : .venv\Scripts\activate
-pip install -r requirements.txt
+python3.11 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
 ```
+
+Sous Windows, dans PowerShell :
+
+```powershell
+py -3.11 -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+```
+
+Dans l'invite de commandes Windows (`cmd`) :
+
+```bat
+py -3.11 -m venv .venv
+.venv\Scripts\activate.bat
+python -m pip install -r requirements.txt
+```
+
+Si PowerShell bloque l'activation du script, utilise directement
+`.venv\Scripts\python.exe -m pip install -r requirements.txt`, puis remplace
+`python` par `.venv\Scripts\python.exe` dans les commandes suivantes.
+Python 3.11 ou plus récent est requis; les dépendances sont dans
+`requirements.txt`.
 
 ## Exécution
 
@@ -40,7 +64,7 @@ pip install -r requirements.txt
 python -m src.pipeline
 ```
 
-Le pipeline utilise `data/raw/global_shark_attacks_raw.csv` comme fichier d'entrée canonique. Pour traiter un autre CSV, le chemin passé en argument est copié vers ce fichier raw.
+Le fichier source `data/raw/global_shark_attacks_raw.csv` n'est pas inclus dans Git : il contient des données nominatives et son accès dépend des conditions de la source Kaggle. Pour un nouveau clone, télécharge l'extrait autorisé et place-le à ce chemin, ou passe le chemin d'un CSV compatible en argument. Le collecteur en conserve une copie brute horodatée dans `data/raw/` avant traitement, sans modifier le fichier fourni. Voir [data/raw/README.md](data/raw/README.md).
 
 Le pipeline :
 1. lit le fichier raw canonique (ou copie le fichier fourni en argument vers celui-ci) ;
@@ -57,7 +81,7 @@ Pour utiliser un autre fichier source :
 python -m src.pipeline chemin/vers/un_autre_export.csv
 ```
 
-Le pipeline est **idempotent** : les fichiers `data/curated/shark_attacks_curated.csv` et `data/rejected/rejected_rows.csv` sont entièrement remplacés à chaque exécution. La zone `data/raw/` contient volontairement une seule copie brute canonique, remplacée à chaque run.
+Le pipeline est **idempotent** : les fichiers `data/curated/shark_attacks_curated.csv` et `data/rejected/rejected_rows.csv` sont entièrement remplacés à chaque exécution. Chaque exécution ajoute une copie source horodatée en zone raw; ces copies ne sont pas suivies par Git.
 
 Le rapport d'exécution contient aussi le hash SHA-256 et la taille du fichier raw, le profil initial de la source et la version du contrat. Le profil est produit avant la validation.
 
@@ -114,9 +138,13 @@ Définies et documentées dans `config/data_contract.yaml`, implémentées dans 
 
 ## Tests
 
+Après activation de l'environnement virtuel :
+
 ```bash
 python -m pytest tests/
 ```
+
+Sous Windows sans activation, lance `.venv\Scripts\python.exe -m pytest tests/`.
 
 La suite vérifie les règles de qualité, les rejets, le profilage, les sorties de visualisation, le géocodage et les comparaisons écologiques.
 
