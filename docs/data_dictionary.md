@@ -1,5 +1,13 @@
 # Dictionnaire de données
 
+## Grain et clé métier
+
+Une ligne représente un incident déclaré dans le GSAF. La source ne fournit
+pas d'identifiant stable : le pipeline déduplique sur l'ensemble des champs
+source. Cette clé technique est reproductible mais peut fusionner deux
+incidents distincts dont toutes les valeurs seraient identiques; elle ne
+constitue pas une clé métier naturelle.
+
 ## Source brute
 
 | Champ | Type attendu | Obligatoire | Description | Traitement |

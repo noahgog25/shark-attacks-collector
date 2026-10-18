@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="440" viewBox="0 0 1200 440" role="img" aria-labelledby="title desc">
+  <title id="title">Architecture V1, pipeline initial</title>
+  <desc id="desc">Source CSV vers collecte, raw, validation, curated et restitution; les erreurs sont conservées en rejected.</desc>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#34495e"/></marker></defs>
+  <rect width="1200" height="440" fill="#f7f8fa"/>
+  <text x="48" y="54" font-family="sans-serif" font-size="28" font-weight="700" fill="#18323f">Architecture V1 · pipeline batch initial</text>
+  <g font-family="sans-serif" text-anchor="middle">
+    <g fill="#ffffff" stroke="#31708e" stroke-width="2">
+      <rect x="40" y="145" width="165" height="92" rx="6"/><rect x="245" y="145" width="165" height="92" rx="6"/>
+      <rect x="450" y="145" width="165" height="92" rx="6"/><rect x="655" y="145" width="165" height="92" rx="6"/>
+      <rect x="860" y="145" width="145" height="92" rx="6"/><rect x="1045" y="145" width="130" height="92" rx="6"/>
+    </g>
+    <g fill="#18323f" font-size="17" font-weight="700">
+      <text x="122" y="180">CSV source</text><text x="122" y="205" font-size="13">GSAF / échantillon</text>
+      <text x="327" y="180">Collecte</text><text x="327" y="205" font-size="13">copie horodatée</text>
+      <text x="532" y="180">Raw</text><text x="532" y="205" font-size="13">preuve + hash</text>
+      <text x="737" y="180">Validation</text><text x="737" y="205" font-size="13">5 règles / profil</text>
+      <text x="932" y="180">Curated</text><text x="932" y="205" font-size="13">CSV typé</text>
+      <text x="1110" y="180">Restitution</text><text x="1110" y="205" font-size="13">tableaux / PNG</text>
+    </g>
+    <path d="M205 191 H238 M410 191 H443 M615 191 H648 M820 191 H853 M1005 191 H1038" stroke="#34495e" stroke-width="3" marker-end="url(#arrow)"/>
+    <rect x="665" y="310" width="145" height="70" rx="6" fill="#fff4e5" stroke="#bd6b00" stroke-width="2"/>
+    <text x="737" y="340" font-family="sans-serif" font-size="17" font-weight="700" text-anchor="middle" fill="#5b3b00">Rejected</text>
+    <text x="737" y="362" font-family="sans-serif" font-size="13" text-anchor="middle" fill="#5b3b00">lignes + motif</text>
+    <path d="M737 237 V303" stroke="#bd6b00" stroke-width="3" marker-end="url(#arrow)"/>
+  </g>
+  <text x="48" y="414" font-family="sans-serif" font-size="14" fill="#52616b">Grain : un incident déclaré · traitements locaux · aucune collecte automatisée depuis Kaggle</text>
+</svg>

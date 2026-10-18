@@ -15,8 +15,10 @@ Usage :
 from __future__ import annotations
 
 import json
+import logging
 import sys
 import time
+from datetime import datetime, timezone
 from pathlib import Path
 
 import pandas as pd
@@ -37,58 +39,124 @@ REPORTS_DIR = ROOT / "reports"
 REPORT_PATH = REPORTS_DIR / "interpretation" / "run_report.json"
 REPORT_DATA_DIR = REPORTS_DIR / "data"
 PROFILE_PATH = REPORTS_DIR / "interpretation" / "source_profile.json"
+LOGGER = logging.getLogger("shark_attacks_pipeline")
 
 
 def run(source_path: str | None = None) -> dict:
     debut = time.perf_counter()
-
-    raw_path = collect(source_path)
-    df = pd.read_csv(raw_path)
-    profile_path = write_profile(df, PROFILE_PATH)
-
-    accepted, rejected, quality = run_quality_rules(df)
-    curated = transform(accepted)
-
-    CURATED_PATH.parent.mkdir(parents=True, exist_ok=True)
-    REJECTED_PATH.parent.mkdir(parents=True, exist_ok=True)
+    started_at = datetime.now(timezone.utc)
+    run_id = started_at.strftime("%Y%m%dT%H%M%S%fZ")
     REPORT_PATH.parent.mkdir(parents=True, exist_ok=True)
-
-    curated.to_csv(CURATED_PATH, index=False)
-    rejected.to_csv(REJECTED_PATH, index=False)
-
-    graphique = plot_attacks_per_year()
-    dashboard = plot_incident_dashboard()
-    analyses = write_analysis_reports(CURATED_PATH, REPORT_DATA_DIR)
-
     rapport = {
         "pipeline": "shark-attacks-collector",
-        "executed_at": pd.Timestamp.now("UTC").isoformat(),
-        "source_file": raw_path.name,
-        "source_sha256": sha256_file(raw_path),
-        "source_size_bytes": raw_path.stat().st_size,
+        "run_id": run_id,
+        "executed_at": started_at.isoformat(),
+        "status": "RUNNING",
         "contract_version": "1.0",
-        "input_rows": quality.input_rows,
-        "accepted_rows": quality.accepted_rows,
-        "rejected_rows": quality.rejected_rows,
-        "duplicates_removed": quality.duplicates_removed,
-        "failures_by_rule": quality.failures_by_rule,
-        "quality_status": "PASS_WITH_WARNINGS" if quality.rejected_rows else "PASS",
-        "duration_seconds": round(time.perf_counter() - debut, 2),
-        "outputs": {
-            "curated": str(CURATED_PATH.relative_to(ROOT)),
-            "rejected": str(REJECTED_PATH.relative_to(ROOT)),
-            "visualisation": str(graphique.relative_to(ROOT)),
-            "dashboard": str(dashboard.relative_to(ROOT)),
-            "hotspots": str(Path(analyses["hotspots"]).relative_to(ROOT)),
-            "seasonality": str(Path(analyses["seasonality"]).relative_to(ROOT)),
-            "profile": str(profile_path.relative_to(ROOT)),
-        },
     }
+    LOGGER.info("run_id=%s event=started source=%s", run_id, source_path or "default")
+
+    try:
+        raw_path = collect(source_path)
+        rapport.update(
+            {
+                "source_file": raw_path.name,
+                "source_sha256": sha256_file(raw_path),
+                "source_size_bytes": raw_path.stat().st_size,
+            }
+        )
+        LOGGER.info("run_id=%s event=source_copied file=%s", run_id, raw_path.name)
+        df = pd.read_csv(raw_path)
+        if df.empty:
+            raise ValueError("La source CSV ne contient aucune observation.")
+        required_columns = {"country", "year", "type", "age"}
+        missing_columns = sorted(required_columns.difference(df.columns))
+        if missing_columns:
+            raise ValueError(f"Colonnes requises absentes : {', '.join(missing_columns)}")
+
+        profile_path = write_profile(df, PROFILE_PATH)
+        accepted, rejected, quality = run_quality_rules(df)
+        curated = transform(accepted)
+
+        CURATED_PATH.parent.mkdir(parents=True, exist_ok=True)
+        REJECTED_PATH.parent.mkdir(parents=True, exist_ok=True)
+        curated.to_csv(CURATED_PATH, index=False)
+        rejected.to_csv(REJECTED_PATH, index=False)
+        LOGGER.info(
+            "run_id=%s event=quality_complete input=%d accepted=%d rejected=%d duplicates=%d",
+            run_id,
+            quality.input_rows,
+            quality.accepted_rows,
+            quality.rejected_rows,
+            quality.duplicates_removed,
+        )
+
+        graphique = plot_attacks_per_year()
+        dashboard = plot_incident_dashboard()
+        analyses = write_analysis_reports(CURATED_PATH, REPORT_DATA_DIR)
+        valid_dates = pd.to_datetime(curated["date_complete"], errors="coerce").dropna()
+        newest_record_date = valid_dates.max() if not valid_dates.empty else None
+        data_age_days = (
+            (started_at.date() - newest_record_date.date()).days
+            if newest_record_date is not None
+            else None
+        )
+
+        rapport.update(
+            {
+                "status": "PASS_WITH_WARNINGS" if quality.rejected_rows else "PASS",
+                "source_file": raw_path.name,
+                "source_sha256": sha256_file(raw_path),
+                "source_size_bytes": raw_path.stat().st_size,
+                "source_mtime_utc": datetime.fromtimestamp(
+                    raw_path.stat().st_mtime, timezone.utc
+                ).isoformat(),
+                "input_rows": quality.input_rows,
+                "accepted_rows": quality.accepted_rows,
+                "rejected_rows": quality.rejected_rows,
+                "duplicates_removed": quality.duplicates_removed,
+                "failures_by_rule": quality.failures_by_rule,
+                "quality_status": "PASS_WITH_WARNINGS" if quality.rejected_rows else "PASS",
+                "newest_record_date": (
+                    newest_record_date.date().isoformat()
+                    if newest_record_date is not None
+                    else None
+                ),
+                "data_age_days": data_age_days,
+                "duration_seconds": round(time.perf_counter() - debut, 2),
+                "outputs": {
+                    "curated": str(CURATED_PATH.relative_to(ROOT)),
+                    "rejected": str(REJECTED_PATH.relative_to(ROOT)),
+                    "visualisation": str(graphique.relative_to(ROOT)),
+                    "dashboard": str(dashboard.relative_to(ROOT)),
+                    "hotspots": str(Path(analyses["hotspots"]).relative_to(ROOT)),
+                    "seasonality": str(Path(analyses["seasonality"]).relative_to(ROOT)),
+                    "profile": str(profile_path.relative_to(ROOT)),
+                },
+            }
+        )
+        LOGGER.info("run_id=%s event=completed status=%s", run_id, rapport["status"])
+    except Exception as error:
+        rapport.update(
+            {
+                "status": "FAIL",
+                "error_type": type(error).__name__,
+                "error_message": str(error),
+                "duration_seconds": round(time.perf_counter() - debut, 2),
+            }
+        )
+        REPORT_PATH.write_text(
+            json.dumps(rapport, indent=2, ensure_ascii=False), encoding="utf-8"
+        )
+        LOGGER.exception("run_id=%s event=failed", run_id)
+        raise
+
     REPORT_PATH.write_text(json.dumps(rapport, indent=2, ensure_ascii=False), encoding="utf-8")
     return rapport
 
 
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
     source_arg = sys.argv[1] if len(sys.argv) > 1 else None
     resultat = run(source_arg)
     print(json.dumps(resultat, indent=2, ensure_ascii=False))

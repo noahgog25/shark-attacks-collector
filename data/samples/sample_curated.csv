@@ -1,0 +1,118 @@
+date_complete,annee,pays,zone,localite,activite,type_attaque,sexe,age,tranche_age
+2010-01-15,2010,USA,Florida,Miami,Surfing,Provoked,F,18,10-19
+2010-09-15,2010,USA,Florida,Miami,Surfing,Unprovoked,F,50,50-59
+2010-01-15,2010,USA,Florida,Miami,Surfing,Unprovoked,F,66,60-69
+2010-05-15,2010,USA,Florida,Miami,Surfing,Unprovoked,F,19,10-19
+2010-05-15,2010,USA,Florida,Miami,Surfing,Unprovoked,F,67,60-69
+2010-09-15,2010,USA,Florida,Miami,Surfing,Provoked,F,35,30-39
+2010-05-15,2010,USA,Florida,Miami,Surfing,Unprovoked,F,34,30-39
+2010-01-15,2010,USA,Florida,Miami,Surfing,Unprovoked,F,51,50-59
+2011-10-15,2011,AUSTRALIA,Queensland,Brisbane,Swimming,Unprovoked,M,51,50-59
+2011-02-15,2011,AUSTRALIA,Queensland,Brisbane,Swimming,Unprovoked,M,67,60-69
+2011-06-15,2011,AUSTRALIA,Queensland,Brisbane,Swimming,Provoked,M,20,20-29
+2011-10-15,2011,AUSTRALIA,Queensland,Brisbane,Swimming,Unprovoked,M,36,30-39
+2011-06-15,2011,AUSTRALIA,Queensland,Brisbane,Swimming,Unprovoked,M,35,30-39
+2011-02-15,2011,AUSTRALIA,Queensland,Brisbane,Swimming,Unprovoked,M,52,50-59
+2011-02-15,2011,AUSTRALIA,Queensland,Brisbane,Swimming,Unprovoked,M,19,10-19
+2011-06-15,2011,AUSTRALIA,Queensland,Brisbane,Swimming,Unprovoked,M,68,60-69
+2012-11-15,2012,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Unprovoked,F,37,30-39
+2012-03-15,2012,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Unprovoked,F,53,50-59
+2012-11-15,2012,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Unprovoked,F,52,50-59
+2012-07-15,2012,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Unprovoked,F,36,30-39
+2012-03-15,2012,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Unprovoked,F,20,20-29
+2012-07-15,2012,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Unprovoked,F,69,60-69
+2012-07-15,2012,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Unprovoked,F,21,20-29
+2012-03-15,2012,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Provoked,F,68,60-69
+2013-12-15,2013,BRAZIL,Pernambuco,Recife,Diving,Unprovoked,M,38,30-39
+2013-04-15,2013,BRAZIL,Pernambuco,Recife,Diving,Unprovoked,M,21,20-29
+2013-04-15,2013,BRAZIL,Pernambuco,Recife,Diving,Unprovoked,M,69,60-69
+2013-12-15,2013,BRAZIL,Pernambuco,Recife,Diving,Provoked,M,53,50-59
+2013-08-15,2013,BRAZIL,Pernambuco,Recife,Diving,Provoked,M,70,70-79
+2013-08-15,2013,BRAZIL,Pernambuco,Recife,Diving,Unprovoked,M,22,20-29
+2013-04-15,2013,BRAZIL,Pernambuco,Recife,Diving,Unprovoked,M,54,50-59
+2013-08-15,2013,BRAZIL,Pernambuco,Recife,Diving,Unprovoked,M,37,30-39
+2014-01-15,2014,USA,Florida,Miami,Surfing,Unprovoked,F,39,30-39
+2014-09-15,2014,USA,Florida,Miami,Surfing,Unprovoked,F,23,20-29
+2014-05-15,2014,USA,Florida,Miami,Surfing,Unprovoked,F,70,70-79
+2014-05-15,2014,USA,Florida,Miami,Surfing,Provoked,F,55,50-59
+2014-09-15,2014,USA,Florida,Miami,Surfing,Unprovoked,F,,
+2014-09-15,2014,USA,Florida,Miami,Surfing,Provoked,F,38,30-39
+2014-01-15,2014,USA,Florida,Miami,Surfing,Unprovoked,F,54,50-59
+2014-05-15,2014,USA,Florida,Miami,Surfing,Unprovoked,F,22,20-29
+2015-02-15,2015,AUSTRALIA,Queensland,Brisbane,Swimming,Provoked,M,40,40-49
+2015-10-15,2015,AUSTRALIA,Queensland,Brisbane,Swimming,Unprovoked,M,24,20-29
+2015-10-15,2015,AUSTRALIA,Queensland,Brisbane,Swimming,Unprovoked,M,39,30-39
+2015-06-15,2015,AUSTRALIA,Queensland,Brisbane,Swimming,Unprovoked,M,71,70-79
+2015-06-15,2015,AUSTRALIA,Queensland,Brisbane,Swimming,Unprovoked,M,56,50-59
+2015-02-15,2015,AUSTRALIA,Queensland,Brisbane,Swimming,Unprovoked,M,55,50-59
+2015-06-15,2015,AUSTRALIA,Queensland,Brisbane,Swimming,Provoked,M,23,20-29
+2016-03-15,2016,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Unprovoked,F,56,50-59
+2016-11-15,2016,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Unprovoked,F,40,40-49
+2016-07-15,2016,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Unprovoked,F,57,50-59
+2016-07-15,2016,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Unprovoked,F,24,20-29
+2016-11-15,2016,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Provoked,F,25,20-29
+2016-07-15,2016,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Unprovoked,F,72,70-79
+2016-03-15,2016,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Unprovoked,F,41,40-49
+2017-12-15,2017,BRAZIL,Pernambuco,Recife,Diving,Unprovoked,M,41,40-49
+2017-04-15,2017,BRAZIL,Pernambuco,Recife,Diving,Unprovoked,M,42,40-49
+2017-12-15,2017,BRAZIL,Pernambuco,Recife,Diving,Unprovoked,M,26,20-29
+2017-04-15,2017,BRAZIL,Pernambuco,Recife,Diving,Unprovoked,M,57,50-59
+2017-08-15,2017,BRAZIL,Pernambuco,Recife,Diving,Provoked,M,73,70-79
+2017-08-15,2017,BRAZIL,Pernambuco,Recife,Diving,Unprovoked,M,25,20-29
+2017-08-15,2017,BRAZIL,Pernambuco,Recife,Diving,Unprovoked,M,58,50-59
+2018-09-15,2018,USA,Florida,Miami,Surfing,Unprovoked,F,74,70-79
+2018-01-15,2018,USA,Florida,Miami,Surfing,Unprovoked,F,27,20-29
+2018-05-15,2018,USA,Florida,Miami,Surfing,Unprovoked,F,43,40-49
+2018-09-15,2018,USA,Florida,Miami,Surfing,Unprovoked,F,26,20-29
+2018-01-15,2018,USA,Florida,Miami,Surfing,Unprovoked,F,42,40-49
+2018-09-15,2018,USA,Florida,Miami,Surfing,Unprovoked,F,59,50-59
+2018-05-15,2018,USA,Florida,Miami,Surfing,Provoked,F,58,50-59
+2019-02-15,2019,AUSTRALIA,Queensland,Brisbane,Swimming,Unprovoked,M,28,20-29
+2019-10-15,2019,AUSTRALIA,Queensland,Brisbane,Swimming,Provoked,M,60,60-69
+2019-06-15,2019,AUSTRALIA,Queensland,Brisbane,Swimming,Unprovoked,M,44,40-49
+2019-10-15,2019,AUSTRALIA,Queensland,Brisbane,Swimming,Unprovoked,M,27,20-29
+2019-06-15,2019,AUSTRALIA,Queensland,Brisbane,Swimming,Unprovoked,M,59,50-59
+2019-02-15,2019,AUSTRALIA,Queensland,Brisbane,Swimming,Provoked,M,43,40-49
+2019-10-15,2019,AUSTRALIA,Queensland,Brisbane,Swimming,Unprovoked,M,75,70-79
+2020-11-15,2020,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Unprovoked,F,61,60-69
+2020-07-15,2020,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Provoked,F,45,40-49
+2020-11-15,2020,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Provoked,F,28,20-29
+2020-11-15,2020,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Unprovoked,F,76,70-79
+2020-07-15,2020,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Unprovoked,F,60,60-69
+2020-03-15,2020,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Unprovoked,F,29,20-29
+2020-03-15,2020,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Unprovoked,F,44,40-49
+2021-12-15,2021,BRAZIL,Pernambuco,Recife,Diving,Unprovoked,M,77,70-79
+2021-08-15,2021,BRAZIL,Pernambuco,Recife,Diving,Unprovoked,M,61,60-69
+2021-12-15,2021,BRAZIL,Pernambuco,Recife,Diving,Unprovoked,M,62,60-69
+2021-04-15,2021,BRAZIL,Pernambuco,Recife,Diving,Provoked,M,30,30-39
+2021-04-15,2021,BRAZIL,Pernambuco,Recife,Diving,Unprovoked,M,45,40-49
+2021-12-15,2021,BRAZIL,Pernambuco,Recife,Diving,Unprovoked,M,29,20-29
+2021-08-15,2021,BRAZIL,Pernambuco,Recife,Diving,Unprovoked,M,46,40-49
+2022-09-15,2022,USA,Florida,Miami,Surfing,Unprovoked,F,62,60-69
+2022-01-15,2022,USA,Florida,Miami,Surfing,Unprovoked,F,63,60-69
+2022-05-15,2022,USA,Florida,Miami,Surfing,Unprovoked,F,46,40-49
+2022-05-15,2022,USA,Florida,Miami,Surfing,Unprovoked,F,31,30-39
+2022-01-15,2022,USA,Florida,Miami,Surfing,Unprovoked,F,30,30-39
+2022-01-15,2022,USA,Florida,Miami,Surfing,Provoked,F,78,70-79
+2022-09-15,2022,USA,Florida,Miami,Surfing,Unprovoked,F,47,40-49
+2023-10-15,2023,AUSTRALIA,Queensland,Brisbane,Swimming,Unprovoked,M,48,40-49
+2023-02-15,2023,AUSTRALIA,Queensland,Brisbane,Swimming,Unprovoked,M,31,30-39
+2023-10-15,2023,AUSTRALIA,Queensland,Brisbane,Swimming,Provoked,M,63,60-69
+2023-02-15,2023,AUSTRALIA,Queensland,Brisbane,Swimming,Unprovoked,M,64,60-69
+2023-06-15,2023,AUSTRALIA,Queensland,Brisbane,Swimming,Unprovoked,M,47,40-49
+2023-02-15,2023,AUSTRALIA,Queensland,Brisbane,Swimming,Unprovoked,M,79,70-79
+2023-06-15,2023,AUSTRALIA,Queensland,Brisbane,Swimming,Unprovoked,M,32,30-39
+2024-03-15,2024,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Unprovoked,F,80,80-89
+2024-07-15,2024,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Provoked,F,48,40-49
+2024-03-15,2024,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Unprovoked,F,32,30-39
+2024-11-15,2024,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Unprovoked,F,64,60-69
+2024-07-15,2024,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Unprovoked,F,33,30-39
+2024-11-15,2024,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Unprovoked,F,49,40-49
+2024-03-15,2024,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Provoked,F,65,60-69
+2025-04-15,2025,BRAZIL,Pernambuco,Recife,Diving,Provoked,M,33,30-39
+2025-12-15,2025,BRAZIL,Pernambuco,Recife,Diving,Unprovoked,M,65,60-69
+2025-08-15,2025,BRAZIL,Pernambuco,Recife,Diving,Unprovoked,M,49,40-49
+2025-04-15,2025,BRAZIL,Pernambuco,Recife,Diving,Unprovoked,M,18,10-19
+2025-12-15,2025,BRAZIL,Pernambuco,Recife,Diving,Provoked,M,50,50-59
+2025-04-15,2025,BRAZIL,Pernambuco,Recife,Diving,Unprovoked,M,66,60-69
+2025-08-15,2025,BRAZIL,Pernambuco,Recife,Diving,Unprovoked,M,34,30-39

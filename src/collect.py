@@ -22,11 +22,14 @@ ROOT = Path(__file__).resolve().parent.parent
 RAW_DIR = ROOT / "data" / "raw"
 RAW_PATH = RAW_DIR / "global_shark_attacks_raw.csv"
 DEFAULT_SOURCE = RAW_PATH
+SAMPLE_SOURCE = ROOT / "data" / "samples" / "sample_source.csv"
 
 
 def collect(source_path: str | Path | None = None) -> Path:
     """Conserve une copie brute horodatee de la source et la retourne."""
     source = Path(source_path) if source_path else DEFAULT_SOURCE
+    if source_path is None and not source.is_file() and SAMPLE_SOURCE.is_file():
+        source = SAMPLE_SOURCE
     if not source.is_file():
         raise FileNotFoundError(f"Source introuvable : {source}")
 

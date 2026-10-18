@@ -1,10 +1,33 @@
 dataset: shark_attacks
 version: "1.0"
+contract_status: versionne
 grain: >
   Une ligne represente un incident d'attaque de requin recense dans le
   Global Shark Attack File, caracterise par sa date, sa localisation,
   l'activite pratiquee au moment des faits et le profil de la victime.
 owner: etudiant_eseo
+business_key:
+  available: false
+  strategy: deduplication_stricte_sur_tous_les_champs_source
+  limitation: deux_incidents_distincts_identiques_peuvent_etre_fusionnes
+collection:
+  mode: batch
+  frequency: ponctuelle_sur_export_manuel
+  raw_copy: snapshot_utc_horodate_non_transforme
+  retry: corriger_la_source_puis_relancer_le_pipeline
+observability:
+  run_id: timestamp_utc_unique
+  logs: stdout_stderr_avec_etapes_et_erreurs
+  report: reports/interpretation/run_report.json
+  metrics:
+    - input_rows
+    - accepted_rows
+    - rejected_rows
+    - duplicates_removed
+    - duration_seconds
+    - newest_record_date
+    - data_age_days
+  failure_status: FAIL_avec_type_et_message_d_erreur
 
 rgpd:
   register: config/processing_register.yaml

@@ -64,16 +64,22 @@ Python 3.11 ou plus récent est requis; les dépendances sont dans
 python -m src.pipeline
 ```
 
-Le fichier source `data/raw/global_shark_attacks_raw.csv` n'est pas inclus dans Git : il contient des données nominatives et son accès dépend des conditions de la source Kaggle. Pour un nouveau clone, télécharge l'extrait autorisé et place-le à ce chemin, ou passe le chemin d'un CSV compatible en argument. Le collecteur en conserve une copie brute horodatée dans `data/raw/` avant traitement, sans modifier le fichier fourni. Voir [data/raw/README.md](data/raw/README.md).
+Le fichier réel `data/raw/global_shark_attacks_raw.csv` est local et exclu de Git, car il contient des noms. S'il est absent, le pipeline utilise automatiquement [l'échantillon synthétique](data/samples/sample_source.csv), qui contient plus de 100 observations et aucun sujet réel. Pour une autre source autorisée, passe son chemin en argument. Dans tous les cas, le collecteur conserve une copie brute horodatée et ne modifie pas le fichier fourni. Détails : [guide de la zone raw](data/raw/README.md).
 
 Le pipeline :
-1. lit le fichier raw canonique (ou copie le fichier fourni en argument vers celui-ci) ;
+1. lit le CSV réel local, l'échantillon synthétique de secours, ou le CSV fourni en argument ;
 2. applique 5 règles de qualité et sépare les lignes acceptées des lignes rejetées ;
 3. transforme les lignes acceptées en dataset curated propre et typé ;
 4. génère une première visualisation (attaques par année) ;
 5. génère un dashboard `dashboard_incidents.png` avec évolution annuelle, saisonnalité, pays et localités ;
 6. génère les rapports `hotspots_incidents_declares.csv` et `saisonnalite_incidents_declares.csv` ;
-7. écrit un rapport d'exécution.
+7. écrit un rapport d'exécution avec `run_id`, statut, hash, compteurs, durée, date de l'incident le plus récent et âge de cette donnée.
+
+Les logs d'étapes et les erreurs sont écrits dans le terminal. Une erreur écrit
+un rapport `FAIL` avec son type et son message, conserve le snapshot déjà créé,
+puis retourne un code d'échec. Corrige la source et relance la même commande;
+les sorties curated/rejected sont remplacées. Le scénario est détaillé dans
+[docs/incident_test.md](docs/incident_test.md).
 
 Pour utiliser un autre fichier source :
 
@@ -83,7 +89,34 @@ python -m src.pipeline chemin/vers/un_autre_export.csv
 
 Le pipeline est **idempotent** : les fichiers `data/curated/shark_attacks_curated.csv` et `data/rejected/rejected_rows.csv` sont entièrement remplacés à chaque exécution. Chaque exécution ajoute une copie source horodatée en zone raw; ces copies ne sont pas suivies par Git.
 
-Le rapport d'exécution contient aussi le hash SHA-256 et la taille du fichier raw, le profil initial de la source et la version du contrat. Le profil est produit avant la validation.
+Le rapport d'exécution se trouve dans `reports/interpretation/run_report.json`;
+le profil initial est dans `source_profile.json`. Les compteurs de validation
+et le hash assurent la traçabilité de la source traitée.
+
+## Reproduire depuis un clone propre
+
+Après installation, `python -m src.pipeline` fonctionne sans téléchargement
+externe grâce à l'échantillon synthétique versionné. Pour produire de nouveau
+les échantillons raw, curated et rejected :
+
+```bash
+python scripts/build_demo_data.py
+python -m src.pipeline
+python -m pytest tests/
+```
+
+Les commandes équivalentes Windows sont les mêmes dans un environnement
+virtuel activé; sans activation, remplace `python` par
+`.venv\Scripts\python.exe`. L'extrait GSAF réel doit être obtenu séparément
+dans le respect de ses conditions d'utilisation.
+
+## Architecture et décisions
+
+- [Architecture V1 (SVG)](docs/architecture_v1.svg) : chaîne initiale raw, qualité et curated.
+- [Architecture V2 (SVG)](docs/architecture_v2.svg) : observabilité, reprise et produit métier.
+- [ADR 001](docs/ADR_001.md) : comparaison CSV batch, SQLite et options distribuées.
+- [Dictionnaire de données](docs/data_dictionary.md) et [contrat versionné](config/data_contract.yaml).
+- [Synthèse finale PDF](docs/synthesis.pdf), format de 4 à 6 pages.
 
 ## Arborescence
 
@@ -96,11 +129,17 @@ shark-attacks-collector/
     data_contract.yaml       # contrat de données v1
     processing_register.yaml # registre de traitement RGPD minimal
   data/
-    raw/                     # fichier source/raw canonique
+    raw/                     # snapshots locaux, exclus de Git
+    samples/                 # source synthétique + exemples curated/rejected
     curated/                 # shark_attacks_curated.csv — données validées et propres
     rejected/                # rejected_rows.csv — lignes écartées + raison
   docs/
     architecture.md
+    architecture_v1.svg
+    architecture_v2.svg
+    ADR_001.md
+    incident_test.md
+    synthesis.pdf
     data_dictionary.md
     demo.md
     project_brief.md
@@ -120,6 +159,9 @@ shark-attacks-collector/
     transform.py                # étape 3 : dataset curated
     visualize.py                 # étape 4 : visualisation simple
     pipeline.py                  # orchestrateur
+  scripts/
+    build_demo_data.py            # régénère l'échantillon synthétique
+    build_synthesis.py            # régénère la synthèse PDF
   tests/
     test_quality.py
 ```
@@ -146,7 +188,16 @@ python -m pytest tests/
 
 Sous Windows sans activation, lance `.venv\Scripts\python.exe -m pytest tests/`.
 
-La suite vérifie les règles de qualité, les rejets, le profilage, les sorties de visualisation, le géocodage et les comparaisons écologiques.
+La suite vérifie les règles de qualité, les rejets, le profilage, le collecteur,
+le test d'incident et de reprise, les sorties de visualisation, le géocodage et
+les comparaisons écologiques.
+
+## Usage d'outils d'IA
+
+- Outil utilisé : GitHub Copilot.
+- Tâches assistées : aide à l'implémentation, à la rédaction et à la revue des tests/documentation.
+- Vérifications réalisées : exécution du pipeline et de la suite de tests; résultats consignés dans le rapport et dans ce dépôt.
+- Parties retravaillées personnellement : à compléter par l'étudiant avant remise, en indiquant précisément les parties relues, comprises et adaptées.
 
 ## Limites connues
 
