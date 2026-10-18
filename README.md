@@ -73,11 +73,12 @@ Le pipeline :
 4. génère une première visualisation (attaques par année) ;
 5. génère un dashboard `dashboard_incidents.png` avec évolution annuelle, saisonnalité, pays et localités ;
 6. génère les rapports `hotspots_incidents_declares.csv` et `saisonnalite_incidents_declares.csv` ;
-7. écrit un rapport d'exécution avec `run_id`, statut, hash, compteurs, durée, date de l'incident le plus récent et âge de cette donnée.
+7. écrit un rapport d'exécution avec `run_id`, statut d'exécution, statut qualité, hash, compteurs, durée, date de l'incident le plus récent et âge de cette donnée.
 
 Les logs d'étapes et les erreurs sont écrits dans le terminal. Une erreur écrit
 un rapport `FAIL` avec son type et son message, conserve le snapshot déjà créé,
-puis retourne un code d'échec. Corrige la source et relance la même commande;
+puis retourne un code d'échec. Un traitement achevé est `PASS`; les rejets et
+doublons restent signalés dans `quality_status` et `warnings`. Corrige la source et relance la même commande;
 les sorties curated/rejected sont remplacées. Le scénario est détaillé dans
 [docs/incident_test.md](docs/incident_test.md).
 
@@ -161,7 +162,6 @@ shark-attacks-collector/
     pipeline.py                  # orchestrateur
   scripts/
     build_demo_data.py            # régénère l'échantillon synthétique
-    build_synthesis.py            # régénère la synthèse PDF
   tests/
     test_quality.py
 ```

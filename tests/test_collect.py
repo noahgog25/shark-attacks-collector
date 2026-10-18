@@ -50,7 +50,7 @@ def test_pipeline_documente_incident_source_absente_et_reprend(
 ):
     report_path = tmp_path / "run_report.json"
     source = tmp_path / "valid.csv"
-    pd.DataFrame(
+    sample_rows = pd.DataFrame(
         {
             "date": ["2020-01-01"],
             "year": [2020],
@@ -63,7 +63,12 @@ def test_pipeline_documente_incident_source_absente_et_reprend(
             "sex": ["M"],
             "age": ["30"],
         }
-    ).to_csv(source, index=False)
+    )
+    invalid_row = sample_rows.iloc[0].copy()
+    invalid_row["country"] = ""
+    pd.concat([sample_rows, invalid_row.to_frame().T], ignore_index=True).to_csv(
+        source, index=False
+    )
     monkeypatch.setattr(pipeline_module, "REPORT_PATH", report_path)
     monkeypatch.setattr(pipeline_module, "ROOT", tmp_path)
     monkeypatch.setattr(
@@ -103,7 +108,11 @@ def test_pipeline_documente_incident_source_absente_et_reprend(
     result = pipeline_module.run("valid.csv")
 
     assert result["status"] == "PASS"
+    assert result["quality_status"] == "PASS_WITH_WARNINGS"
+    assert "1 ligne(s) rejetee(s)" in result["warnings"]
     assert result["run_id"] != failed_run_id
-    assert result["input_rows"] == 1
+    assert result["input_rows"] == 2
+    assert result["accepted_rows"] == 1
+    assert result["rejected_rows"] == 1
     assert result["newest_record_date"] == "2020-01-01"
     assert result["data_age_days"] is not None

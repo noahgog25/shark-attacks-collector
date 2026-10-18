@@ -104,7 +104,7 @@ def run(source_path: str | None = None) -> dict:
 
         rapport.update(
             {
-                "status": "PASS_WITH_WARNINGS" if quality.rejected_rows else "PASS",
+                "status": "PASS",
                 "source_file": raw_path.name,
                 "source_sha256": sha256_file(raw_path),
                 "source_size_bytes": raw_path.stat().st_size,
@@ -116,7 +116,23 @@ def run(source_path: str | None = None) -> dict:
                 "rejected_rows": quality.rejected_rows,
                 "duplicates_removed": quality.duplicates_removed,
                 "failures_by_rule": quality.failures_by_rule,
-                "quality_status": "PASS_WITH_WARNINGS" if quality.rejected_rows else "PASS",
+                "quality_status": (
+                    "PASS_WITH_WARNINGS"
+                    if quality.rejected_rows or quality.duplicates_removed
+                    else "PASS"
+                ),
+                "warnings": [
+                    warning
+                    for warning in (
+                        f"{quality.rejected_rows} ligne(s) rejetee(s)"
+                        if quality.rejected_rows
+                        else None,
+                        f"{quality.duplicates_removed} doublon(s) supprime(s)"
+                        if quality.duplicates_removed
+                        else None,
+                    )
+                    if warning is not None
+                ],
                 "newest_record_date": (
                     newest_record_date.date().isoformat()
                     if newest_record_date is not None
@@ -135,7 +151,12 @@ def run(source_path: str | None = None) -> dict:
                 },
             }
         )
-        LOGGER.info("run_id=%s event=completed status=%s", run_id, rapport["status"])
+        LOGGER.info(
+            "run_id=%s event=completed status=%s quality_status=%s",
+            run_id,
+            rapport["status"],
+            rapport["quality_status"],
+        )
     except Exception as error:
         rapport.update(
             {
