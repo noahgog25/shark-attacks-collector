@@ -18,6 +18,7 @@ import json
 import logging
 import sys
 import time
+import argparse
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -31,6 +32,7 @@ from src.profile import write_profile
 from src.validate import run_quality_rules
 from src.transform import transform
 from src.visualize import plot_attacks_per_year, plot_incident_dashboard
+from src.enrich.service import run_enrichment
 
 ROOT = Path(__file__).resolve().parent.parent
 CURATED_PATH = ROOT / "data" / "curated" / "shark_attacks_curated.csv"
@@ -39,10 +41,13 @@ REPORTS_DIR = ROOT / "reports"
 REPORT_PATH = REPORTS_DIR / "interpretation" / "run_report.json"
 REPORT_DATA_DIR = REPORTS_DIR / "data"
 PROFILE_PATH = REPORTS_DIR / "interpretation" / "source_profile.json"
+ENRICHED_PATH = ROOT / "data" / "curated" / "attacks_enriched.csv"
+GEOCODED_PATH = REPORT_DATA_DIR / "attacks_with_coordinates.csv"
+GBIF_DIR = ROOT / "data" / "reference"
 LOGGER = logging.getLogger("shark_attacks_pipeline")
 
 
-def run(source_path: str | None = None) -> dict:
+def run(source_path: str | None = None, enrich: bool = False) -> dict:
     debut = time.perf_counter()
     started_at = datetime.now(timezone.utc)
     run_id = started_at.strftime("%Y%m%dT%H%M%S%fZ")
@@ -133,6 +138,15 @@ def run(source_path: str | None = None) -> dict:
                     )
                     if warning is not None
                 ],
+                "enrichment": {
+                    "status": "NOT_REQUESTED",
+                    "api_calls": 0,
+                    "cache_hits": 0,
+                    "failures": 0,
+                    "lines_enriched": 0,
+                    "lines_excluded": 0,
+                    "duration_seconds": 0.0,
+                },
                 "newest_record_date": (
                     newest_record_date.date().isoformat()
                     if newest_record_date is not None
@@ -151,11 +165,39 @@ def run(source_path: str | None = None) -> dict:
                 },
             }
         )
+        if enrich:
+            environment_report = run_enrichment(
+                CURATED_PATH,
+                GEOCODED_PATH,
+                ENRICHED_PATH,
+                gbif_dir=GBIF_DIR,
+                analysis_dir=REPORT_DATA_DIR,
+            )
+            rapport["enrichment"] = environment_report
+            rapport["outputs"]["environmental_enrichment"] = str(
+                ENRICHED_PATH.relative_to(ROOT)
+            )
+            rapport["outputs"]["environment_hypotheses"] = str(
+                Path(environment_report["hypotheses_output"]).relative_to(ROOT)
+            )
+            for output_key, report_key in (
+                ("environment_monthly_sst", "monthly_sst_output"),
+                ("environment_sensitivities", "sensitivities_output"),
+            ):
+                if environment_report.get(report_key):
+                    rapport["outputs"][output_key] = str(
+                        Path(environment_report[report_key]).relative_to(ROOT)
+                    )
+            if environment_report["status"] == "WARN":
+                rapport["warnings"].append(
+                    "Enrichissement environnemental partiel; consulter la section enrichment."
+                )
         LOGGER.info(
-            "run_id=%s event=completed status=%s quality_status=%s",
+            "run_id=%s event=completed status=%s quality_status=%s enrichment_status=%s",
             run_id,
             rapport["status"],
             rapport["quality_status"],
+            rapport["enrichment"]["status"],
         )
     except Exception as error:
         rapport.update(
@@ -178,6 +220,13 @@ def run(source_path: str | None = None) -> dict:
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
-    source_arg = sys.argv[1] if len(sys.argv) > 1 else None
-    resultat = run(source_arg)
+    parser = argparse.ArgumentParser(description="Exécuter le pipeline Shark Attacks Collector")
+    parser.add_argument("source", nargs="?", help="Chemin du CSV source facultatif")
+    parser.add_argument(
+        "--enrich",
+        action="store_true",
+        help="Activer les enrichissements environnementaux optionnels",
+    )
+    arguments = parser.parse_args()
+    resultat = run(arguments.source, enrich=arguments.enrich)
     print(json.dumps(resultat, indent=2, ensure_ascii=False))

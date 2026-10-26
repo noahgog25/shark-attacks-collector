@@ -34,7 +34,6 @@ def build_sample_data() -> tuple[Path, Path, Path]:
                 "area": areas[index % len(areas)],
                 "location": locations[index % len(locations)],
                 "activity": activities[index % len(activities)],
-                "name": f"Synthetic record {index + 1:03d}",
                 "sex": "M" if index % 2 else "F",
                 "age": "250" if index == 116 else str(18 + index % 63),
             }

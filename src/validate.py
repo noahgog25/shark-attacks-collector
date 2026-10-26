@@ -76,7 +76,10 @@ def run_quality_rules(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame, Qua
 
     # 5. Unicite : dedoublonnage sur l'ensemble des champs source
     avant = len(work)
-    work = work.drop_duplicates(subset=CLE_UNICITE, keep="first")
+    uniqueness_columns = [column for column in CLE_UNICITE if column in work.columns]
+    if not uniqueness_columns:
+        raise ValueError("Aucune colonne source disponible pour la déduplication.")
+    work = work.drop_duplicates(subset=uniqueness_columns, keep="first")
     report.duplicates_removed = avant - len(work)
     report.failures_by_rule["unicite"] = report.duplicates_removed
 

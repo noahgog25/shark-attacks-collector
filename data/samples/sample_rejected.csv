@@ -1,4 +1,4 @@
-date,year,type,country,area,location,activity,name,sex,age,age_clean,_reject_reason
-2015-10-15,2015,Unprovoked,,Queensland,Brisbane,Swimming,Synthetic record 118,M,72,72.0,pays manquant
-2016-11-15,999,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Synthetic record 119,F,73,73.0,annee invalide
-2017-12-15,2017,Synthetic invalid type,BRAZIL,Pernambuco,Recife,Diving,Synthetic record 120,M,74,74.0,type d'attaque inconnu
+date,year,type,country,area,location,activity,sex,age,age_clean,_reject_reason
+2015-10-15,2015,Unprovoked,,Queensland,Brisbane,Swimming,M,72,72.0,pays manquant
+2016-11-15,999,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,F,73,73.0,annee invalide
+2017-12-15,2017,Synthetic invalid type,BRAZIL,Pernambuco,Recife,Diving,M,74,74.0,type d'attaque inconnu

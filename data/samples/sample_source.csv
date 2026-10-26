@@ -1,122 +1,122 @@
-date,year,type,country,area,location,activity,name,sex,age
-2010-01-15,2010,Provoked,USA,Florida,Miami,Surfing,Synthetic record 001,F,18
-2011-02-15,2011,Unprovoked,AUSTRALIA,Queensland,Brisbane,Swimming,Synthetic record 002,M,19
-2012-03-15,2012,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Synthetic record 003,F,20
-2013-04-15,2013,Unprovoked,BRAZIL,Pernambuco,Recife,Diving,Synthetic record 004,M,21
-2014-05-15,2014,Unprovoked,USA,Florida,Miami,Surfing,Synthetic record 005,F,22
-2015-06-15,2015,Provoked,AUSTRALIA,Queensland,Brisbane,Swimming,Synthetic record 006,M,23
-2016-07-15,2016,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Synthetic record 007,F,24
-2017-08-15,2017,Unprovoked,BRAZIL,Pernambuco,Recife,Diving,Synthetic record 008,M,25
-2018-09-15,2018,Unprovoked,USA,Florida,Miami,Surfing,Synthetic record 009,F,26
-2019-10-15,2019,Unprovoked,AUSTRALIA,Queensland,Brisbane,Swimming,Synthetic record 010,M,27
-2020-11-15,2020,Provoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Synthetic record 011,F,28
-2021-12-15,2021,Unprovoked,BRAZIL,Pernambuco,Recife,Diving,Synthetic record 012,M,29
-2022-01-15,2022,Unprovoked,USA,Florida,Miami,Surfing,Synthetic record 013,F,30
-2023-02-15,2023,Unprovoked,AUSTRALIA,Queensland,Brisbane,Swimming,Synthetic record 014,M,31
-2024-03-15,2024,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Synthetic record 015,F,32
-2025-04-15,2025,Provoked,BRAZIL,Pernambuco,Recife,Diving,Synthetic record 016,M,33
-2010-05-15,2010,Unprovoked,USA,Florida,Miami,Surfing,Synthetic record 017,F,34
-2011-06-15,2011,Unprovoked,AUSTRALIA,Queensland,Brisbane,Swimming,Synthetic record 018,M,35
-2012-07-15,2012,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Synthetic record 019,F,36
-2013-08-15,2013,Unprovoked,BRAZIL,Pernambuco,Recife,Diving,Synthetic record 020,M,37
-2014-09-15,2014,Provoked,USA,Florida,Miami,Surfing,Synthetic record 021,F,38
-2015-10-15,2015,Unprovoked,AUSTRALIA,Queensland,Brisbane,Swimming,Synthetic record 022,M,39
-2016-11-15,2016,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Synthetic record 023,F,40
-2017-12-15,2017,Unprovoked,BRAZIL,Pernambuco,Recife,Diving,Synthetic record 024,M,41
-2018-01-15,2018,Unprovoked,USA,Florida,Miami,Surfing,Synthetic record 025,F,42
-2019-02-15,2019,Provoked,AUSTRALIA,Queensland,Brisbane,Swimming,Synthetic record 026,M,43
-2020-03-15,2020,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Synthetic record 027,F,44
-2021-04-15,2021,Unprovoked,BRAZIL,Pernambuco,Recife,Diving,Synthetic record 028,M,45
-2022-05-15,2022,Unprovoked,USA,Florida,Miami,Surfing,Synthetic record 029,F,46
-2023-06-15,2023,Unprovoked,AUSTRALIA,Queensland,Brisbane,Swimming,Synthetic record 030,M,47
-2024-07-15,2024,Provoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Synthetic record 031,F,48
-2025-08-15,2025,Unprovoked,BRAZIL,Pernambuco,Recife,Diving,Synthetic record 032,M,49
-2010-09-15,2010,Unprovoked,USA,Florida,Miami,Surfing,Synthetic record 033,F,50
-2011-10-15,2011,Unprovoked,AUSTRALIA,Queensland,Brisbane,Swimming,Synthetic record 034,M,51
-2012-11-15,2012,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Synthetic record 035,F,52
-2013-12-15,2013,Provoked,BRAZIL,Pernambuco,Recife,Diving,Synthetic record 036,M,53
-2014-01-15,2014,Unprovoked,USA,Florida,Miami,Surfing,Synthetic record 037,F,54
-2015-02-15,2015,Unprovoked,AUSTRALIA,Queensland,Brisbane,Swimming,Synthetic record 038,M,55
-2016-03-15,2016,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Synthetic record 039,F,56
-2017-04-15,2017,Unprovoked,BRAZIL,Pernambuco,Recife,Diving,Synthetic record 040,M,57
-2018-05-15,2018,Provoked,USA,Florida,Miami,Surfing,Synthetic record 041,F,58
-2019-06-15,2019,Unprovoked,AUSTRALIA,Queensland,Brisbane,Swimming,Synthetic record 042,M,59
-2020-07-15,2020,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Synthetic record 043,F,60
-2021-08-15,2021,Unprovoked,BRAZIL,Pernambuco,Recife,Diving,Synthetic record 044,M,61
-2022-09-15,2022,Unprovoked,USA,Florida,Miami,Surfing,Synthetic record 045,F,62
-2023-10-15,2023,Provoked,AUSTRALIA,Queensland,Brisbane,Swimming,Synthetic record 046,M,63
-2024-11-15,2024,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Synthetic record 047,F,64
-2025-12-15,2025,Unprovoked,BRAZIL,Pernambuco,Recife,Diving,Synthetic record 048,M,65
-2010-01-15,2010,Unprovoked,USA,Florida,Miami,Surfing,Synthetic record 049,F,66
-2011-02-15,2011,Unprovoked,AUSTRALIA,Queensland,Brisbane,Swimming,Synthetic record 050,M,67
-2012-03-15,2012,Provoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Synthetic record 051,F,68
-2013-04-15,2013,Unprovoked,BRAZIL,Pernambuco,Recife,Diving,Synthetic record 052,M,69
-2014-05-15,2014,Unprovoked,USA,Florida,Miami,Surfing,Synthetic record 053,F,70
-2015-06-15,2015,Unprovoked,AUSTRALIA,Queensland,Brisbane,Swimming,Synthetic record 054,M,71
-2016-07-15,2016,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Synthetic record 055,F,72
-2017-08-15,2017,Provoked,BRAZIL,Pernambuco,Recife,Diving,Synthetic record 056,M,73
-2018-09-15,2018,Unprovoked,USA,Florida,Miami,Surfing,Synthetic record 057,F,74
-2019-10-15,2019,Unprovoked,AUSTRALIA,Queensland,Brisbane,Swimming,Synthetic record 058,M,75
-2020-11-15,2020,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Synthetic record 059,F,76
-2021-12-15,2021,Unprovoked,BRAZIL,Pernambuco,Recife,Diving,Synthetic record 060,M,77
-2022-01-15,2022,Provoked,USA,Florida,Miami,Surfing,Synthetic record 061,F,78
-2023-02-15,2023,Unprovoked,AUSTRALIA,Queensland,Brisbane,Swimming,Synthetic record 062,M,79
-2024-03-15,2024,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Synthetic record 063,F,80
-2025-04-15,2025,Unprovoked,BRAZIL,Pernambuco,Recife,Diving,Synthetic record 064,M,18
-2010-05-15,2010,Unprovoked,USA,Florida,Miami,Surfing,Synthetic record 065,F,19
-2011-06-15,2011,Provoked,AUSTRALIA,Queensland,Brisbane,Swimming,Synthetic record 066,M,20
-2012-07-15,2012,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Synthetic record 067,F,21
-2013-08-15,2013,Unprovoked,BRAZIL,Pernambuco,Recife,Diving,Synthetic record 068,M,22
-2014-09-15,2014,Unprovoked,USA,Florida,Miami,Surfing,Synthetic record 069,F,23
-2015-10-15,2015,Unprovoked,AUSTRALIA,Queensland,Brisbane,Swimming,Synthetic record 070,M,24
-2016-11-15,2016,Provoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Synthetic record 071,F,25
-2017-12-15,2017,Unprovoked,BRAZIL,Pernambuco,Recife,Diving,Synthetic record 072,M,26
-2018-01-15,2018,Unprovoked,USA,Florida,Miami,Surfing,Synthetic record 073,F,27
-2019-02-15,2019,Unprovoked,AUSTRALIA,Queensland,Brisbane,Swimming,Synthetic record 074,M,28
-2020-03-15,2020,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Synthetic record 075,F,29
-2021-04-15,2021,Provoked,BRAZIL,Pernambuco,Recife,Diving,Synthetic record 076,M,30
-2022-05-15,2022,Unprovoked,USA,Florida,Miami,Surfing,Synthetic record 077,F,31
-2023-06-15,2023,Unprovoked,AUSTRALIA,Queensland,Brisbane,Swimming,Synthetic record 078,M,32
-2024-07-15,2024,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Synthetic record 079,F,33
-2025-08-15,2025,Unprovoked,BRAZIL,Pernambuco,Recife,Diving,Synthetic record 080,M,34
-2010-09-15,2010,Provoked,USA,Florida,Miami,Surfing,Synthetic record 081,F,35
-2011-10-15,2011,Unprovoked,AUSTRALIA,Queensland,Brisbane,Swimming,Synthetic record 082,M,36
-2012-11-15,2012,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Synthetic record 083,F,37
-2013-12-15,2013,Unprovoked,BRAZIL,Pernambuco,Recife,Diving,Synthetic record 084,M,38
-2014-01-15,2014,Unprovoked,USA,Florida,Miami,Surfing,Synthetic record 085,F,39
-2015-02-15,2015,Provoked,AUSTRALIA,Queensland,Brisbane,Swimming,Synthetic record 086,M,40
-2016-03-15,2016,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Synthetic record 087,F,41
-2017-04-15,2017,Unprovoked,BRAZIL,Pernambuco,Recife,Diving,Synthetic record 088,M,42
-2018-05-15,2018,Unprovoked,USA,Florida,Miami,Surfing,Synthetic record 089,F,43
-2019-06-15,2019,Unprovoked,AUSTRALIA,Queensland,Brisbane,Swimming,Synthetic record 090,M,44
-2020-07-15,2020,Provoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Synthetic record 091,F,45
-2021-08-15,2021,Unprovoked,BRAZIL,Pernambuco,Recife,Diving,Synthetic record 092,M,46
-2022-09-15,2022,Unprovoked,USA,Florida,Miami,Surfing,Synthetic record 093,F,47
-2023-10-15,2023,Unprovoked,AUSTRALIA,Queensland,Brisbane,Swimming,Synthetic record 094,M,48
-2024-11-15,2024,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Synthetic record 095,F,49
-2025-12-15,2025,Provoked,BRAZIL,Pernambuco,Recife,Diving,Synthetic record 096,M,50
-2010-01-15,2010,Unprovoked,USA,Florida,Miami,Surfing,Synthetic record 097,F,51
-2011-02-15,2011,Unprovoked,AUSTRALIA,Queensland,Brisbane,Swimming,Synthetic record 098,M,52
-2012-03-15,2012,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Synthetic record 099,F,53
-2013-04-15,2013,Unprovoked,BRAZIL,Pernambuco,Recife,Diving,Synthetic record 100,M,54
-2014-05-15,2014,Provoked,USA,Florida,Miami,Surfing,Synthetic record 101,F,55
-2015-06-15,2015,Unprovoked,AUSTRALIA,Queensland,Brisbane,Swimming,Synthetic record 102,M,56
-2016-07-15,2016,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Synthetic record 103,F,57
-2017-08-15,2017,Unprovoked,BRAZIL,Pernambuco,Recife,Diving,Synthetic record 104,M,58
-2018-09-15,2018,Unprovoked,USA,Florida,Miami,Surfing,Synthetic record 105,F,59
-2019-10-15,2019,Provoked,AUSTRALIA,Queensland,Brisbane,Swimming,Synthetic record 106,M,60
-2020-11-15,2020,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Synthetic record 107,F,61
-2021-12-15,2021,Unprovoked,BRAZIL,Pernambuco,Recife,Diving,Synthetic record 108,M,62
-2022-01-15,2022,Unprovoked,USA,Florida,Miami,Surfing,Synthetic record 109,F,63
-2023-02-15,2023,Unprovoked,AUSTRALIA,Queensland,Brisbane,Swimming,Synthetic record 110,M,64
-2024-03-15,2024,Provoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Synthetic record 111,F,65
-2025-04-15,2025,Unprovoked,BRAZIL,Pernambuco,Recife,Diving,Synthetic record 112,M,66
-2010-05-15,2010,Unprovoked,USA,Florida,Miami,Surfing,Synthetic record 113,F,67
-2011-06-15,2011,Unprovoked,AUSTRALIA,Queensland,Brisbane,Swimming,Synthetic record 114,M,68
-2012-07-15,2012,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Synthetic record 115,F,69
-2013-08-15,2013,Provoked,BRAZIL,Pernambuco,Recife,Diving,Synthetic record 116,M,70
-2014-09-15,2014,Unprovoked,USA,Florida,Miami,Surfing,Synthetic record 117,F,250
-2015-10-15,2015,Unprovoked,,Queensland,Brisbane,Swimming,Synthetic record 118,M,72
-2016-11-15,999,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,Synthetic record 119,F,73
-2017-12-15,2017,Synthetic invalid type,BRAZIL,Pernambuco,Recife,Diving,Synthetic record 120,M,74
-2010-01-15,2010,Provoked,USA,Florida,Miami,Surfing,Synthetic record 001,F,18
+date,year,type,country,area,location,activity,sex,age
+2010-01-15,2010,Provoked,USA,Florida,Miami,Surfing,F,18
+2011-02-15,2011,Unprovoked,AUSTRALIA,Queensland,Brisbane,Swimming,M,19
+2012-03-15,2012,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,F,20
+2013-04-15,2013,Unprovoked,BRAZIL,Pernambuco,Recife,Diving,M,21
+2014-05-15,2014,Unprovoked,USA,Florida,Miami,Surfing,F,22
+2015-06-15,2015,Provoked,AUSTRALIA,Queensland,Brisbane,Swimming,M,23
+2016-07-15,2016,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,F,24
+2017-08-15,2017,Unprovoked,BRAZIL,Pernambuco,Recife,Diving,M,25
+2018-09-15,2018,Unprovoked,USA,Florida,Miami,Surfing,F,26
+2019-10-15,2019,Unprovoked,AUSTRALIA,Queensland,Brisbane,Swimming,M,27
+2020-11-15,2020,Provoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,F,28
+2021-12-15,2021,Unprovoked,BRAZIL,Pernambuco,Recife,Diving,M,29
+2022-01-15,2022,Unprovoked,USA,Florida,Miami,Surfing,F,30
+2023-02-15,2023,Unprovoked,AUSTRALIA,Queensland,Brisbane,Swimming,M,31
+2024-03-15,2024,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,F,32
+2025-04-15,2025,Provoked,BRAZIL,Pernambuco,Recife,Diving,M,33
+2010-05-15,2010,Unprovoked,USA,Florida,Miami,Surfing,F,34
+2011-06-15,2011,Unprovoked,AUSTRALIA,Queensland,Brisbane,Swimming,M,35
+2012-07-15,2012,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,F,36
+2013-08-15,2013,Unprovoked,BRAZIL,Pernambuco,Recife,Diving,M,37
+2014-09-15,2014,Provoked,USA,Florida,Miami,Surfing,F,38
+2015-10-15,2015,Unprovoked,AUSTRALIA,Queensland,Brisbane,Swimming,M,39
+2016-11-15,2016,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,F,40
+2017-12-15,2017,Unprovoked,BRAZIL,Pernambuco,Recife,Diving,M,41
+2018-01-15,2018,Unprovoked,USA,Florida,Miami,Surfing,F,42
+2019-02-15,2019,Provoked,AUSTRALIA,Queensland,Brisbane,Swimming,M,43
+2020-03-15,2020,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,F,44
+2021-04-15,2021,Unprovoked,BRAZIL,Pernambuco,Recife,Diving,M,45
+2022-05-15,2022,Unprovoked,USA,Florida,Miami,Surfing,F,46
+2023-06-15,2023,Unprovoked,AUSTRALIA,Queensland,Brisbane,Swimming,M,47
+2024-07-15,2024,Provoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,F,48
+2025-08-15,2025,Unprovoked,BRAZIL,Pernambuco,Recife,Diving,M,49
+2010-09-15,2010,Unprovoked,USA,Florida,Miami,Surfing,F,50
+2011-10-15,2011,Unprovoked,AUSTRALIA,Queensland,Brisbane,Swimming,M,51
+2012-11-15,2012,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,F,52
+2013-12-15,2013,Provoked,BRAZIL,Pernambuco,Recife,Diving,M,53
+2014-01-15,2014,Unprovoked,USA,Florida,Miami,Surfing,F,54
+2015-02-15,2015,Unprovoked,AUSTRALIA,Queensland,Brisbane,Swimming,M,55
+2016-03-15,2016,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,F,56
+2017-04-15,2017,Unprovoked,BRAZIL,Pernambuco,Recife,Diving,M,57
+2018-05-15,2018,Provoked,USA,Florida,Miami,Surfing,F,58
+2019-06-15,2019,Unprovoked,AUSTRALIA,Queensland,Brisbane,Swimming,M,59
+2020-07-15,2020,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,F,60
+2021-08-15,2021,Unprovoked,BRAZIL,Pernambuco,Recife,Diving,M,61
+2022-09-15,2022,Unprovoked,USA,Florida,Miami,Surfing,F,62
+2023-10-15,2023,Provoked,AUSTRALIA,Queensland,Brisbane,Swimming,M,63
+2024-11-15,2024,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,F,64
+2025-12-15,2025,Unprovoked,BRAZIL,Pernambuco,Recife,Diving,M,65
+2010-01-15,2010,Unprovoked,USA,Florida,Miami,Surfing,F,66
+2011-02-15,2011,Unprovoked,AUSTRALIA,Queensland,Brisbane,Swimming,M,67
+2012-03-15,2012,Provoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,F,68
+2013-04-15,2013,Unprovoked,BRAZIL,Pernambuco,Recife,Diving,M,69
+2014-05-15,2014,Unprovoked,USA,Florida,Miami,Surfing,F,70
+2015-06-15,2015,Unprovoked,AUSTRALIA,Queensland,Brisbane,Swimming,M,71
+2016-07-15,2016,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,F,72
+2017-08-15,2017,Provoked,BRAZIL,Pernambuco,Recife,Diving,M,73
+2018-09-15,2018,Unprovoked,USA,Florida,Miami,Surfing,F,74
+2019-10-15,2019,Unprovoked,AUSTRALIA,Queensland,Brisbane,Swimming,M,75
+2020-11-15,2020,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,F,76
+2021-12-15,2021,Unprovoked,BRAZIL,Pernambuco,Recife,Diving,M,77
+2022-01-15,2022,Provoked,USA,Florida,Miami,Surfing,F,78
+2023-02-15,2023,Unprovoked,AUSTRALIA,Queensland,Brisbane,Swimming,M,79
+2024-03-15,2024,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,F,80
+2025-04-15,2025,Unprovoked,BRAZIL,Pernambuco,Recife,Diving,M,18
+2010-05-15,2010,Unprovoked,USA,Florida,Miami,Surfing,F,19
+2011-06-15,2011,Provoked,AUSTRALIA,Queensland,Brisbane,Swimming,M,20
+2012-07-15,2012,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,F,21
+2013-08-15,2013,Unprovoked,BRAZIL,Pernambuco,Recife,Diving,M,22
+2014-09-15,2014,Unprovoked,USA,Florida,Miami,Surfing,F,23
+2015-10-15,2015,Unprovoked,AUSTRALIA,Queensland,Brisbane,Swimming,M,24
+2016-11-15,2016,Provoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,F,25
+2017-12-15,2017,Unprovoked,BRAZIL,Pernambuco,Recife,Diving,M,26
+2018-01-15,2018,Unprovoked,USA,Florida,Miami,Surfing,F,27
+2019-02-15,2019,Unprovoked,AUSTRALIA,Queensland,Brisbane,Swimming,M,28
+2020-03-15,2020,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,F,29
+2021-04-15,2021,Provoked,BRAZIL,Pernambuco,Recife,Diving,M,30
+2022-05-15,2022,Unprovoked,USA,Florida,Miami,Surfing,F,31
+2023-06-15,2023,Unprovoked,AUSTRALIA,Queensland,Brisbane,Swimming,M,32
+2024-07-15,2024,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,F,33
+2025-08-15,2025,Unprovoked,BRAZIL,Pernambuco,Recife,Diving,M,34
+2010-09-15,2010,Provoked,USA,Florida,Miami,Surfing,F,35
+2011-10-15,2011,Unprovoked,AUSTRALIA,Queensland,Brisbane,Swimming,M,36
+2012-11-15,2012,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,F,37
+2013-12-15,2013,Unprovoked,BRAZIL,Pernambuco,Recife,Diving,M,38
+2014-01-15,2014,Unprovoked,USA,Florida,Miami,Surfing,F,39
+2015-02-15,2015,Provoked,AUSTRALIA,Queensland,Brisbane,Swimming,M,40
+2016-03-15,2016,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,F,41
+2017-04-15,2017,Unprovoked,BRAZIL,Pernambuco,Recife,Diving,M,42
+2018-05-15,2018,Unprovoked,USA,Florida,Miami,Surfing,F,43
+2019-06-15,2019,Unprovoked,AUSTRALIA,Queensland,Brisbane,Swimming,M,44
+2020-07-15,2020,Provoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,F,45
+2021-08-15,2021,Unprovoked,BRAZIL,Pernambuco,Recife,Diving,M,46
+2022-09-15,2022,Unprovoked,USA,Florida,Miami,Surfing,F,47
+2023-10-15,2023,Unprovoked,AUSTRALIA,Queensland,Brisbane,Swimming,M,48
+2024-11-15,2024,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,F,49
+2025-12-15,2025,Provoked,BRAZIL,Pernambuco,Recife,Diving,M,50
+2010-01-15,2010,Unprovoked,USA,Florida,Miami,Surfing,F,51
+2011-02-15,2011,Unprovoked,AUSTRALIA,Queensland,Brisbane,Swimming,M,52
+2012-03-15,2012,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,F,53
+2013-04-15,2013,Unprovoked,BRAZIL,Pernambuco,Recife,Diving,M,54
+2014-05-15,2014,Provoked,USA,Florida,Miami,Surfing,F,55
+2015-06-15,2015,Unprovoked,AUSTRALIA,Queensland,Brisbane,Swimming,M,56
+2016-07-15,2016,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,F,57
+2017-08-15,2017,Unprovoked,BRAZIL,Pernambuco,Recife,Diving,M,58
+2018-09-15,2018,Unprovoked,USA,Florida,Miami,Surfing,F,59
+2019-10-15,2019,Provoked,AUSTRALIA,Queensland,Brisbane,Swimming,M,60
+2020-11-15,2020,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,F,61
+2021-12-15,2021,Unprovoked,BRAZIL,Pernambuco,Recife,Diving,M,62
+2022-01-15,2022,Unprovoked,USA,Florida,Miami,Surfing,F,63
+2023-02-15,2023,Unprovoked,AUSTRALIA,Queensland,Brisbane,Swimming,M,64
+2024-03-15,2024,Provoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,F,65
+2025-04-15,2025,Unprovoked,BRAZIL,Pernambuco,Recife,Diving,M,66
+2010-05-15,2010,Unprovoked,USA,Florida,Miami,Surfing,F,67
+2011-06-15,2011,Unprovoked,AUSTRALIA,Queensland,Brisbane,Swimming,M,68
+2012-07-15,2012,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,F,69
+2013-08-15,2013,Provoked,BRAZIL,Pernambuco,Recife,Diving,M,70
+2014-09-15,2014,Unprovoked,USA,Florida,Miami,Surfing,F,250
+2015-10-15,2015,Unprovoked,,Queensland,Brisbane,Swimming,M,72
+2016-11-15,999,Unprovoked,SOUTH AFRICA,Western Cape,Cape Town,Fishing,F,73
+2017-12-15,2017,Synthetic invalid type,BRAZIL,Pernambuco,Recife,Diving,M,74
+2010-01-15,2010,Provoked,USA,Florida,Miami,Surfing,F,18

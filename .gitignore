@@ -10,6 +10,7 @@ data/curated/*
 !data/curated/.gitkeep
 data/rejected/*
 !data/rejected/.gitkeep
+data/curated/attacks_enriched.csv
 reports/*
 !reports/.gitkeep
 !reports/images/
@@ -18,3 +19,5 @@ reports/*
 !reports/data/.gitkeep
 !reports/interpretation/
 !reports/interpretation/.gitkeep
+reports/data/environment_hypotheses.csv
+reports/images/environment_*.png
