@@ -15,17 +15,18 @@ signalement et dangerosité biologique.
 priorité, puis décider quelles données écologiques complémentaires collecter
 pour tester une hypothèse sur les espèces, les migrations ou l'environnement.
 
-**Question centrale :** où et quand les incidents de requins sont-ils
-recensés, et quelles espèces sont candidates dans les régions où une présence
-GBIF est documentée ?
+**Question centrale :** où, quand et dans quelles conditions environnementales
+les incidents de requins sont-ils déclarés, et quelles espèces sont candidates
+dans les régions où une présence GBIF est documentée ?
 
 **Périmètre inclus :** incidents GSAF, validation, transformation, rejets,
-hotspots déclarés, saisonnalité, géocodage approximatif, occurrences GBIF et
-comparaison spatiale exploratoire.
+hotspots déclarés, saisonnalité, géocodage approximatif, occurrences GBIF,
+comparaison spatiale exploratoire et tests environnementaux facultatifs H1–H5
+avec jours témoins.
 
 **Périmètre exclu :** taux de risque individuel, abondance des requins,
 identification certaine de l'espèce responsable, preuve d'un lieu de
-reproduction, causalité entre réchauffement et agressivité.
+reproduction, causalité entre météo, température et agressivité.
 
 ## Cas d'usage et KPI
 

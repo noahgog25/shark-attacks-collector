@@ -41,8 +41,9 @@ rgpd:
 application:
   user: "Etudiant ou analyste explorant les incidents de requins recenses"
   central_question: >
-    Ou et quand les incidents sont-ils recenses, et quelles especes sont
-    candidates dans les regions ou une presence GBIF est documentee ?
+    Ou, quand et dans quelles conditions environnementales les incidents sont-ils
+    declares, et quelles especes sont candidates dans les regions ou une presence
+    GBIF est documentee ?
   decision: >
     Prioriser les zones et periodes a examiner et choisir les enrichissements
     ecologiques necessaires pour tester une hypothese.
@@ -79,6 +80,7 @@ analysis_scope:
   current_outputs:
     - hotspots_incidents_declares
     - saisonnalite_incidents_declares
+    - environmental_enrichment_optional
   interpretation: >
     Ces sorties decrivent les incidents recenses. Elles ne mesurent ni la
     dangerosite intrinseque d'un lieu, ni l'abondance des requins, ni une
@@ -86,7 +88,80 @@ analysis_scope:
   future_external_sources:
     - ocearch_tracks
     - gbif_species_occurrences
-    - sea_surface_temperature_and_currents
+    - sea_surface_temperature_and_daily_weather
+
+environmental_enrichment:
+  activation: "python -m src.pipeline --enrich"
+  incident_identifier: >
+    SHA-256 des champs curated, sans champ name; cet identifiant ne remplace
+    pas une cle métier naturelle.
+  output: data/curated/attacks_enriched.csv
+  cache: data/raw/external/
+  output_schema:
+    - incident_id
+    - date
+    - latitude
+    - longitude
+    - geocode_precision
+    - hemisphere
+    - sst_c
+    - sst_clim_c
+    - sst_anom_c
+    - sst_anom_noaa_c
+    - sst_control_mean_c
+    - air_tmax_c
+    - air_tmax_control_mean_c
+    - precip_mm
+    - precip_control_mean_mm
+    - wind_max_kmh
+    - wind_control_mean_kmh
+    - precip_3d_mm
+    - precip_3d_control_mean_mm
+    - gbif_2025_2026_within_100km
+    - env_status
+  status_values:
+    - OK
+    - NO_OCEAN_CELL
+    - PRE_1982
+    - API_FAIL
+    - OUTSIDE_OISST_WINDOW
+  oisst:
+    product: NOAA_OISST_v2.1
+    endpoint: "https://coastwatch.pfeg.noaa.gov/erddap"
+    dataset: ncdcOisst21Agg_LonPM180
+    variables: [sst, anom]
+    dimensions: [time, zlev, latitude, longitude]
+    grid_resolution_degrees: 0.25
+    request_range: "1982-01-01/2023-12-31"
+    nearest_ocean_cell_search_degrees: "<0.5"
+    local_climatology: "1982-2011, jour de l'annee +/- 15 jours"
+  era5:
+    product: Open_Meteo_Archive_ERA5
+    endpoint: "https://archive-api.open-meteo.com/v1/archive"
+    daily_variables:
+      - temperature_2m_max
+      - precipitation_sum
+      - wind_speed_10m_max
+    timezone: auto
+    wind_speed_unit: kmh
+    attribution: "CC BY 4.0"
+  eligibility:
+    required: [date_exacte, latitude, longitude, type_attaque_non_provoquee_si_disponible]
+    exclude_january_first: true
+    oisst_from: "1982-01-01"
+    era5_from: "1940-01-01"
+    controls_per_incident: 10
+    control_match: "meme lieu et meme annee, hors date de l'incident"
+    random_seed: 20261027
+  hypotheses:
+    - {id: H1, topic: temperature_sst, comparison: incident_vs_10_controls, status: "Soutenue | Non soutenue | Non concluante"}
+    - {id: H2, topic: sst_anomaly_vs_local_climatology, comparison: anomaly_positive, status: "Soutenue | Non soutenue | Non concluante"}
+    - {id: H3, topic: human_exposure_proxy, comparison: "air_up_precipitation_down_wind_down", status: "Soutenue | Non soutenue | Non concluante"}
+    - {id: H4, topic: gbif_presence_2025_2026, comparison: exploratory_spatial_overlap, status: "Non concluante"}
+    - {id: H5, topic: previous_three_day_precipitation, comparison: incident_vs_controls, status: "Soutenue | Non soutenue | Non concluante"}
+  interpretation: >
+    Les associations sont descriptives et exploratoires. Elles ne démontrent
+    aucune cause, aucun niveau de danger, ni l'identité de l'espèce responsable.
 
 source:
   name: "Global Shark Attack File (extrait via Kaggle - dataset 'Shark Attacks')"

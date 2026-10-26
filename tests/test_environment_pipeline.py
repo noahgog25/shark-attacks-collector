@@ -30,6 +30,11 @@ def test_pipeline_records_optional_enrichment_warning_without_failing(tmp_path, 
     monkeypatch.setattr(pipeline_module, "GEOCODED_PATH", tmp_path / "coordinates.csv")
     monkeypatch.setattr(pipeline_module, "ENRICHED_PATH", tmp_path / "attacks_enriched.csv")
     monkeypatch.setattr(pipeline_module, "GBIF_DIR", tmp_path / "gbif")
+    monkeypatch.setattr(
+        pipeline_module,
+        "write_environment_charts",
+        lambda *_args: {"hypotheses": tmp_path / "hypotheses.png"},
+    )
     monkeypatch.setattr(pipeline_module, "collect", lambda _path=None: source)
     monkeypatch.setattr(pipeline_module, "plot_attacks_per_year", lambda: tmp_path / "year.png")
     monkeypatch.setattr(pipeline_module, "plot_incident_dashboard", lambda: tmp_path / "dashboard.png")

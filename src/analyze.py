@@ -48,6 +48,25 @@ def build_seasonality(curated: pd.DataFrame) -> pd.DataFrame:
     return result.sort_values("mois").reset_index(drop=True)
 
 
+def build_monthly_date_sensitivity(curated: pd.DataFrame) -> pd.DataFrame:
+    """Compare monthly counts with and without dates recorded as January 1."""
+    if "date_complete" not in curated.columns:
+        raise ValueError("La colonne date_complete est nécessaire pour l'analyse mensuelle")
+    dates = pd.to_datetime(curated["date_complete"], errors="coerce").dropna()
+    all_counts = dates.dt.month.value_counts().reindex(range(1, 13), fill_value=0)
+    precise_dates = dates.loc[~((dates.dt.month == 1) & (dates.dt.day == 1))]
+    without_january_first = precise_dates.dt.month.value_counts().reindex(
+        range(1, 13), fill_value=0
+    )
+    return pd.DataFrame(
+        {
+            "mois": range(1, 13),
+            "toutes_les_dates": all_counts.to_numpy(dtype=int),
+            "sans_1_janvier": without_january_first.to_numpy(dtype=int),
+        }
+    )
+
+
 def write_analysis_reports(curated_path: Path, reports_dir: Path) -> dict[str, str]:
     """Lit le curated et ecrit les deux agregations descriptives."""
     curated = pd.read_csv(curated_path)

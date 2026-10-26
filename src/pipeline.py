@@ -33,6 +33,7 @@ from src.validate import run_quality_rules
 from src.transform import transform
 from src.visualize import plot_attacks_per_year, plot_incident_dashboard
 from src.enrich.service import run_enrichment
+from src.viz.environment_charts import write_environment_charts
 
 ROOT = Path(__file__).resolve().parent.parent
 CURATED_PATH = ROOT / "data" / "curated" / "shark_attacks_curated.csv"
@@ -188,6 +189,16 @@ def run(source_path: str | None = None, enrich: bool = False) -> dict:
                     rapport["outputs"][output_key] = str(
                         Path(environment_report[report_key]).relative_to(ROOT)
                     )
+            charts = write_environment_charts(
+                ENRICHED_PATH,
+                REPORT_DATA_DIR / "environment_hypotheses.csv",
+                REPORT_DATA_DIR / "environment_monthly_sst.csv",
+                REPORTS_DIR / "images",
+            )
+            environment_report["charts"] = {
+                name: str(path.relative_to(ROOT)) for name, path in charts.items()
+            }
+            rapport["outputs"]["environment_charts"] = environment_report["charts"]
             if environment_report["status"] == "WARN":
                 rapport["warnings"].append(
                     "Enrichissement environnemental partiel; consulter la section enrichment."

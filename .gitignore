@@ -19,5 +19,5 @@ reports/*
 !reports/data/.gitkeep
 !reports/interpretation/
 !reports/interpretation/.gitkeep
-reports/data/environment_hypotheses.csv
+reports/data/environment_*
 reports/images/environment_*.png

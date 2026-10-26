@@ -11,7 +11,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import pandas as pd
 
-from src.analyze import build_hotspots
+from src.analyze import build_hotspots, build_monthly_date_sensitivity
 
 ROOT = Path(__file__).resolve().parent.parent
 CURATED_PATH = ROOT / "data" / "curated" / "shark_attacks_curated.csv"
@@ -60,12 +60,27 @@ def plot_incident_dashboard() -> Path:
     axes[0, 1].set_title("Top 10 localites")
     axes[0, 1].set_xlabel("Incidents declares")
 
-    monthly = df.dropna(subset=["date_complete"]).groupby(df["date_complete"].dt.month).size()
-    axes[1, 0].bar(monthly.index, monthly.values, color="#3a9d8f")
-    axes[1, 0].set_title("Saisonnalite des dates recensees")
+    monthly = build_monthly_date_sensitivity(df)
+    x = monthly["mois"].to_numpy()
+    axes[1, 0].bar(
+        x - 0.2,
+        monthly["toutes_les_dates"],
+        width=0.4,
+        color="#69764A",
+        label=f"Toutes les dates (n={int(monthly['toutes_les_dates'].sum())})",
+    )
+    axes[1, 0].bar(
+        x + 0.2,
+        monthly["sans_1_janvier"],
+        width=0.4,
+        color="#C75C47",
+        label=f"Sans 1er janvier (n={int(monthly['sans_1_janvier'].sum())})",
+    )
+    axes[1, 0].set_title("Incidents par mois : sensibilité aux dates du 1er janvier")
     axes[1, 0].set_xlabel("Mois")
     axes[1, 0].set_ylabel("Incidents declares")
     axes[1, 0].set_xticks(range(1, 13))
+    axes[1, 0].legend(fontsize=7, frameon=False)
 
     countries = df["pays"].fillna("Inconnu").value_counts().head(10).sort_values()
     axes[1, 1].barh(countries.index, countries.values, color="#264653")

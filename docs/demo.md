@@ -27,7 +27,13 @@ python -m pip install -r requirements.txt
 7. Relancer le pipeline et vérifier que le curated et les rejets conservent leurs volumes; un nouveau snapshot raw horodaté est créé et son hash apparaît dans le rapport.
 8. Présenter une limite : les hotspots sont des incidents déclarés, pas un taux de dangerosité, et l'espèce responsable n'est pas connue.
 9. Lancer `python -m src.compare_ecology` puis `python -m src.seasonal_analysis`; comparer la rosace et les rapports Markdown/CSV/JSON.
-10. Lancer `python -m scripts.build_synthesis_pdf` et présenter la suite de la section « Ce que montrent les données », insérée avant la partie sur la traçabilité; le schéma répété de cette dernière est retiré.
+10. Si un géocodage local existe, lancer `python -m src.pipeline --enrich` pour calculer les hypothèses environnementales, les contrôles et les cinq graphiques; l'option peut afficher `WARN` si des données ou API manquent.
+11. Lancer `python -m scripts.build_synthesis` et présenter le PDF final de six pages.
+
+Les appels d'enrichissement ne sont jamais exécutés par la suite pytest : les
+clients sont testés avec des réponses et erreurs simulées. Les réponses déjà
+en cache permettent un rejeu hors ligne. Une hypothèse soutenue n'est pas une
+preuve de causalité.
 
 ## Commandes d'enrichissement optionnelles
 

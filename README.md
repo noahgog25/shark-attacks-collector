@@ -1,6 +1,6 @@
 # Shark Attacks Collector
 
-Pipeline batch qui transforme un extrait du Global Shark Attack File en un dataset propre, validé et documenté, pour répondre à trois besoins métier : suivre le risque dans le temps et l'espace, identifier les profils exposés et qualifier la gravité des incidents par pays.
+Pipeline batch qui transforme un extrait du Global Shark Attack File en un dataset propre, validé et documenté, pour décrire les incidents recensés dans le temps et l'espace et tester des hypothèses environnementales sans les présenter comme des causes.
 
 ## Objectif
 
@@ -75,6 +75,31 @@ Le pipeline :
 6. génère les rapports `hotspots_incidents_declares.csv` et `saisonnalite_incidents_declares.csv` ;
 7. écrit un rapport d'exécution avec `run_id`, statut d'exécution, statut qualité, hash, compteurs, durée, date de l'incident le plus récent et âge de cette donnée.
 
+L'étape environnementale est optionnelle et ne fait aucun appel réseau par
+défaut. Après un export de coordonnées produit avec `python -m src.geocode`,
+active-la avec :
+
+```bash
+python -m src.pipeline --enrich
+```
+
+Cette étape écrit `data/curated/attacks_enriched.csv`, les tests d'hypothèse
+dans `reports/data/environment_hypotheses.csv`, les sensibilités et cinq
+graphiques. Elle interroge NOAA OISST v2.1 et Open-Meteo Archive (ERA5), en
+cache les réponses sous `data/raw/external/` par hash de requête et les
+réutilise lors des relances. Un cache absent ou une API indisponible donne
+`API_FAIL` et `enrichment.status = WARN` dans le rapport de run, sans arrêter
+le pipeline de validation. Sur l'échantillon synthétique sans coordonnées,
+les données environnementales restent insuffisantes (`WARN`, n=0), sans appel
+réseau.
+
+H1 à H5 sont des hypothèses et non des causes établies. H3 utilise les mois
+alignés par hémisphère. Le rapport compte la part exclue à chaque filtre;
+les dates du 1er janvier sont exclues des tests et apparaissent en sensibilité
+dans le dashboard mensuel, avec et sans ces dates. Les coordonnées de localité
+restent approximatives et les sources météo ne mesurent pas l'exposition
+humaine. Voir [ADR 002](docs/ADR_002.md) et [l'évaluation des sources](docs/source_assessment.md).
+
 Les logs d'étapes et les erreurs sont écrits dans le terminal. Une erreur écrit
 un rapport `FAIL` avec son type et son message, conserve le snapshot déjà créé,
 puis retourne un code d'échec. Un traitement achevé est `PASS`; les rejets et
@@ -86,6 +111,7 @@ Pour utiliser un autre fichier source :
 
 ```bash
 python -m src.pipeline chemin/vers/un_autre_export.csv
+python -m src.pipeline chemin/vers/un_autre_export.csv --enrich
 ```
 
 Le pipeline est **idempotent** : les fichiers `data/curated/shark_attacks_curated.csv` et `data/rejected/rejected_rows.csv` sont entièrement remplacés à chaque exécution. Chaque exécution ajoute une copie source horodatée en zone raw; ces copies ne sont pas suivies par Git.
@@ -116,6 +142,7 @@ dans le respect de ses conditions d'utilisation.
 - [Architecture V1 (SVG)](docs/architecture_v1.svg) : chaîne initiale raw, qualité et curated.
 - [Architecture V2 (SVG)](docs/architecture_v2.svg) : observabilité, reprise et produit métier.
 - [ADR 001](docs/ADR_001.md) : comparaison CSV batch, SQLite et options distribuées.
+- [ADR 002](docs/ADR_002.md) : NOAA OISST, ERA5 et méthode de test environnemental.
 - [Dictionnaire de données](docs/data_dictionary.md) et [contrat versionné](config/data_contract.yaml).
 - [Synthèse finale PDF](docs/Synthese_Sharks_Collector.pdf), format de 4 à 6 pages.
 
@@ -163,7 +190,7 @@ shark-attacks-collector/
     pipeline.py                  # orchestrateur
   scripts/
     build_demo_data.py            # régénère l'échantillon synthétique
-    build_synthesis_pdf.py        # reconstruit la synthèse finale à partir des rapports locaux
+    build_synthesis.py            # reconstruit la synthèse finale à partir des rapports locaux
   tests/
     test_quality.py
 ```
@@ -215,7 +242,7 @@ les comparaisons écologiques.
 - Le dataset ne couvre que les incidents effectivement recensés par le GSAF : les zones sous-déclarantes seront sous-représentées.
 - Pas de clé d'identifiant naturelle dans la source : la déduplication se fait sur l'ensemble des champs, ce qui peut laisser passer deux incidents distincts aux caractéristiques identiques par coïncidence.
 - Les hotspots représentent des **incidents déclarés**, pas la dangerosité intrinsèque d'un lieu : ils dépendent aussi de la fréquentation humaine, du signalement et de la couverture géographique.
-- Le dataset actuel ne contient ni espèce de requin, ni coordonnées, ni température de surface, ni courants : il ne permet pas encore de conclure sur les migrations, les zones de reproduction ou une agressivité liée à la reproduction.
+- Le dataset curated principal ne contient ni espèce de requin, ni coordonnées, ni météo; ces enrichissements restent séparés et facultatifs. Ils ne permettent pas de conclure sur les migrations, les zones de reproduction ou une agressivité liée à la reproduction.
 
 ## Axes écologiques
 
@@ -223,7 +250,7 @@ Les futures observations doivent rester séparées du dataset d'incidents :
 
 - **OCEARCH** : trajectoires de requins marqués, utiles pour étudier des déplacements individuels. Son endpoint non officiel n'est pas appelé automatiquement ; un export brut doit être conservé avec sa date et son URL.
 - **GBIF** : occurrences géolocalisées et espèces observées. Elles documentent une présence, pas une abondance ni une migration complète.
-- **NOAA/Copernicus** : température de surface, anomalies thermiques et courants pour contextualiser les dates et positions.
+- **NOAA OISST v2.1 / Open-Meteo Archive (ERA5)** : SST, anomalies, température de l'air, pluie et vent pour tester des hypothèses avec des témoins, sans inférer de causalité.
 
 Pour répondre à la question « pourquoi deviennent-ils agressifs ? », il faudra croiser les incidents avec l'espèce, la saison, la température, l'activité humaine et l'effort d'observation. Une corrélation simple ne suffit pas à démontrer un effet de la reproduction.
 
@@ -318,9 +345,16 @@ Pour mettre à jour le PDF après le pipeline et les analyses GBIF/saisonnières
 ```bash
 python -m src.compare_ecology
 python -m src.seasonal_analysis
-python -m scripts.build_synthesis_pdf
+python -m scripts.build_synthesis
 ```
 
-Le générateur fonctionne hors ligne et conserve intégralement les cinq pages de [la synthèse initiale](docs/Synthese_Sharks_Collector_base.pdf) : il insère une page « Ce que montrent les données (suite) » immédiatement après la section initiale, sans modifier ses pages. Il masque aussi le schéma de flux répété dans la section de traçabilité; le schéma reste dans la page dédiée à l'architecture. Pour les données actuellement présentes, 642 des 1 011 incidents géocodés ont une occurrence GBIF de requin-bouledogue à moins de 100 km et 526 une occurrence de requin-tigre. Ces rapprochements ne sont pas exclusifs : une attaque peut compter pour plusieurs espèces. Les occurrences GBIF locales datent principalement de 2025–2026, contre des incidents historiques; le résultat est donc un chevauchement géographique, pas une corrélation temporelle. L'association mois-activité regroupée est faible (V de Cramer 0,083). 347 dates sont au 1er janvier et, sans champ de précision, leur signification reste incertaine : avec toutes les dates, janvier est le mois le plus compté; en les excluant uniquement pour la sensibilité, juillet le devient. Les détails et limites sont intégrés dans la suite de section et les rapports.
-
-Une future jointure à une série quotidienne de température de surface de la mer (par exemple NOAA OISST via ERDDAP) serait plus informative, mais seulement avec des dates/coordonnées assez précises, un groupe de comparaison et une mesure de l'exposition humaine. Aucun appel SST n'est ajouté dans cette version afin de ne pas présenter une association trompeuse comme un résultat.
+Le générateur fonctionne hors ligne et produit une synthèse de six pages. Les
+résultats GBIF existants (642 des 1 011 incidents géocodés proches d'une
+occurrence de requin-bouledogue à moins de 100 km; 526 pour le requin-tigre)
+sont des proximités géographiques non exclusives, pas une corrélation
+temporelle. L'association mois-activité regroupée est faible (V de Cramer
+0,083). 347 dates sont au 1er janvier; le dashboard montre les comptes avec
+et sans ces dates (janvier baisse lorsque les dates du 1er janvier sont
+exclues). Les hypothèses environnementales H1–H5 sont ajoutées uniquement
+après `python -m src.pipeline --enrich`; sans résultats locaux, la synthèse
+les marque comme non concluantes plutôt que d'inventer une association.

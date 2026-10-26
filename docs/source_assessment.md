@@ -31,3 +31,34 @@ passer son chemin à `python -m src.pipeline chemin/vers/fichier.csv`. Chaque
 run conserve un snapshot raw horodaté; le rapport contient son nom et son
 SHA-256. Vérifier les conditions de licence auprès du producteur avant de
 redistribuer le CSV réel.
+
+## Sources d'environnement (enrichissement facultatif)
+
+| Source | Données utilisées | Couverture / accès | Attribution et limites |
+|---|---|---|---|
+| NOAA OISST v2.1, [ERDDAP griddap](https://coastwatch.pfeg.noaa.gov/erddap/griddap/ncdcOisst21Agg_LonPM180.html) | `sst`, `anom`; grille quotidienne 0,25°; dimensions `time`, `zlev`, `latitude`, `longitude` | Requête par cellule unique; série analysée de 1982 à 2023; cellule de repli la plus proche à moins de 0,5° | Produit SST de NOAA; une cellule côtière terrestre peut manquer. La distance et les coordonnées de géocodage sont approximatives. |
+| Open-Meteo [Archive API (ERA5)](https://archive-api.open-meteo.com/v1/archive) | `temperature_2m_max`, `precipitation_sum`, `wind_speed_10m_max` | Une requête par lieu unique et plage d'années, `timezone=auto` | Attribution obligatoire : Open-Meteo Archive (ERA5), CC BY 4.0. Les variables de météo ne mesurent pas la fréquentation humaine. |
+| GBIF | Occurrences géolocalisées locales datées 2025–2026 | Réutilisation des exports présents dans `data/reference/`, sans requête pendant l'analyse | Piste secondaire : une présence proche ne prouve ni présence le jour de l'incident, ni espèce responsable. |
+
+L'API Marine d'Open-Meteo n'est pas retenue : son historique de vagues est
+trop court pour comparer de façon cohérente la série historique des incidents.
+Les métadonnées CoastWatch live (`.html` et `.das`) n'étaient pas accessibles
+lors de cette mise en œuvre; l'ordre des dimensions et les centres de grille
+sont recoupés dans l'[ADR 002](ADR_002.md) et devront être revérifiés avant une
+collecte complète.
+L'enrichissement est opt-in (`python -m src.pipeline --enrich`). Les réponses
+brutes sont mises en cache sous `data/raw/external/` par hash de requête,
+réutilisées hors ligne, et exclues de Git. Une indisponibilité sans cache
+produit `API_FAIL` et un statut d'enrichissement `WARN`, sans interrompre le
+pipeline principal.
+
+### Hypothèses et interprétation
+
+Les hypothèses H1 à H5 sont testées contre jusqu'à dix jours témoins du même
+lieu et de la même année (graine fixe). Les analyses excluent explicitement
+les dates du 1er janvier, les dates invalides, les incidents non géocodés et,
+si le type est présent, les incidents provoqués. Chaque filtre indique ses
+volumes et sa part d'exclusion dans le rapport de run. Les résultats incluent
+la taille d'échantillon, une différence médiane, Mann–Whitney, delta de Cliff
+et IC bootstrap à 95 % lorsque les données le permettent. « Soutenue » indique
+un signal statistique selon cette règle, jamais une causalité.
