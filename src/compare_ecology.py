@@ -112,15 +112,46 @@ def _build_summary(proximity: pd.DataFrame) -> pd.DataFrame:
     return summary
 
 
-def _write_hypotheses(summary: pd.DataFrame, proximity: pd.DataFrame, path: Path) -> None:
+def _write_hypotheses(
+    summary: pd.DataFrame,
+    proximity: pd.DataFrame,
+    path: Path,
+    occurrences: pd.DataFrame,
+) -> None:
     total_attacks = proximity["attack_row_id"].nunique()
     activities = proximity[proximity["nearest_distance_km"] <= 100]["activite"].fillna("Inconnue").value_counts().head(5)
     activity_text = ", ".join(f"{name} ({count})" for name, count in activities.items()) or "aucune activite exploitable"
+    proximity_lines = []
+    for _, row in summary.sort_values("attaques_proximite_regionale_100km", ascending=False).iterrows():
+        share = row["attaques_proximite_regionale_100km"] / max(total_attacks, 1) * 100
+        proximity_lines.append(
+            f"- **{row['species']}** : {int(row['attaques_proximite_regionale_100km'])} "
+            f"attaques sur {total_attacks} a moins de 100 km ({share:.1f} %); "
+            f"{int(row['attaques_proximite_forte_25km'])} a moins de 25 km."
+        )
+    observed_dates = (
+        pd.to_datetime(occurrences["observed_at"], errors="coerce").dropna()
+        if "observed_at" in occurrences
+        else pd.Series([], dtype="datetime64[ns]")
+    )
+    occurrence_date_range = (
+        f"{observed_dates.min().date()} a {observed_dates.max().date()}"
+        if not observed_dates.empty
+        else "dates d'observation absentes"
+    )
     lines = [
         "# Comparaison attaques et presence des especes",
         "",
         f"Cette analyse compare {total_attacks} attaques geocodees aux occurrences GBIF disponibles dans `data/reference/`.",
         "Elle produit des hypotheses de proximite, pas une identification de l'espece responsable.",
+        "",
+        "## Resultats observes",
+        "",
+        *proximity_lines,
+        "",
+        f"Le tableau compte des paires attaque-espece non exclusives : une attaque peut compter pour plusieurs especes. "
+        f"Les {len(occurrences)} occurrences GBIF locales ont des dates allant de {occurrence_date_range}; "
+        "elles ne couvrent donc pas l'historique complet des incidents et ne permettent pas de conclure a une relation temporelle.",
         "",
         "## Ce que les donnees montrent",
         "",
@@ -187,7 +218,7 @@ def run_comparison(
     reports_dir.mkdir(parents=True, exist_ok=True)
     proximity.to_csv(PROXIMITY_PATH, index=False)
     summary.to_csv(SUMMARY_PATH, index=False)
-    _write_hypotheses(summary, proximity, HYPOTHESES_PATH)
+    _write_hypotheses(summary, proximity, HYPOTHESES_PATH, occurrences)
     _plot_comparison(proximity, FIGURE_PATH)
     return {"proximity": str(PROXIMITY_PATH), "summary": str(SUMMARY_PATH), "hypotheses": str(HYPOTHESES_PATH), "figure": str(FIGURE_PATH)}
 

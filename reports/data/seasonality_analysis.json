@@ -1,0 +1,33 @@
+{
+  "dated_incidents": 6516,
+  "missing_or_invalid_dates": 171,
+  "january_first_dates": 347,
+  "top_activities": [
+    "Surfing",
+    "Swimming",
+    "Fishing",
+    "Spearfishing",
+    "Wading"
+  ],
+  "monthly_counts": {
+    "1": 850,
+    "2": 406,
+    "3": 445,
+    "4": 480,
+    "5": 440,
+    "6": 537,
+    "7": 748,
+    "8": 643,
+    "9": 582,
+    "10": 480,
+    "11": 434,
+    "12": 471
+  },
+  "peak_month_all_dates": 1,
+  "peak_month_excluding_january_first": 7,
+  "activity_month_cramers_v": 0.0831,
+  "activity_month_rows": 5990,
+  "activity_month_cramers_v_excluding_january_first": 0.0795,
+  "activity_month_rows_excluding_january_first": 5715,
+  "january_first_exclusion_is_sensitivity_only": true
+}

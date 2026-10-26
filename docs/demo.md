@@ -26,6 +26,8 @@ python -m pip install -r requirements.txt
 6. Montrer le dashboard [dashboard_incidents.png](../reports/images/dashboard_incidents.png) et les hotspots dans [hotspots_incidents_declares.csv](../reports/data/hotspots_incidents_declares.csv).
 7. Relancer le pipeline et vérifier que le curated et les rejets conservent leurs volumes; un nouveau snapshot raw horodaté est créé et son hash apparaît dans le rapport.
 8. Présenter une limite : les hotspots sont des incidents déclarés, pas un taux de dangerosité, et l'espèce responsable n'est pas connue.
+9. Lancer `python -m src.compare_ecology` puis `python -m src.seasonal_analysis`; comparer la rosace et les rapports Markdown/CSV/JSON.
+10. Lancer `python -m scripts.build_synthesis_pdf` et présenter la suite de la section « Ce que montrent les données », insérée avant la partie sur la traçabilité; le schéma répété de cette dernière est retiré.
 
 ## Commandes d'enrichissement optionnelles
 

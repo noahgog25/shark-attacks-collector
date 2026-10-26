@@ -140,7 +140,8 @@ shark-attacks-collector/
     architecture_v2.svg
     ADR_001.md
     incident_test.md
-    Synthese_Sharks_Collector.pdf
+    Synthese_Sharks_Collector.pdf       # synthèse initiale + suite de « Ce que montrent les données »
+    Synthese_Sharks_Collector_base.pdf  # version initiale conservée pour reconstruire le PDF
     data_dictionary.md
     demo.md
     project_brief.md
@@ -162,6 +163,7 @@ shark-attacks-collector/
     pipeline.py                  # orchestrateur
   scripts/
     build_demo_data.py            # régénère l'échantillon synthétique
+    build_synthesis_pdf.py        # reconstruit la synthèse finale à partir des rapports locaux
   tests/
     test_quality.py
 ```
@@ -300,3 +302,25 @@ python -m src.csv_comparison_visualize
 ```
 
 Le camembert classe les **espèces candidates géographiques** selon les proximités à moins de 100 km. Il ne permet pas d'affirmer quelle espèce a réellement attaqué, car cette information n'est pas présente dans le dataset source. L'interprétation détaillée est dans `reports/interpretation/csv_species_interpretation.md`.
+
+### Approfondir les associations mensuelles et la synthèse
+
+À partir du CSV curated, une analyse complémentaire produit une rosace circulaire des cinq activités les plus fréquentes (plus « Autres »), leur répartition mensuelle normalisée, un V de Cramer descriptif et un test de sensibilité aux dates du 1er janvier :
+
+```bash
+python -m src.seasonal_analysis
+```
+
+Les livrables sont [la rosace](reports/images/seasonal_activity_rose.png), [la matrice mensuelle](reports/data/activity_month_distribution.csv), [les résultats chiffrés](reports/data/seasonality_analysis.json) et [leur interprétation](reports/interpretation/seasonality_analysis.md). Le visuel met en avant la saisonnalité relative de chaque activité, pas le risque ni l'exposition humaine.
+
+Pour mettre à jour le PDF après le pipeline et les analyses GBIF/saisonnières :
+
+```bash
+python -m src.compare_ecology
+python -m src.seasonal_analysis
+python -m scripts.build_synthesis_pdf
+```
+
+Le générateur fonctionne hors ligne et conserve intégralement les cinq pages de [la synthèse initiale](docs/Synthese_Sharks_Collector_base.pdf) : il insère une page « Ce que montrent les données (suite) » immédiatement après la section initiale, sans modifier ses pages. Il masque aussi le schéma de flux répété dans la section de traçabilité; le schéma reste dans la page dédiée à l'architecture. Pour les données actuellement présentes, 642 des 1 011 incidents géocodés ont une occurrence GBIF de requin-bouledogue à moins de 100 km et 526 une occurrence de requin-tigre. Ces rapprochements ne sont pas exclusifs : une attaque peut compter pour plusieurs espèces. Les occurrences GBIF locales datent principalement de 2025–2026, contre des incidents historiques; le résultat est donc un chevauchement géographique, pas une corrélation temporelle. L'association mois-activité regroupée est faible (V de Cramer 0,083). 347 dates sont au 1er janvier et, sans champ de précision, leur signification reste incertaine : avec toutes les dates, janvier est le mois le plus compté; en les excluant uniquement pour la sensibilité, juillet le devient. Les détails et limites sont intégrés dans la suite de section et les rapports.
+
+Une future jointure à une série quotidienne de température de surface de la mer (par exemple NOAA OISST via ERDDAP) serait plus informative, mais seulement avec des dates/coordonnées assez précises, un groupe de comparaison et une mesure de l'exposition humaine. Aucun appel SST n'est ajouté dans cette version afin de ne pas présenter une association trompeuse comme un résultat.

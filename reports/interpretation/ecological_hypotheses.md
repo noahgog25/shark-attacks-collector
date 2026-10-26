@@ -3,6 +3,15 @@
 Cette analyse compare 1011 attaques geocodees aux occurrences GBIF disponibles dans `data/reference/`.
 Elle produit des hypotheses de proximite, pas une identification de l'espece responsable.
 
+## Resultats observes
+
+- **Carcharhinus leucas** : 642 attaques sur 1011 a moins de 100 km (63.5 %); 469 a moins de 25 km.
+- **Galeocerdo cuvier** : 526 attaques sur 1011 a moins de 100 km (52.0 %); 53 a moins de 25 km.
+- **Carcharodon carcharias** : 116 attaques sur 1011 a moins de 100 km (11.5 %); 54 a moins de 25 km.
+- **Rhincodon typus** : 37 attaques sur 1011 a moins de 100 km (3.7 %); 0 a moins de 25 km.
+
+Le tableau compte des paires attaque-espece non exclusives : une attaque peut compter pour plusieurs especes. Les 400 occurrences GBIF locales ont des dates allant de 2025-01-31 a 2026-08-22; elles ne couvrent donc pas l'historique complet des incidents et ne permettent pas de conclure a une relation temporelle.
+
 ## Ce que les donnees montrent
 
 - Une attaque est consideree proche d'une espece si une occurrence GBIF se trouve a moins de 25 km (proximite forte) ou 100 km (proximite regionale).
