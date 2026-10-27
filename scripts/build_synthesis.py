@@ -24,8 +24,6 @@ from reportlab.platypus import (
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from src.visualize import CURATED_PATH, plot_incident_dashboard
-
 OUTPUT_PATH = ROOT / "docs" / "Synthese_Sharks_Collector.pdf"
 ARCHITECTURE_V2_IMAGE = ROOT / "docs" / "architecture_v2.png"
 HYPOTHESES_PATH = ROOT / "reports" / "data" / "environment_hypotheses.csv"
@@ -431,11 +429,9 @@ def build_pdf() -> Path:
         ),
         Spacer(1, 2),
     ])
-    dashboard = IMAGE_DIR / "dashboard_incidents.png"
-    if CURATED_PATH.exists():
-        plot_incident_dashboard()
-    if dashboard.exists():
-        story.append(fitted_image(dashboard, 144 * mm, 84 * mm))
+    trend_charts = IMAGE_DIR / "synthese_tendances.png"
+    if trend_charts.exists():
+        story.append(fitted_image(trend_charts, 144 * mm, 84 * mm))
     story.extend([
         para(
             "<b>Sensibilité des dates :</b> 347 dates (5,3 %) sont au 1er janvier. Le mois le "
