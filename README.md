@@ -140,7 +140,7 @@ dans le respect de ses conditions d'utilisation.
 ## Architecture et décisions
 
 - [Architecture V1 (SVG)](docs/architecture_v1.svg) : chaîne initiale raw, qualité et curated.
-- [Architecture V2 (SVG)](docs/architecture_v2.svg) : observabilité, reprise et produit métier.
+- [Architecture V2 (SVG)](docs/architecture_v2.svg) : observabilité, reprise et produit métier; sa version PNG est intégrée à la synthèse.
 - [ADR 001](docs/ADR_001.md) : comparaison CSV batch, SQLite et options distribuées.
 - [ADR 002](docs/ADR_002.md) : NOAA OISST, ERA5 et méthode de test environnemental.
 - [Dictionnaire de données](docs/data_dictionary.md) et [contrat versionné](config/data_contract.yaml).

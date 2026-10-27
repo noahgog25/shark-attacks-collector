@@ -27,6 +27,7 @@ sys.path.insert(0, str(ROOT))
 from src.visualize import CURATED_PATH, plot_incident_dashboard
 
 OUTPUT_PATH = ROOT / "docs" / "Synthese_Sharks_Collector.pdf"
+ARCHITECTURE_V2_IMAGE = ROOT / "docs" / "architecture_v2.png"
 HYPOTHESES_PATH = ROOT / "reports" / "data" / "environment_hypotheses.csv"
 IMAGE_DIR = ROOT / "reports" / "images"
 INK = colors.HexColor("#152b36")
@@ -365,12 +366,9 @@ def build_pdf() -> Path:
     # Page 3: architecture, quality rules, run traceability and recovery.
     story.extend([
         para("03 · Architecture, qualité et reprise", styles, "h1"),
-        para("Trajet d'une ligne", styles, "h2"),
-        make_table([
-            ["CSV source", "Copie raw UTC", "Contrôles", "Curated + rejets", "Indicateurs"],
-            ["GSAF local / sample", "Snapshot horodaté + SHA-256", "Profil + contrat + règles", "Acceptés séparés des rejets", "Rapports, tableaux, visuels"],
-        ], [34 * mm, 34 * mm, 34 * mm, 34 * mm, 34 * mm], styles, padding=3),
-        Spacer(1, 5),
+        para("Architecture V2 · cible proportionnée et observable", styles, "h2"),
+        fitted_image(ARCHITECTURE_V2_IMAGE, 170 * mm, 79 * mm),
+        Spacer(1, 3),
         callout(
             "CONTRÔLES ET COMPTEURS DU RUN DE RÉFÉRENCE (18/10/2026)",
             "Le traitement s'est terminé normalement : <b>PASS</b>. Le contrôle qualité reste "
@@ -400,36 +398,25 @@ def build_pdf() -> Path:
             "du fichier. Le rapport conserve run_id, empreinte, compteurs et sorties. J'ai testé "
             "une source absente : le pipeline écrit un rapport FAIL et retourne un code d'erreur; "
             "après correction de la source, je relance le même point d'entrée.",
-            styles, "compact",
+            styles, "small",
         ),
         Spacer(1, 3),
         para(
-            "La V2 ajoute profilage, contrôle de schéma, séparation accepted/rejected et "
-            "observabilité. Le choix du batch CSV plutôt que SQLite ou streaming est détaillé dans "
-            "l'ADR 001; les architectures V1/V2 sont livrées en SVG. Les sorties curated/rejected "
-            "sont remplacées à chaque run; le snapshot raw sert au rejeu. Si une API météo/NOAA "
-            "est indisponible, le pipeline continue avec WARN et utilise le cache s'il existe.",
+            "Je remplace les sorties curated/rejected à chaque run; le snapshot raw local sert au "
+            "rejeu et reste exclu de Git. Le batch CSV est proportionné à l'export (ADR 001); "
+            "une API météo/NOAA indisponible produit WARN et le cache est réutilisé s'il existe.",
             styles, "compact",
         ),
-        Spacer(1, 3),
-        para(
-            "Stockage et gouvernance : le batch CSV est proportionné à l'export. SQLite apporterait "
-            "transactions et requêtes structurées, mais ajouterait migrations et maintenance; "
-            "streaming et entrepôt n'ont pas de besoin mesurable. Le champ name reste hors curated; "
-            "le raw réel est exclu de Git et doit être supprimé ou anonymisé selon les conditions "
-            "de la source. Les indicateurs décrivent des signalements, jamais un risque individuel.",
-            styles, "compact",
-        ),
-        Spacer(1, 3),
+        Spacer(1, 2),
         para("Usage d'outils d'IA", styles, "h2"),
         para(
-            "J'ai utilisé GitHub Copilot comme aide à l'amélioration du collecteur et de "
-            "l'orchestrateur, à la génération des données de démonstration, à la rédaction de "
-            "documentation (ADR, architecture) et à l'ajout de tests. Je reste responsable du choix "
-            "du dataset et de l'API, de leur mise en relation, des règles de validation, de la "
-            "conception de l'architecture et de cette synthèse. J'ai relu et validé les modifications "
-            "assistées; le pipeline et les tests ont été exécutés.",
-            styles, "compact",
+            "J'ai utilisé GitHub Copilot comme aide pour certaines tâches d'implémentation, de "
+            "documentation et de tests : amélioration du collecteur et de l'orchestrateur, données "
+            "de démonstration, ADR, architecture et tests. Je reste responsable des choix initiaux "
+            "et d'implémentation du projet, de la mise en place de la documentation, ainsi que de la "
+            "compréhension et des choix présentés. J'ai relu et validé chaque modification assistée; "
+            "le pipeline et les tests ont été exécutés.",
+            styles, "small",
         ),
         PageBreak(),
     ])
