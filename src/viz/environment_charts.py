@@ -147,41 +147,49 @@ def _plot_anomalies(frame: pd.DataFrame, output_path: Path) -> Path:
 
 
 def _plot_monthly(frame: pd.DataFrame, output_path: Path) -> Path:
-    figure, axes = plt.subplots(1, 3, figsize=(14, 5), sharey=False)
-    figure.patch.set_facecolor(CREAM)
     countries = ("USA", "AUSTRALIA", "SOUTH AFRICA")
+    groups = [
+        (country, frame.loc[frame["pays"].str.upper() == country].sort_values("season_month"))
+        for country in countries
+    ]
+    groups = [
+        (country, group)
+        for country, group in groups
+        if not group.empty
+        and pd.to_numeric(group["attacks"], errors="coerce").fillna(0).sum() > 0
+        and pd.to_numeric(group["mean_sst_c"], errors="coerce").notna().any()
+    ]
+    figure, axes = plt.subplots(
+        1, len(groups), figsize=(5 * len(groups), 5), sharey=False, squeeze=False
+    )
+    figure.patch.set_facecolor(CREAM)
+    axes = axes[0]
     total_n = int(pd.to_numeric(frame.get("attacks"), errors="coerce").fillna(0).sum())
-    for axis, country, color in zip(axes, countries, PALETTE[:3]):
+    for axis, (country, group), color in zip(axes, groups, PALETTE[:3]):
         axis.set_facecolor(CREAM)
-        group = frame.loc[frame["pays"].str.upper() == country].sort_values("season_month")
-        if group.empty:
-            axis.text(0.5, 0.5, "Données insuffisantes\nn = 0", ha="center", va="center")
-            axis.set_xticks([])
-            axis.set_yticks([])
-        else:
-            axis.bar(group["season_month"], group["attacks"], color=color, alpha=0.75)
-            temperature_axis = axis.twinx()
-            temperature_axis.set_facecolor("none")
-            temperature_axis.plot(
-                group["season_month"],
-                group["mean_sst_c"],
-                color=TERRACOTTA,
-                marker="o",
-                linewidth=1.8,
-                label="SST moyenne",
-            )
-            temperature_axis.set_ylabel("SST moyenne (°C)", color=TERRACOTTA, fontsize=8)
-            rho = group["spearman_month_sst"].dropna()
-            rho_label = f"Spearman ρ = {rho.iloc[0]:.2f}" if not rho.empty else "Spearman ρ = n.d."
-            axis.set_title(f"{country}\n{rho_label}", color=ANTHRACITE, fontsize=10)
-            axis.set_xticks(range(1, 13))
-            axis.set_xticklabels(
-                ["Jan", "Fév", "Mar", "Avr", "Mai", "Jun", "Jul", "Aoû", "Sep", "Oct", "Nov", "Déc"],
-                rotation=45,
-                fontsize=7,
-            )
-            axis.set_ylabel("Incidents déclarés", fontsize=8)
-            axis.grid(axis="y", alpha=0.2, color=ANTHRACITE)
+        axis.bar(group["season_month"], group["attacks"], color=color, alpha=0.75)
+        temperature_axis = axis.twinx()
+        temperature_axis.set_facecolor("none")
+        temperature_axis.plot(
+            group["season_month"],
+            group["mean_sst_c"],
+            color=TERRACOTTA,
+            marker="o",
+            linewidth=1.8,
+            label="SST moyenne",
+        )
+        temperature_axis.set_ylabel("SST moyenne (°C)", color=TERRACOTTA, fontsize=8)
+        rho = group["spearman_month_sst"].dropna()
+        rho_label = f"Spearman ρ = {rho.iloc[0]:.2f}" if not rho.empty else "Spearman ρ = n.d."
+        axis.set_title(f"{country}\n{rho_label}", color=ANTHRACITE, fontsize=10)
+        axis.set_xticks(range(1, 13))
+        axis.set_xticklabels(
+            ["Jan", "Fév", "Mar", "Avr", "Mai", "Jun", "Jul", "Aoû", "Sep", "Oct", "Nov", "Déc"],
+            rotation=45,
+            fontsize=7,
+        )
+        axis.set_ylabel("Incidents déclarés", fontsize=8)
+        axis.grid(axis="y", alpha=0.2, color=ANTHRACITE)
     figure.suptitle("Incidents et SST mensuelle (mois alignés par hémisphère)", color=ANTHRACITE)
     figure.text(
         0.5,
@@ -291,7 +299,7 @@ def write_environment_charts(
     monthly_path: Path = MONTHLY_PATH,
     output_dir: Path = REPORT_IMAGE_DIR,
 ) -> dict[str, Path]:
-    """Create five figures, with explicit sample sizes and source attribution."""
+    """Create figures only when their underlying measurements are available."""
     frame = _read_csv_or_empty(
         enriched_path,
         (
@@ -307,29 +315,81 @@ def write_environment_charts(
         monthly_path,
         ("pays", "hemisphere", "season_month", "attacks", "mean_sst_c", "spearman_month_sst"),
     )
-    outputs = {
-        "sst_controls": _plot_distributions(
+    outputs: dict[str, Path] = {}
+    sst_incident = pd.to_numeric(frame["sst_c"], errors="coerce")
+    sst_control = pd.to_numeric(frame["sst_control_mean_c"], errors="coerce")
+    sst_pairs = pd.concat(
+        [sst_incident.rename("incident"), sst_control.rename("control")], axis=1
+    ).dropna()
+    anomaly = pd.to_numeric(frame["sst_anom_c"], errors="coerce").dropna()
+    air_incident = pd.to_numeric(frame["air_tmax_c"], errors="coerce")
+    air_control = pd.to_numeric(frame["air_tmax_control_mean_c"], errors="coerce")
+    air_pairs = pd.concat(
+        [air_incident.rename("incident"), air_control.rename("control")], axis=1
+    ).dropna()
+    monthly_has_data = any(
+        not monthly.loc[monthly["pays"].str.upper() == country].empty
+        and pd.to_numeric(
+            monthly.loc[monthly["pays"].str.upper() == country, "attacks"],
+            errors="coerce",
+        ).fillna(0).sum() > 0
+        and pd.to_numeric(
+            monthly.loc[monthly["pays"].str.upper() == country, "mean_sst_c"],
+            errors="coerce",
+        ).notna().any()
+        for country in ("USA", "AUSTRALIA", "SOUTH AFRICA")
+    )
+    hypotheses = _read_csv_or_empty(
+        hypotheses_path,
+        ("hypothesis_id", "test", "result", "status", "n_incident"),
+    )
+    hypotheses_have_data = (
+        not hypotheses.empty
+        and "n_incident" in hypotheses.columns
+        and pd.to_numeric(hypotheses["n_incident"], errors="coerce").fillna(0).gt(0).any()
+    )
+    chart_paths = {
+        "sst_controls": output_dir / "environment_sst_controls.png",
+        "sst_anomaly": output_dir / "environment_sst_anomaly.png",
+        "monthly_sst": output_dir / "environment_monthly_sst.png",
+        "air_controls": output_dir / "environment_air_controls.png",
+        "hypotheses": output_dir / "environment_hypotheses.png",
+    }
+
+    if not sst_pairs.empty:
+        outputs["sst_controls"] = _plot_distributions(
             frame,
             "sst_c",
             "sst_control_mean_c",
             "SST le jour de l'incident vs jours témoins",
             "°C",
-            output_dir / "environment_sst_controls.png",
+            chart_paths["sst_controls"],
             "NOAA OISST v2.1; contrôles même lieu et année",
-        ),
-        "sst_anomaly": _plot_anomalies(frame, output_dir / "environment_sst_anomaly.png"),
-        "monthly_sst": _plot_monthly(monthly, output_dir / "environment_monthly_sst.png"),
-        "air_controls": _plot_distributions(
+        )
+    if not anomaly.empty:
+        outputs["sst_anomaly"] = _plot_anomalies(
+            frame, chart_paths["sst_anomaly"]
+        )
+    if monthly_has_data:
+        outputs["monthly_sst"] = _plot_monthly(
+            monthly, chart_paths["monthly_sst"]
+        )
+    if not air_pairs.empty:
+        outputs["air_controls"] = _plot_distributions(
             frame,
             "air_tmax_c",
             "air_tmax_control_mean_c",
             "Température maximale de l'air : incident vs témoins",
             "°C",
-            output_dir / "environment_air_controls.png",
+            chart_paths["air_controls"],
             "Open-Meteo Archive (ERA5), CC BY 4.0",
-        ),
-        "hypotheses": _plot_hypotheses(
-            frame, output_dir / "environment_hypotheses.png", hypotheses_path
-        ),
-    }
+        )
+    if hypotheses_have_data:
+        outputs["hypotheses"] = _plot_hypotheses(
+            frame, chart_paths["hypotheses"], hypotheses_path
+        )
+
+    for chart_name, path in chart_paths.items():
+        if chart_name not in outputs:
+            path.unlink(missing_ok=True)
     return outputs

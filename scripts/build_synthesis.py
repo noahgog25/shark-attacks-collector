@@ -25,15 +25,14 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from src.visualize import CURATED_PATH, plot_incident_dashboard
-from src.viz.environment_charts import write_environment_charts
 
 OUTPUT_PATH = ROOT / "docs" / "Synthese_Sharks_Collector.pdf"
 HYPOTHESES_PATH = ROOT / "reports" / "data" / "environment_hypotheses.csv"
 IMAGE_DIR = ROOT / "reports" / "images"
-INK = colors.HexColor("#18323f")
-TEAL = colors.HexColor("#31708e")
+INK = colors.HexColor("#152b36")
+TEAL = colors.HexColor("#245f78")
 PALE = colors.HexColor("#edf3f5")
-MUTED = colors.HexColor("#52616b")
+MUTED = colors.HexColor("#37474f")
 FACT = colors.HexColor("#69764a")
 CAUTION = colors.HexColor("#b87935")
 WHITE = colors.white
@@ -61,23 +60,23 @@ def make_styles() -> dict[str, ParagraphStyle]:
         ),
         "body": ParagraphStyle(
             "Body", parent=base["BodyText"], fontName="Helvetica",
-            fontSize=8.2, leading=10.6, textColor=INK, spaceAfter=4,
+            fontSize=8.6, leading=11.2, textColor=INK, spaceAfter=4,
         ),
         "compact": ParagraphStyle(
             "Compact", parent=base["BodyText"], fontName="Helvetica",
-            fontSize=7.4, leading=9.1, textColor=INK, spaceAfter=2,
+            fontSize=8.0, leading=10, textColor=INK, spaceAfter=2,
         ),
         "small": ParagraphStyle(
             "Small", parent=base["BodyText"], fontName="Helvetica",
-            fontSize=6.8, leading=8.3, textColor=MUTED, spaceAfter=2,
+            fontSize=7.6, leading=9.4, textColor=INK, spaceAfter=2,
         ),
         "table": ParagraphStyle(
             "Table", parent=base["BodyText"], fontName="Helvetica",
-            fontSize=7.1, leading=8.6, textColor=INK,
+            fontSize=7.6, leading=9.2, textColor=INK,
         ),
         "table_head": ParagraphStyle(
             "TableHead", parent=base["BodyText"], fontName="Helvetica-Bold",
-            fontSize=7.1, leading=8.6, textColor=WHITE,
+            fontSize=7.6, leading=9.2, textColor=WHITE,
         ),
         "question": ParagraphStyle(
             "Question", parent=base["BodyText"], fontName="Helvetica-Bold",
@@ -149,9 +148,15 @@ def fitted_image(path: Path, width: float, height: float) -> Image:
 def on_page(canvas, document) -> None:
     canvas.saveState()
     page_width, page_height = A4
-    canvas.setFillColor(TEAL)
-    canvas.setFont("Helvetica-Bold", 7)
-    canvas.drawString(18 * mm, page_height - 11 * mm, "SHARK ATTACKS COLLECTOR  /  ESEO 2026-2027")
+    canvas.setFillColor(WHITE)
+    canvas.rect(0, 0, page_width, page_height, fill=1, stroke=0)
+    canvas.setFillColor(INK)
+    canvas.setFont("Helvetica-Bold", 8)
+    canvas.drawString(
+        18 * mm,
+        page_height - 11 * mm,
+        "SHARK ATTACKS COLLECTOR  /  GOGEON Noah  /  ESEO 2026-2027",
+    )
     canvas.setStrokeColor(colors.HexColor("#d4dee2"))
     canvas.line(18 * mm, 15 * mm, page_width - 18 * mm, 15 * mm)
     canvas.setFont("Helvetica", 7)
@@ -245,58 +250,98 @@ def build_pdf() -> Path:
             "environnementales. Aucune API ne fournit la cause d'une attaque.",
             styles,
         ),
+        para("Utilisateurs et indicateurs", styles, "h2"),
+        para(
+            "Je vise un étudiant, un enseignant ou un analyste qui veut choisir des lieux et des "
+            "périodes à examiner, pas calculer un risque individuel. Je fournis au moins trois "
+            "indicateurs : comptes par pays/localité/année, saisonnalité mensuelle, et tests "
+            "environnementaux exploratoires avec leur statut.",
+            styles, "compact",
+        ),
         make_table([
             ["Besoin", "Indicateur livré"],
             ["Choisir des lieux ou périodes à examiner", "Comptes par pays, localité, année et mois"],
             ["Comparer une saisonnalité", "Mois, avec sensibilité aux dates du 1er janvier"],
             ["Formuler des pistes environnementales", "H1-H5, tests et statuts explicites"],
         ], [69 * mm, 101 * mm], styles),
+        Spacer(1, 6),
+        para("Sources et précautions", styles, "h2"),
+        make_table([
+            ["Source", "Apport", "Précaution"],
+            ["GSAF via Kaggle", "Incidents déclarés", "Export ponctuel; droits de redistribution à vérifier."],
+            ["GBIF", "Occurrences géographiques", "Présence observée, pas abondance ni identification d'attaque."],
+            ["Nominatim / OSM", "Géocodage de lieux", "Centre-ville possible; pas une position GPS d'incident."],
+            ["NOAA OISST / ERDDAP", "SST quotidienne et anomalie", "Grille 0,25°; vérifier les métadonnées avant collecte complète."],
+            ["Open-Meteo Archive", "Air, pluie et vent", "Indicateurs indirects; indisponibilité signalée WARN."],
+        ], [43 * mm, 48 * mm, 79 * mm], styles, padding=3),
         Spacer(1, 5),
         para(
             "Je traite chaque ligne comme un incident déclaré. La couverture, la fréquentation "
             "humaine et la sous-déclaration ne sont pas contrôlées.",
             styles, "small",
         ),
+        Spacer(1, 4),
+        callout(
+            "CE QUE JE NE MESURE PAS",
+            "Je ne calcule ni taux d'attaque par personne exposée, ni dangerosité biologique, "
+            "ni cause d'un incident. Je décris des déclarations et teste des associations.",
+            styles, CAUTION,
+        ),
         PageBreak(),
     ])
 
     # Page 2: business need, use cases, sources and collection decisions.
     story.extend([
-        para("02 · Besoin, usages et sources", styles, "h1"),
+        para("02 · Architecture et décisions", styles, "h1"),
         callout(
-            "FAIT OBSERVÉ",
-            "Le GSAF est un export déclaré et ponctuel. Les compteurs décrivent son contenu "
-            "et dépendent aussi de la couverture et des pratiques de signalement.",
+            "QUESTION D'ARCHITECTURE",
+            "Je construis une chaîne utile, fiable et proportionnée au besoin : l'export source "
+            "est ponctuel et le volume observé (6 890 lignes) ne justifie pas une plateforme distribuée.",
             styles, FACT,
         ),
         Spacer(1, 5),
         make_table([
-            ["Usage", "Question explorée", "Indicateur"],
-            ["Localiser", "Où les déclarations sont-elles nombreuses ?", "Comptes par lieu et pays"],
-            ["Comparer les périodes", "Comment les déclarations varient-elles ?", "Comptes par année et mois"],
-            ["Tester l'environnement", "Quelles conditions coïncident avec les dates ?", "SST, anomalie, météo et témoins"],
-        ], [34 * mm, 68 * mm, 68 * mm], styles),
+            ["Couche", "Rôle dans mon pipeline"],
+            ["Source", "CSV GSAF local ou échantillon synthétique"],
+            ["Raw", "Copie horodatée UTC, conservée pour diagnostiquer et rejouer"],
+            ["Validation", "Profilage, contrat versionné, règles et motifs de rejet"],
+            ["Curated / rejected", "Je sépare les lignes acceptées et rejetées; sorties remplaçables"],
+            ["Produit", "Rapport JSON, tableaux CSV et visualisations descriptives"],
+        ], [43 * mm, 127 * mm], styles),
         Spacer(1, 6),
-        para("Sources retenues", styles, "h2"),
-        make_table([
-            ["Source", "Usage et précaution"],
-            ["Global Shark Attack File (Kaggle)", "CSV source pour les incidents; accès ponctuel, licence et redistribution à vérifier."],
-            ["NOAA OISST v2.1 / ERDDAP", "Jeu ncdcOisst21Agg_LonPM180; une requête par cellule unique sur 1982-2023, grille 0,25°. Climatologie locale 1982-2011, fenêtre de 31 jours; repli côtier si cellule terrestre."],
-            ["Open-Meteo Archive (ERA5)", "Température max, pluie et vent; données météo indirectes, attribution CC BY 4.0."],
-            ["GBIF", "Occurrences 2025-2026 conservées comme piste exploratoire, sans attribution d'espèce responsable."],
-            ["Nominatim / OpenStreetMap", "Géocodage ponctuel des lieux textuels; une coordonnée peut être un centre-ville, pas un point GPS d'incident."],
-        ], [56 * mm, 114 * mm], styles),
-        Spacer(1, 6),
-        para("Mes choix de collecte et de stockage", styles, "h2"),
+        para("Pourquoi batch, fichiers et ce grain ?", styles, "h2"),
         para(
-            "Je traite un lot ponctuel : l'export source n'est pas un flux et sa fréquence de mise "
-            "à jour n'est pas garantie. Je conserve un snapshot raw UTC avec son SHA-256 pour "
-            "pouvoir rejouer le pipeline; à 6 890 lignes, les CSV locaux sont inspectables sans "
-            "ajouter une base de données. Le grain est un incident déclaré. Faute de clé naturelle, "
-            "je supprime les doublons stricts sur les champs disponibles : cette règle est reproductible, "
-            "mais pourrait fusionner deux événements distincts dont les valeurs seraient identiques.",
+            "Je collecte par batch car la source n'est ni un flux continu ni mise à jour à cadence "
+            "garantie. Un snapshot raw UTC avec SHA-256 garde la preuve d'entrée. À cette taille, "
+            "les CSV sont faciles à inspecter; SQLite ajouterait migrations et maintenance sans "
+            "besoin démontré, tandis que streaming, Warehouse et Mart n'ont pas d'usage mesurable. "
+            "Le grain est un incident déclaré; sans clé naturelle, je déduplique strictement sur les "
+            "champs disponibles, avec le risque de fusionner deux événements identiques.",
             styles, "compact",
         ),
+        Spacer(1, 4),
+        make_table([
+            ["Option", "Décision et compromis"],
+            ["CSV batch", "Retenu : simple, inspectable, rejouable pour un export ponctuel."],
+            ["SQLite", "Écarté pour l'instant : transactions utiles, mais migrations/maintenance en plus."],
+            ["Streaming / entrepôt", "Écartés : aucune cadence ni intégration ne les justifie."],
+        ], [43 * mm, 127 * mm], styles, padding=3),
+        Spacer(1, 4),
+        para(
+            "Je ne conserve pas le CSV réel dans le dépôt : il peut contenir des noms et reste "
+            "soumis aux conditions du producteur. J'utilise l'échantillon synthétique pour "
+            "permettre une démonstration reproductible sans divulguer ces données.",
+            styles, "compact",
+        ),
+        para(
+            "La décision est détaillée dans l'ADR 001; les architectures V1 et V2 sont livrées en SVG.",
+            styles, "small",
+        ),
+        make_table([
+            ["Version", "Évolution montrée"],
+            ["V1", "Flux source → raw → contrôles → curated / rejets → indicateurs."],
+            ["V2", "Entrée configurable, profilage, schéma, logs, rapport de run et reprise."],
+        ], [31 * mm, 139 * mm], styles, padding=3),
         Spacer(1, 4),
         callout(
             "HYPOTHÈSES, NON ÉTABLIES",
@@ -306,9 +351,9 @@ def build_pdf() -> Path:
         ),
         Spacer(1, 4),
         para(
-            "Je ne scrape pas le site GSAF et ne contourne pas son authentification. Je télécharge "
-            "l'export Kaggle si je veux lancer l'analyse réelle; sinon, l'échantillon synthétique "
-            "de 121 lignes valide le parcours local sans accès réseau.",
+            "Je ne scrape pas le site GSAF et ne contourne pas son authentification. Pour l'analyse "
+            "réelle, je télécharge l'export Kaggle; sinon, les 121 lignes synthétiques valident "
+            "le pipeline sans données personnelles et sans accès réseau.",
             styles, "compact",
         ),
         PageBreak(),
@@ -317,62 +362,69 @@ def build_pdf() -> Path:
     # Page 3: architecture, quality rules, run traceability and recovery.
     story.extend([
         para("03 · Architecture, qualité et reprise", styles, "h1"),
-        para("Un batch local, lisible et rejouable", styles, "h2"),
+        para("Trajet d'une ligne", styles, "h2"),
         make_table([
-            ["Source CSV", "Snapshot raw UTC", "Validation", "Curated + rejets", "Rapports"],
-            ["GSAF local ou sample", "Copie + SHA-256", "5 règles + compteurs", "Séparation des lignes", "CSV, PNG, JSON"],
-        ], [31 * mm, 35 * mm, 35 * mm, 36 * mm, 33 * mm], styles, padding=3),
-        Spacer(1, 6),
+            ["CSV source", "Copie raw UTC", "Contrôles", "Curated + rejets", "Indicateurs"],
+            ["GSAF local / sample", "Snapshot horodaté + SHA-256", "Profil + contrat + règles", "Acceptés séparés des rejets", "Rapports, tableaux, visuels"],
+        ], [34 * mm, 34 * mm, 34 * mm, 34 * mm, 34 * mm], styles, padding=3),
+        Spacer(1, 5),
         callout(
-            "FAIT OBSERVÉ · dernier run réel de référence",
-            "<b>PASS opérationnel</b>; le statut qualité est assorti d'avertissements parce que "
-            "les rejets sont conservés et comptabilisés.",
+            "CONTRÔLES ET COMPTEURS DU RUN DE RÉFÉRENCE (18/10/2026)",
+            "Le traitement s'est terminé normalement : <b>PASS</b>. Le contrôle qualité reste "
+            "<b>PASS_WITH_WARNINGS</b>, car 194 lignes ont été rejetées. Ce n'est pas un échec "
+            "du lancement : le rapport détaille chaque règle et conserve les rejets pour examen.",
             styles, FACT,
         ),
-        Spacer(1, 5),
-        make_table([
-            ["Contrôle", "Résultat", "Traitement"],
-            ["Pays", "51", "Rejet si absent"],
-            ["Année", "133", "Rejet si hors plage"],
-            ["Type", "20", "Rejet si catégorie inconnue"],
-            ["Âge", "0", "Valeur suspecte corrigée à NULL"],
-            ["Unicité", "9", "Doublons stricts supprimés et comptés"],
-        ], [42 * mm, 26 * mm, 102 * mm], styles, padding=3),
-        Spacer(1, 5),
-        make_table([
-            ["Entrées", "Acceptées", "Rejetées", "Doublons", "Dernière date"],
-            ["6 890", "6 687", "194", "9", "2023-08-16"],
-        ], [34 * mm, 34 * mm, 34 * mm, 34 * mm, 34 * mm], styles, padding=3),
         Spacer(1, 4),
         make_table([
-            ["Qualité", "Règle / traitement"],
-            ["51 pays manquants; 133 années hors plage; 20 types inconnus", "Lignes rejetées avec motif"],
-            ["0 correction d'âge", "Âge suspect corrigé à NULL"],
-            ["9 doublons stricts", "Retirés et comptés"],
-        ], [95 * mm, 75 * mm], styles, padding=3),
-        Spacer(1, 6),
-        para("Traçabilité et reprise", styles, "h2"),
+            ["Run", "Entrées", "Acceptées", "Rejetées", "Doublons", "État"],
+            ["20261018T122103101173Z", "6 890", "6 687", "194", "9", "PASS"],
+        ], [53 * mm, 23 * mm, 25 * mm, 23 * mm, 23 * mm, 23 * mm], styles, padding=3),
+        Spacer(1, 4),
+        make_table([
+            ["Contrôle", "Échecs / action"],
+            ["Pays", "51 · rejet"],
+            ["Année", "133 · rejet"],
+            ["Type", "20 · rejet"],
+            ["Âge", "0 · corrigé à NULL"],
+            ["Unicité", "9 · doublons supprimés"],
+        ], [46 * mm, 124 * mm], styles, padding=3),
+        Spacer(1, 4),
+        para("Observabilité et reprise", styles, "h2"),
         para(
-            "Mon run de référence est <b>20261026T135459843761Z</b> : durée 0,28 s, dernière date "
-            "d'incident 2023-08-16 et âge de cette date 1 167 jours au moment du run. La fraîcheur "
-            "mesure la date de l'événement, pas la date de publication de l'export. Le rapport garde "
-            "run_id, SHA-256, taille, compteurs, profil source et sorties. Un test de source absente "
-            "vérifie l'écriture d'un rapport FAIL et le code d'échec; après correction, je relance le pipeline.",
-            styles,
-        ),
-        para(
-            "La V1 décrit source → raw → contrôles → curated/rejets → indicateurs; la V2 ajoute "
-            "profilage, schéma, entrée configurable, logs et rapport de run. Je n'ajoute pas "
-            "d'entrepôt ou de streaming sans besoin mesurable; SQLite reste une option si les usages "
-            "SQL augmentent. Les CSV curated/rejected sont remplacés à chaque run, les snapshots "
-            "raw servent au rejeu. Une API météo ou NOAA indisponible laisse le pipeline continuer "
-            "avec un statut WARN et le cache s'il existe.",
+            "Pour ce run : durée 0,27 s · dernière date d'incident 2023-08-16 · âge de cette date "
+            "1 159 jours. La fraîcheur porte sur la date de l'événement, pas celle de publication "
+            "du fichier. Le rapport conserve run_id, empreinte, compteurs et sorties. J'ai testé "
+            "une source absente : le pipeline écrit un rapport FAIL et retourne un code d'erreur; "
+            "après correction de la source, je relance le même point d'entrée.",
             styles, "compact",
         ),
+        Spacer(1, 3),
         para(
-            "Le snapshot raw conserve les données source : il reste local, ignoré par Git et à "
-            "supprimer ou anonymiser selon les conditions du producteur.",
-            styles, "small",
+            "La V2 ajoute profilage, contrôle de schéma, séparation accepted/rejected et "
+            "observabilité. Le choix du batch CSV plutôt que SQLite ou streaming est détaillé dans "
+            "l'ADR 001; les architectures V1/V2 sont livrées en SVG. Les sorties curated/rejected "
+            "sont remplacées à chaque run; le snapshot raw sert au rejeu. Si une API météo/NOAA "
+            "est indisponible, le pipeline continue avec WARN et utilise le cache s'il existe.",
+            styles, "compact",
+        ),
+        Spacer(1, 3),
+        para(
+            "Stockage et gouvernance : le batch CSV est proportionné à l'export. SQLite apporterait "
+            "transactions et requêtes structurées, mais ajouterait migrations et maintenance; "
+            "streaming et entrepôt n'ont pas de besoin mesurable. Le champ name reste hors curated; "
+            "le raw réel est exclu de Git et doit être supprimé ou anonymisé selon les conditions "
+            "de la source. Les indicateurs décrivent des signalements, jamais un risque individuel.",
+            styles, "compact",
+        ),
+        Spacer(1, 3),
+        para("Usage d'outils d'IA", styles, "h2"),
+        para(
+            "J'ai utilisé GitHub Copilot comme aide pour certaines tâches d'implémentation, de "
+            "documentation et de tests. Je reste responsable des choix initiaux et d'implémentation "
+            "du projet, de la mise en place de la documentation, ainsi que de la compréhension et "
+            "des choix présentés pour ce projet. Le pipeline et les tests ont été exécutés.",
+            styles, "compact",
         ),
         PageBreak(),
     ])
@@ -469,48 +521,51 @@ def build_pdf() -> Path:
         PageBreak(),
     ])
 
-    # Page 5: environmental plots, hypothesis status table and cautious reading.
-    chart_paths = write_environment_charts()
+    # Page 5: observed seasonal analysis and environmental tests without data.
     story.extend([
-        para("05 · Hypothèses environnementales", styles, "h1"),
+        para("05 · Activités, saisonnalité et hypothèses", styles, "h1"),
         callout(
-            "HYPOTHÈSES, NON ÉTABLIES",
-            "Les graphiques portent la taille d'échantillon et la source. Sans données enrichies "
-            "disponibles, ils affichent n=0 et les statuts restent non concluants; aucune donnée "
-            "n'est inventée pour remplir les figures.",
+            "FAIT OBSERVÉ · SAISONNALITÉ DES ACTIVITÉS",
+            "Sur 5 990 incidents datés avec activité connue, l'association mois-activité est faible "
+            "(V de Cramer = 0,083; cinq activités principales + « Autres »). La rosace montre, "
+            "pour chaque activité, sa répartition mensuelle normalisée.",
+            styles, FACT,
+        ),
+        Spacer(1, 5),
+        fitted_image(IMAGE_DIR / "seasonal_activity_rose.png", 144 * mm, 83 * mm),
+        Spacer(1, 3),
+        para(
+            "Je lis chaque anneau séparément : la couleur compare les mois au sein d'une activité, "
+            "pas le volume entre activités. L'analyse ne contrôle ni le pays, ni l'année, ni la "
+            "fréquentation; cette association descriptive ne prouve pas une cause.",
+            styles, "compact",
+        ),
+        Spacer(1, 5),
+        para("Hypothèses environnementales : résultats disponibles", styles, "h2"),
+        callout(
+            "DONNÉES INSUFFISANTES POUR CONCLURE",
+            "Aucun résultat d'enrichissement SST/météo/témoins n'est disponible localement pour ce "
+            "rendu. Je n'affiche donc aucun graphique environnemental vide : les cinq tests restent "
+            "non concluants, avec n=0. Les occurrences GBIF sont présentées séparément comme "
+            "chevauchements géographiques récents.",
             styles, CAUTION,
         ),
         Spacer(1, 4),
-        Table([
-            [fitted_image(chart_paths["sst_controls"], 83 * mm, 43 * mm),
-             fitted_image(chart_paths["sst_anomaly"], 83 * mm, 43 * mm)],
-            [fitted_image(chart_paths["monthly_sst"], 83 * mm, 43 * mm),
-             fitted_image(chart_paths["air_controls"], 83 * mm, 43 * mm)],
-            [fitted_image(chart_paths["hypotheses"], 83 * mm, 39 * mm), ""],
-        ], colWidths=[85 * mm, 85 * mm], style=TableStyle([
-            ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
-            ("ALIGN", (0, 0), (-1, -1), "CENTER"),
-            ("SPAN", (0, 2), (1, 2)),
-            ("LEFTPADDING", (0, 0), (-1, -1), 1),
-            ("RIGHTPADDING", (0, 0), (-1, -1), 1),
-            ("TOPPADDING", (0, 0), (-1, -1), 1),
-            ("BOTTOMPADDING", (0, 0), (-1, -1), 1),
-        ])),
-        Spacer(1, 3),
         make_table(
             hypothesis_rows(),
-            [44 * mm, 64 * mm, 48 * mm, 14 * mm],
+            [43 * mm, 62 * mm, 51 * mm, 14 * mm],
             styles,
             padding=2,
         ),
         Spacer(1, 3),
         para(
-            "<b>Lecture prudente :</b> H1 compare la SST aux témoins du même lieu et de la même "
-            "année; H2 compare la SST à une climatologie locale (1982-2011, fenêtre de 31 jours); "
-            "H3 compare météo et témoins, avec saison calculée par hémisphère; H4 reste "
-            "exploratoire (GBIF 2025-2026); H5 teste la pluie des trois jours précédents comme "
-            "indicateur indirect de turbidité. "
-            "Une association n'est pas une cause.",
+            "H1 : SST le jour de l'incident vs témoins du même lieu et de la même année. "
+            "H2 : SST vs climatologie locale 1982-2011 (fenêtre de 31 jours). "
+            "H3 : température max de l'air plus élevée, pluie et vent plus faibles que les témoins; "
+            "je calcule la saison par hémisphère (décalage de six mois au sud). "
+            "H4 : piste exploratoire GBIF (occurrences 2025-2026). "
+            "H5 : pluie des trois jours précédents, indicateur indirect de turbidité. "
+            "Les tests d'association ne démontrent jamais une cause.",
             styles, "small",
         ),
         PageBreak(),
@@ -540,7 +595,9 @@ def build_pdf() -> Path:
             "Le champ <b>name</b> est exclu des échantillons, du curated et des indicateurs. "
             "Le CSV réel et les snapshots raw ne sont pas versionnés. Les âges et lieux peuvent "
             "rester réidentifiants par recoupement; je limite donc l'usage au descriptif et conserve "
-            "les données source localement, sous réserve de licence et de conditions de conservation.",
+            "les données source localement, sous réserve de licence et de conditions de conservation. "
+            "Je garde le raw pour le rejeu pendant le projet, puis le supprime ou l'anonymise selon "
+            "les règles du producteur.",
             styles,
         ),
         para("Pistes de suite", styles, "h2"),
@@ -553,10 +610,9 @@ def build_pdf() -> Path:
         ),
         para("Reproductibilité et transparence", styles, "h2"),
         para(
-            "Les tests utilisent des fixtures et mocks, sans appels réseau. L'échantillon synthétique "
-            "de 121 lignes permet une exécution locale. GitHub Copilot a aidé à l'implémentation, "
-            "à la documentation et aux tests; les choix, vérifications et déclarations personnelles "
-            "restent à la charge de l'étudiant.",
+            "Les tests utilisent des fixtures et mocks, sans appels réseau; l'échantillon "
+            "synthétique de 121 lignes permet de rejouer le pipeline localement. Je vérifie les "
+            "sorties avant de les interpréter et documente les limites des sources.",
             styles,
         ),
         make_table([
@@ -575,8 +631,10 @@ def build_pdf() -> Path:
         para(
             "Je produis un CSV curated sans nom, les lignes rejetées avec leur motif, un profil "
             "source, un rapport de run, des tableaux de hotspots et de saisonnalité, des visualisations "
-            "et cette synthèse. Le raw réel reste exclu de Git; je vérifie les droits de redistribution "
-            "et les règles de conservation avant toute remise.",
+            "et cette synthèse. Une autre personne peut reprendre les commandes depuis le README "
+            "dans un environnement propre; la démonstration tient dans le pipeline et ses sorties. "
+            "Le raw réel reste exclu de Git; je vérifie les droits de redistribution et les règles "
+            "de conservation avant toute remise.",
             styles, "compact",
         ),
         Spacer(1, 5),

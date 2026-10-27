@@ -356,5 +356,6 @@ temporelle. L'association mois-activité regroupée est faible (V de Cramer
 0,083). 347 dates sont au 1er janvier; le dashboard montre les comptes avec
 et sans ces dates (janvier baisse lorsque les dates du 1er janvier sont
 exclues). Les hypothèses environnementales H1–H5 sont ajoutées uniquement
-après `python -m src.pipeline --enrich`; sans résultats locaux, la synthèse
-les marque comme non concluantes plutôt que d'inventer une association.
+après `python -m src.pipeline --enrich`; sans mesures locales, la synthèse
+les marque comme non concluantes et aucun graphique environnemental vide
+n'est produit.

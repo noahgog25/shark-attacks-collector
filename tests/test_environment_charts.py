@@ -59,12 +59,18 @@ def test_environment_charts_write_all_five_figures_with_fixture_data(tmp_path: P
     assert all(path.exists() and path.stat().st_size > 0 for path in outputs.values())
 
 
-def test_environment_charts_show_insufficient_data_without_outputs(tmp_path: Path):
+def test_environment_charts_skip_figures_without_measurement_data(tmp_path: Path):
+    image_dir = tmp_path / "images"
+    image_dir.mkdir()
+    stale_chart = image_dir / "environment_sst_controls.png"
+    stale_chart.write_bytes(b"stale chart")
     outputs = write_environment_charts(
         tmp_path / "missing-enriched.csv",
         tmp_path / "missing-hypotheses.csv",
         tmp_path / "missing-monthly.csv",
-        tmp_path / "images",
+        image_dir,
     )
 
-    assert all(path.exists() and path.stat().st_size > 0 for path in outputs.values())
+    assert outputs == {}
+    assert not stale_chart.exists()
+    assert list(image_dir.iterdir()) == []
