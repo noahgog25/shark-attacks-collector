@@ -411,11 +411,9 @@ def build_pdf() -> Path:
         para("Usage d'outils d'IA", styles, "h2"),
         para(
             "J'ai utilisé GitHub Copilot comme aide pour certaines tâches d'implémentation, de "
-            "documentation et de tests : amélioration du collecteur et de l'orchestrateur, données "
-            "de démonstration, ADR, architecture et tests. Je reste responsable des choix initiaux "
-            "et d'implémentation du projet, de la mise en place de la documentation, ainsi que de la "
-            "compréhension et des choix présentés. J'ai relu et validé chaque modification assistée; "
-            "le pipeline et les tests ont été exécutés.",
+            "documentation et de tests. Je reste responsable des choix initiaux et d'implémentation "
+            "du projet, de la mise en place de la documentation, ainsi que de la compréhension et "
+            "des choix présentés pour ce projet. Le pipeline et les tests ont été exécutés.",
             styles, "small",
         ),
         PageBreak(),
