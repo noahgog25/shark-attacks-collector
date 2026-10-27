@@ -17,7 +17,7 @@ Le projet est cadré dans [docs/project_brief.md](docs/project_brief.md).
 
 ## Source et conditions
 
-- **Source initiale** : Global Shark Attack File, extrait via Kaggle — [gauravkumar2525/shark-attacks](https://www.kaggle.com/datasets/gauravkumar2525/shark-attacks)
+- **Source initiale** : dataset Kaggle « Sharks Attack collector », extrait du Global Shark Attack File (GSAF) — [gauravkumar2525/shark-attacks](https://www.kaggle.com/datasets/gauravkumar2525/shark-attacks)
 - **Licence** : usage pédagogique, conditions Kaggle
 - **Date d'accès** : 2026-09-22
 - Détail de l'évaluation des sources candidates : `docs/source_assessment.md`

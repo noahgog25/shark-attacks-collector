@@ -210,12 +210,15 @@ def build_pdf() -> Path:
         para("Shark Attacks Collector", styles, "title"),
         Table([[para(
             '<font color="#31708e"><b>LANCER LE PROJET EN 5 MINUTES</b></font><br/>'
-            "1. Installer Python 3.11+ et les dépendances de <b>requirements.txt</b>.<br/>"
-            "2. Télécharger l'export GSAF depuis "
-            '<link href="https://www.kaggle.com/datasets/teajay/global-shark-attacks">'
-            '<font color="#31708e"><u>Kaggle</u></font></link>, le renommer '
+            '1. Ouvrir ou cloner le <link href="https://github.com/noahgog25/shark-attacks-collector">'
+            '<font color="#31708e"><u>dépôt GitHub Shark Attacks Collector</u></font></link>.<br/>'
+            "2. Installer Python 3.11+ et les dépendances de <b>requirements.txt</b>.<br/>"
+            "3. Télécharger le dataset Kaggle <b>« Sharks Attack collector »</b> "
+            "(Global Shark Attack File / GSAF) depuis "
+            '<link href="https://www.kaggle.com/datasets/gauravkumar2525/shark-attacks">'
+            '<font color="#31708e"><u>la page Kaggle utilisée</u></font></link>, le renommer '
             "<b>global_shark_attacks_raw.csv</b> et le placer dans <b>data/raw/</b>.<br/>"
-            "3. Depuis la racine : <b>python -m src.pipeline</b>, puis "
+            "4. Depuis la racine : <b>python -m src.pipeline</b>, puis "
             "<b>python -m pytest -q</b>.<br/>"
             "Sans export réel, le jeu synthétique de 121 lignes valide le parcours local.",
             styles,
@@ -268,7 +271,7 @@ def build_pdf() -> Path:
         para("Sources et précautions", styles, "h2"),
         make_table([
             ["Source", "Apport", "Précaution"],
-            ["GSAF via Kaggle", "Incidents déclarés", "Export ponctuel; droits de redistribution à vérifier."],
+            ["« Sharks Attack collector » (GSAF via Kaggle)", "Incidents déclarés", "Export ponctuel; droits de redistribution à vérifier."],
             ["GBIF", "Occurrences géographiques", "Présence observée, pas abondance ni identification d'attaque."],
             ["Nominatim / OSM", "Géocodage de lieux", "Centre-ville possible; pas une position GPS d'incident."],
             ["NOAA OISST / ERDDAP", "SST quotidienne et anomalie", "Grille 0,25°; vérifier les métadonnées avant collecte complète."],
@@ -420,10 +423,12 @@ def build_pdf() -> Path:
         Spacer(1, 3),
         para("Usage d'outils d'IA", styles, "h2"),
         para(
-            "J'ai utilisé GitHub Copilot comme aide pour certaines tâches d'implémentation, de "
-            "documentation et de tests. Je reste responsable des choix initiaux et d'implémentation "
-            "du projet, de la mise en place de la documentation, ainsi que de la compréhension et "
-            "des choix présentés pour ce projet. Le pipeline et les tests ont été exécutés.",
+            "J'ai utilisé GitHub Copilot comme aide à l'amélioration du collecteur et de "
+            "l'orchestrateur, à la génération des données de démonstration, à la rédaction de "
+            "documentation (ADR, architecture) et à l'ajout de tests. Je reste responsable du choix "
+            "du dataset et de l'API, de leur mise en relation, des règles de validation, de la "
+            "conception de l'architecture et de cette synthèse. J'ai relu et validé les modifications "
+            "assistées; le pipeline et les tests ont été exécutés.",
             styles, "compact",
         ),
         PageBreak(),

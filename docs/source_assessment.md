@@ -2,7 +2,7 @@
 
 | Critère | Source A — retenue | Source B — écartée |
 |---|---|---|
-| Producteur et URL | Global Shark Attack File, extrait via Kaggle — [gauravkumar2525/shark-attacks](https://www.kaggle.com/datasets/gauravkumar2525/shark-attacks) | [Maven Analytics Data Playground — Shark Attacks](https://mavenanalytics.io/data-playground/shark-attacks) |
+| Producteur et URL | Dataset Kaggle « Sharks Attack collector », extrait du Global Shark Attack File (GSAF) — [gauravkumar2525/shark-attacks](https://www.kaggle.com/datasets/gauravkumar2525/shark-attacks) | [Maven Analytics Data Playground — Shark Attacks](https://mavenanalytics.io/data-playground/shark-attacks) |
 | Mode d'accès | Téléchargement direct du CSV | Téléchargement direct du CSV |
 | Format | CSV, table unique | CSV, table unique |
 | Fréquence de mise à jour | Ponctuelle, non garantie | Ponctuelle, non garantie |
