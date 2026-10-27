@@ -284,19 +284,31 @@ def build_pdf() -> Path:
             ["NOAA OISST v2.1 / ERDDAP", "Jeu ncdcOisst21Agg_LonPM180; une requête par cellule unique sur 1982-2023, grille 0,25°. Climatologie locale 1982-2011, fenêtre de 31 jours; repli côtier si cellule terrestre."],
             ["Open-Meteo Archive (ERA5)", "Température max, pluie et vent; données météo indirectes, attribution CC BY 4.0."],
             ["GBIF", "Occurrences 2025-2026 conservées comme piste exploratoire, sans attribution d'espèce responsable."],
+            ["Nominatim / OpenStreetMap", "Géocodage ponctuel des lieux textuels; une coordonnée peut être un centre-ville, pas un point GPS d'incident."],
         ], [56 * mm, 114 * mm], styles),
         Spacer(1, 6),
+        para("Mes choix de collecte et de stockage", styles, "h2"),
+        para(
+            "Je traite un lot ponctuel : l'export source n'est pas un flux et sa fréquence de mise "
+            "à jour n'est pas garantie. Je conserve un snapshot raw UTC avec son SHA-256 pour "
+            "pouvoir rejouer le pipeline; à 6 890 lignes, les CSV locaux sont inspectables sans "
+            "ajouter une base de données. Le grain est un incident déclaré. Faute de clé naturelle, "
+            "je supprime les doublons stricts sur les champs disponibles : cette règle est reproductible, "
+            "mais pourrait fusionner deux événements distincts dont les valeurs seraient identiques.",
+            styles, "compact",
+        ),
+        Spacer(1, 4),
         callout(
             "HYPOTHÈSES, NON ÉTABLIES",
             "H1-H5 sont des tests d'associations à partir de données disponibles. Aucun résultat "
             "ne démontre une cause biologique ou un risque individuel.",
             styles, CAUTION,
         ),
-        Spacer(1, 5),
+        Spacer(1, 4),
         para(
-            "Je ne scrape pas le site GSAF et ne contourne pas son authentification. Le CSV réel "
-            "et les champs identifiants restent locaux et hors Git; l'échantillon synthétique "
-            "permet de tester le pipeline sans réseau.",
+            "Je ne scrape pas le site GSAF et ne contourne pas son authentification. Je télécharge "
+            "l'export Kaggle si je veux lancer l'analyse réelle; sinon, l'échantillon synthétique "
+            "de 121 lignes valide le parcours local sans accès réseau.",
             styles, "compact",
         ),
         PageBreak(),
@@ -331,19 +343,30 @@ def build_pdf() -> Path:
             ["Entrées", "Acceptées", "Rejetées", "Doublons", "Dernière date"],
             ["6 890", "6 687", "194", "9", "2023-08-16"],
         ], [34 * mm, 34 * mm, 34 * mm, 34 * mm, 34 * mm], styles, padding=3),
+        Spacer(1, 4),
+        make_table([
+            ["Qualité", "Règle / traitement"],
+            ["51 pays manquants; 133 années hors plage; 20 types inconnus", "Lignes rejetées avec motif"],
+            ["0 correction d'âge", "Âge suspect corrigé à NULL"],
+            ["9 doublons stricts", "Retirés et comptés"],
+        ], [95 * mm, 75 * mm], styles, padding=3),
         Spacer(1, 6),
         para("Traçabilité et reprise", styles, "h2"),
         para(
-            "Chaque run journalise un identifiant, l'empreinte et la taille de la source, les "
-            "compteurs, la durée et les sorties. Un test de source absente vérifie le rapport FAIL "
-            "et le code d'échec; après correction, le pipeline peut être relancé. Les CSV curated "
-            "et rejected sont remplacés à chaque exécution, tandis que les snapshots raw servent au rejeu.",
+            "Mon run de référence est <b>20261026T135459843761Z</b> : durée 0,28 s, dernière date "
+            "d'incident 2023-08-16 et âge de cette date 1 167 jours au moment du run. La fraîcheur "
+            "mesure la date de l'événement, pas la date de publication de l'export. Le rapport garde "
+            "run_id, SHA-256, taille, compteurs, profil source et sorties. Un test de source absente "
+            "vérifie l'écriture d'un rapport FAIL et le code d'échec; après correction, je relance le pipeline.",
             styles,
         ),
         para(
-            "Le CSV suffit à un export ponctuel de cette taille. Je n'introduis ni entrepôt ni "
-            "streaming sans besoin mesurable; SQLite reste une option si les usages SQL augmentent. "
-            "Les caches NOAA et météo sont locaux; une API indisponible produit un statut WARN.",
+            "La V1 décrit source → raw → contrôles → curated/rejets → indicateurs; la V2 ajoute "
+            "profilage, schéma, entrée configurable, logs et rapport de run. Je n'ajoute pas "
+            "d'entrepôt ou de streaming sans besoin mesurable; SQLite reste une option si les usages "
+            "SQL augmentent. Les CSV curated/rejected sont remplacés à chaque run, les snapshots "
+            "raw servent au rejeu. Une API météo ou NOAA indisponible laisse le pipeline continuer "
+            "avec un statut WARN et le cache s'il existe.",
             styles, "compact",
         ),
         para(
@@ -354,68 +377,97 @@ def build_pdf() -> Path:
         PageBreak(),
     ])
 
-    # Page 4: observed results; explanatory notes sit directly beside their charts.
+    # Page 4: descriptive results and the data-to-map workflow.
     story.extend([
-        para("04 · Ce que montrent les données", styles, "h1"),
-        callout(
-            "FAIT OBSERVÉ · incidents déclarés",
-            "Le tableau de bord résume des comptes contenus dans le fichier. Les évolutions "
-            "peuvent aussi refléter la fréquentation humaine, la couverture et la déclaration.",
-            styles, FACT,
+        para("04 · Ce que montrent les données et la carte GBIF", styles, "h1"),
+        para(
+            "Dans l'export traité, les déclarations culminent autour des années 2010 et "
+            "<b>New Smyrna Beach</b> est la localité connue la plus représentée. Ce sont des "
+            "comptes de déclarations, sensibles à la fréquentation, à la couverture et aux pratiques "
+            "de signalement; ils ne mesurent pas un risque.",
+            styles, "compact",
         ),
-        Spacer(1, 4),
+        Spacer(1, 2),
     ])
     dashboard = IMAGE_DIR / "dashboard_incidents.png"
     if CURATED_PATH.exists():
         plot_incident_dashboard()
     if dashboard.exists():
-        story.append(fitted_image(dashboard, 170 * mm, 91 * mm))
+        story.append(fitted_image(dashboard, 144 * mm, 84 * mm))
     story.extend([
         para(
-            "<b>Lecture du graphique annuel :</b> les signalements culminent autour des années "
-            "2010; la baisse récente ne prouve pas une baisse des événements réels. "
-            "<b>Lecture du graphique mensuel :</b> janvier est le mois le plus représenté toutes "
-            "dates confondues; en excluant les 1ers janvier, juillet devient le plus représenté.",
-            styles, "compact",
+            "<b>Sensibilité des dates :</b> 347 dates (5,3 %) sont au 1er janvier. Le mois le "
+            "plus représenté passe de janvier à juillet quand je les exclue; faute de champ de "
+            "précision, c'est un test de sensibilité, pas une correction. Sur 6 516 incidents datés, "
+            "5 990 ont une activité connue. L'association mois-activité est faible "
+            "(V de Cramer = 0,083; 5 activités + « Autres »); la rosace normalise chaque activité "
+            "séparément et ne compare pas leurs volumes ni ne démontre une cause.",
+            styles, "small",
         ),
-        Spacer(1, 4),
     ])
-    gbif_chart = IMAGE_DIR / "synthese_especes_gbif.png"
-    if gbif_chart.exists():
-        gbif_text = Paragraph(
-            '<font color="#69764a"><b>FAIT OBSERVÉ · rapprochement GBIF</b></font><br/>'
-            "1 011 lieux d'attaque géocodés comparés; occurrences dans un rayon de 100 km :"
-            "<br/><b>Carcharhinus leucas :</b> 642 · <b>Galeocerdo cuvier :</b> 526"
-            "<br/><b>Carcharodon carcharias :</b> 116 · <b>Rhincodon typus :</b> 37"
-            "<br/><font color=\"#b87935\"><b>Limite :</b></font> une attaque peut être proche "
-            "de plusieurs espèces; l'effort d'observation varie. Ces proximités ne prouvent ni "
-            "la présence le jour de l'incident ni l'espèce responsable.",
-            styles["compact"],
+    story.extend([
+        Spacer(1, 3),
+        para("Carte des occurrences GBIF : de quelles données suis-je parti ?", styles, "h2"),
+    ])
+    occurrence_map = IMAGE_DIR / "species_occurrences.png"
+    if occurrence_map.exists():
+        map_explanation = Paragraph(
+            "<b>1 · Données d'entrée.</b> Pour chacune des quatre espèces, je résous le nom "
+            "taxonomique puis interroge GBIF pour les occurrences avec coordonnées (limite de "
+            "100 par espèce). J'obtiens quatre CSV locaux, soit 400 lignes (31/01/2025-22/08/2026), "
+            "avec dates, coordonnées et stades de vie. "
+            "<br/><b>2 · Préparation.</b> Je concatène les CSV, convertis les coordonnées en "
+            "nombres et écarte les lignes sans latitude, longitude ou espèce. "
+            "<br/><b>3 · Fond de carte.</b> J'utilise les polygones de pays Natural Earth déjà "
+            "conservés dans <i>data/reference/ne_110m_admin_0_countries.geojson</i>. "
+            "<br/><b>4 · Tracé.</b> Avec <i>python -m src.species_visualize</i>, Matplotlib colore "
+            "les points par espèce : nuage longitude/latitude et histogrammes de latitude en haut, "
+            "carte avec frontières en bas. La figure est "
+            "<i>reports/images/species_occurrences.png</i>."
+            "<br/><font color=\"#b87935\"><b>Limite :</b></font> le nombre de points n'est pas "
+            "une mesure d'abondance; il dépend des signalements GBIF et de leur effort "
+            "d'observation. Ces occurrences récentes ne couvrent pas l'historique des incidents.",
+            styles["small"],
         )
-        gbif_panel = Table(
-            [[fitted_image(gbif_chart, 72 * mm, 48 * mm), gbif_text]],
-            colWidths=[74 * mm, 96 * mm],
+        map_panel = Table(
+            [[fitted_image(occurrence_map, 111 * mm, 88 * mm), map_explanation]],
+            colWidths=[113 * mm, 57 * mm],
             hAlign="LEFT",
         )
-        gbif_panel.setStyle(TableStyle([
+        map_panel.setStyle(TableStyle([
             ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
-            ("LEFTPADDING", (0, 0), (-1, -1), 2),
-            ("RIGHTPADDING", (0, 0), (-1, -1), 3),
-            ("TOPPADDING", (0, 0), (-1, -1), 2),
-            ("BOTTOMPADDING", (0, 0), (-1, -1), 2),
+            ("LEFTPADDING", (0, 0), (-1, -1), 1),
+            ("RIGHTPADDING", (0, 0), (-1, -1), 2),
+            ("TOPPADDING", (0, 0), (-1, -1), 1),
+            ("BOTTOMPADDING", (0, 0), (-1, -1), 1),
         ]))
-        story.extend([gbif_panel, PageBreak()])
+        story.append(map_panel)
     else:
-        story.extend([
-            callout(
-                "FAIT OBSERVÉ · rapprochement géographique GBIF",
-                "1 011 lieux d'attaque géocodés; comptes à <= 100 km : Carcharhinus leucas 642, "
-                "Galeocerdo cuvier 526, Carcharodon carcharias 116, Rhincodon typus 37. "
-                "Les proximités ne prouvent pas l'espèce responsable.",
-                styles, CAUTION,
-            ),
-            PageBreak(),
-        ])
+        story.append(para(
+            "Je pars des quatre CSV GBIF normalisés (un par espèce) et d'un fond Natural Earth "
+            "GeoJSON local. La figure n'est pas disponible dans ce clone; aucun réseau n'est "
+            "appelé par la génération du PDF.",
+            styles, "compact",
+        ))
+    story.extend([
+        Spacer(1, 2),
+        make_table([
+            ["Candidate géographique", "<= 25 km", "<= 100 km / 1 011", "Juvéniles <= 100 km"],
+            ["Carcharhinus leucas", "469", "642 (63,5 %)", "534"],
+            ["Carcharodon carcharias", "54", "116 (11,5 %)", "26"],
+            ["Galeocerdo cuvier", "53", "526 (52,0 %)", "24"],
+            ["Rhincodon typus", "0", "37 (3,7 %)", "0"],
+        ], [56 * mm, 27 * mm, 46 * mm, 41 * mm], styles, padding=2),
+        Spacer(1, 2),
+        para(
+            "Les rapprochements sont des paires non exclusives : une attaque peut compter pour "
+            "plusieurs espèces. Une coordonnée d'attaque peut être un centre de localité; une "
+            "occurrence juvénile ne prouve pas une nurserie. Je parle donc de présence régionale "
+            "documentée, jamais de l'espèce responsable ou d'une relation temporelle.",
+            styles, "small",
+        ),
+        PageBreak(),
+    ])
 
     # Page 5: environmental plots, hypothesis status table and cautious reading.
     chart_paths = write_environment_charts()
@@ -509,13 +561,24 @@ def build_pdf() -> Path:
         ),
         make_table([
             ["Pour approfondir", "Fichier ou commande"],
-            ["Installer et relancer", "README.md · python -m src.pipeline · python -m pytest -q"],
-            ["Architecture et règles", "docs/architecture.md · config/data_contract.yaml"],
+            ["Installer et relancer", "README.md (macOS, Linux, PowerShell, cmd) · python -m src.pipeline · python -m pytest -q"],
+            ["Architecture", "docs/architecture.md · docs/architecture_v1.svg · docs/architecture_v2.svg"],
+            ["Règles et champs", "config/data_contract.yaml · docs/data_dictionary.md"],
             ["Sources et méthodes environnementales", "docs/source_assessment.md · docs/ADR_002.md"],
-            ["Dictionnaire et limites", "docs/data_dictionary.md · docs/rgpd_audit.md"],
+            ["Choix de stockage", "docs/ADR_001.md"],
+            ["Test d'incident et gouvernance", "docs/incident_test.md · docs/rgpd_audit.md"],
             ["Code du dépôt", '<link href="https://github.com/noahgog25/shark-attacks-collector">'
              '<font color="#31708e"><u>github.com/noahgog25/shark-attacks-collector</u></font></link>'],
-        ], [61 * mm, 109 * mm], styles, padding=3),
+        ], [61 * mm, 109 * mm], styles, padding=2),
+        Spacer(1, 4),
+        para("Ce que je livre", styles, "h2"),
+        para(
+            "Je produis un CSV curated sans nom, les lignes rejetées avec leur motif, un profil "
+            "source, un rapport de run, des tableaux de hotspots et de saisonnalité, des visualisations "
+            "et cette synthèse. Le raw réel reste exclu de Git; je vérifie les droits de redistribution "
+            "et les règles de conservation avant toute remise.",
+            styles, "compact",
+        ),
         Spacer(1, 5),
         para(
             "Je ne versionne ni le CSV réel ni la colonne name. Les graphiques environnementaux "
